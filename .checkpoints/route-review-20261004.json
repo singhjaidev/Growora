@@ -1,0 +1,127 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/product",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/solutions",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/integrations",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/pricing",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/about",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/demo",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/contact",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/docs",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/guides",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/privacy",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/terms",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/leads",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/pipeline",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/automations",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/forms",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/analytics",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/integrations",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/app/settings",
+    "status": 200,
+    "type": "text/html; charset=utf-8"
+  },
+  {
+    "path": "/sitemap.xml",
+    "status": 200,
+    "type": "application/xml"
+  },
+  {
+    "path": "/robots.txt",
+    "status": 200,
+    "type": "text/plain"
+  },
+  {
+    "path": "/opengraph-image",
+    "status": 200,
+    "type": "image/png"
+  },
+  {
+    "path": "/icon.svg",
+    "status": 200,
+    "type": "image/svg+xml"
+  },
+  {
+    "path": "/not-a-growora-route",
+    "status": 404,
+    "type": "text/html; charset=utf-8"
+  }
+]

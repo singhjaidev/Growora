@@ -1,0 +1,88 @@
+/* Directed momentum: the route is part of the page, with its own solid color field. */
+.momentum-hero {
+  --hero-blue: #2447d8;
+  --signal-accent: #ff8259;
+  background: var(--hero-blue);
+  color: var(--paper);
+  position: relative;
+  overflow: clip;
+}
+.momentum-inner { max-width: 1280px; margin: auto; width: calc(100% - 80px); }
+.momentum-edition { display: flex; justify-content: space-between; padding: 25px 0 22px; font-size: 12px; letter-spacing: .04em; }
+.momentum-edition span:last-child { color: #cbd6ff; }
+.momentum-hero h1 { margin: 0; position: relative; z-index: 2; font-family: var(--editorial); font-weight: 430; font-size: clamp(72px, 7.55vw, 110px); letter-spacing: -.045em; line-height: .93; color: var(--paper); }
+.momentum-hero h1 > span, .momentum-hero h1 > em { display: block; }
+.momentum-hero h1 > em { margin-left: 19%; font-weight: 400; color: var(--paper); }
+.momentum-intro { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 28px; position: relative; z-index: 3; }
+.momentum-intro p { color: #e1e7ff; font-size: 14px; line-height: 1.7; margin: 0; }
+.momentum-actions { display: flex; align-items: center; gap: 27px; }
+.momentum-actions .button { background: var(--paper); border-color: var(--paper); color: #1b3495; min-height: 49px; font-size: 14px; min-width: 154px; justify-content: space-between; }
+.momentum-actions .button:hover { background: #fff; }
+.momentum-actions > a:not(.button) { display: flex; align-items: center; gap: 12px; font-size: 13px; min-height: 44px; }
+.momentum-hero a:focus-visible, .momentum-hero button:focus-visible { outline: 2px solid var(--paper); outline-offset: 5px; }
+.momentum-actions svg, .momentum-baseline a svg { transition: transform 180ms ease; }
+.momentum-actions a:hover svg { transform: translate(3px,-3px); }
+.momentum-actions a:not(.button):hover svg, .momentum-baseline a:hover svg { transform: translateY(4px); }
+.momentum-ref { font-size: 12px; color: #e1e7ff; display: flex; gap: 10px; align-items: center; }
+.momentum-ref i, .momentum-baseline > span > i { width: 17px; height: 11px; background: var(--signal-accent); clip-path: polygon(0 0,75% 0,100% 35%,100% 100%,0 100%); display: inline-block; }
+.momentum-machine { position: relative; width: 100%; height: 300px; margin-top: 40px; }
+.routing-art { position: absolute; width: 100%; height: 100%; inset: 0; overflow: visible; }
+.route-passive { stroke: #90a9f0; stroke-width: 1.5; }
+.route-bed { stroke: #17359c; stroke-width: 14; }
+.route-selected { stroke: var(--signal-accent); stroke-width: 3; }
+.machine-input { position: absolute; left: 0; top: 20%; display: grid; gap: 12px; }
+.machine-input > span, .machine-score > span, .machine-terminal > span { font-size: 11px; letter-spacing: .05em; color: #cbd6ff; }
+.machine-input strong { font-family: var(--editorial); font-size: 26px; font-weight: 400; line-height: 1.05; }
+.machine-input small { font-size: 12px; margin-top: 5px; }
+.machine-gate-labels { position: absolute; left: 27.7%; width: 31.6%; top: 78%; display: grid; grid-template-columns: repeat(3,1fr); }
+.machine-gate-labels span { font-size: 12px; display: flex; gap: 14px; align-items: center; }
+.machine-gate-labels b { color: var(--signal-accent); font-size: 14px; }
+.machine-score { position: absolute; left: 58%; top: 1%; display: grid; }
+.machine-score strong { font-size: 67px; line-height: 1.2; font-weight: 500; letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+.machine-score strong small { font-size: 15px; letter-spacing: 0; color: #cbd6ff; margin-left: 8px; }
+.machine-terminal { position: absolute; left: 80%; top: 34%; display: grid; gap: 7px; }
+.machine-terminal strong { display: flex; align-items: center; gap: 16px; font-size: 20px; font-weight: 500; }
+.machine-terminal small { font-size: 12px; max-width: 225px; line-height: 1.5; }
+.machine-alternatives { position: absolute; left: 81%; top: 72%; display: grid; gap: 45px; font-size: 12px; color: #cbd6ff; }
+.momentum-baseline { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 65px; border-top: 1px solid #9aaef16b; font-size: 12px; }
+.momentum-baseline > span:first-child, .momentum-baseline a { display: flex; align-items: center; gap: 12px; }
+.momentum-baseline b { font-weight: 400; color: #cbd6ff; margin-left: 10px; }
+.route-status { font-size: 10px; letter-spacing: .05em; color: #cbd6ff; }
+.hero-exit { display: flex; align-items: center; gap: 23px; padding: 15px max(40px,calc((100% - 1280px)/2)); background: var(--paper); color: var(--signal); font-size: 11px; }
+.hero-exit > i { height: 1px; background: #9faacd; flex: 1; position: relative; }
+.hero-exit > i:after { content: ''; position: absolute; right: 0; top: -4px; height: 9px; width: 9px; background: var(--signal-accent); }
+.hero-exit span:last-child { display: flex; align-items: center; gap: 20px; }
+.mobile-routing { display: none; }
+@media (min-width: 1600px) { .momentum-hero h1 { font-size: 118px; } .momentum-machine { height: 330px; } }
+@media (max-width: 1100px) { .momentum-ref { display: none; } .momentum-inner { width: calc(100% - 64px); } .momentum-hero h1 { font-size: 7.6vw; } .machine-input strong { font-size: 23px; } .machine-terminal strong { font-size: 17px; } .momentum-baseline b { display: none; } }
+@media (max-width: 699px) {
+  .momentum-inner { width: calc(100% - 40px); }
+  .momentum-edition { font-size: 11px; padding: 22px 0 25px; }
+  .momentum-edition span:last-child { display: none; }
+  .momentum-hero h1 { font-size: clamp(42px, 12vw, 76px); line-height: .98; letter-spacing: -.04em; }
+  .momentum-hero h1 > span { max-width: 9em; }
+  .momentum-hero h1 > em { margin-left: 13%; max-width: 7em; margin-top: 5px; }
+  .momentum-intro { display: block; margin-top: 20px; }
+  .momentum-intro p { font-size: 13px; line-height: 1.65; max-width: 330px; }
+  .momentum-actions { margin-top: 18px; gap: 22px; }
+  .momentum-actions .button { min-height: 48px; min-width: 156px; }
+  .momentum-actions > a:not(.button) { font-size: 12px; gap: 10px; }
+  .momentum-machine { height: auto; margin-top: 30px; }
+  .momentum-machine > :not(.mobile-routing) { display: none; }
+  .mobile-routing { display: block; position: relative; height: 261px; }
+  .mobile-ports { display: flex; justify-content: space-between; font-size: 11px; padding-bottom: 9px; }
+  .mobile-ports > span:first-child { color: var(--signal-accent); }
+  .mobile-routing > svg { width: 100%; height: 216px; overflow: visible; }
+  .mobile-gate-labels { position: absolute; top: 60px; left: 27%; display: grid; gap: 13px; font-size: 12px; line-height: 21px; }
+  .mobile-route-score { position: absolute; right: 0; top: 59px; display: flex; gap: 9px; align-items: center; }
+  .mobile-route-score strong { font-size: 55px; font-weight: 500; letter-spacing: -.06em; line-height: 1; }
+  .mobile-route-score > span { font-size: 11px; color: #cbd6ff; line-height: 1.7; }
+  .mobile-destination { position: absolute; left: 0; bottom: 0; display: flex; justify-content: space-between; gap: 14px; width: 100%; border-top: 1px solid #93aaf175; padding-top: 10px; }
+  .mobile-destination > span { font-size: 12px; max-width: 160px; }
+  .mobile-destination small { font-size: 11px; color: #cbd6ff; max-width: 118px; text-align: right; }
+  .momentum-baseline { margin-top: 17px; min-height: 56px; font-size: 10px; gap: 6px; }
+  .momentum-baseline > span:first-child, .momentum-baseline a { gap: 7px; }
+  .momentum-baseline > span:first-child i { width: 13px; height: 9px; }
+  .momentum-baseline .route-status { display: none; }
+  .hero-exit { padding: 14px 20px; font-size: 10px; gap: 15px; }
+}
