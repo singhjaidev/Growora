@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-export const alt = 'Growora — Good leads deserve a clear next step.';
+export const alt = 'Growora — Turn more enquiries into paying customers.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export default function Image() {
@@ -8,21 +8,21 @@ export default function Image() {
       style={{
         width: '100%',
         height: '100%',
-        background: '#f6f7fb',
+        background: '#f7f7f5',
         display: 'flex',
         flexDirection: 'column',
         padding: '65px 80px',
-        color: '#252c29',
+        color: '#14251f',
         fontFamily: 'sans-serif',
       }}
     >
-      <div style={{ display: 'flex', fontSize: 35, fontWeight: 700, color: '#2b49ae' }}>
+      <div style={{ display: 'flex', fontSize: 35, fontWeight: 700, color: '#197f82' }}>
         ↗ growora.
       </div>
       <div
         style={{ display: 'flex', marginTop: 65, fontSize: 18, letterSpacing: 3, color: '#62695e' }}
       >
-        GROWORA / THE OPPORTUNITY SYSTEM
+        GROWORA / EVERY OPPORTUNITY CONNECTED
       </div>
       <div
         style={{
@@ -34,8 +34,8 @@ export default function Image() {
           marginTop: 25,
         }}
       >
-        <span>Good leads deserve</span>
-        <span style={{ color: '#2b49ae' }}>a clear next step.</span>
+        <span>Turn more enquiries</span>
+        <span style={{ color: '#197f82' }}>into paying customers.</span>
       </div>
       <div
         style={{
@@ -46,7 +46,7 @@ export default function Image() {
           color: '#62695e',
         }}
       >
-        CAPTURE → QUALIFY → SCORE → ROUTE → FOLLOW UP → CONVERT
+        CAPTURE → QUALIFY → ASSIGN → FOLLOW UP → TRACK
       </div>
     </div>,
     size,

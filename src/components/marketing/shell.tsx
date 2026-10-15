@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { Logo, ButtonLink, Mark, Dialog } from '@/components/ui';
 import { useLeads } from '@/components/providers';
-import homeStyles from './homepage.module.css';
+import homeStyles from './premium-homepage.module.css';
 const links = [
   ['Product', '/product'],
   ['Solutions', '/solutions'],
@@ -14,6 +14,7 @@ const links = [
 ];
 export function Header() {
   const pathname = usePathname();
+  const NavigationLink = pathname === '/' ? 'a' : Link;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [login, setLogin] = useState(false);
@@ -42,9 +43,7 @@ export function Header() {
   }, [open]);
   return (
     <>
-      <header
-        className={`site-header ${homeStyles.header} ${pathname === '/' ? homeStyles.navyHeader : ''} ${scrolled ? 'scrolled' : ''}`}
-      >
+      <header className={`site-header ${homeStyles.header} ${scrolled ? 'scrolled' : ''}`}>
         <div className="container nav-inner">
           <Logo />
           <nav
@@ -53,14 +52,14 @@ export function Header() {
             id="main-navigation"
           >
             {links.map(([label, href]) => (
-              <Link
+              <NavigationLink
                 key={href}
                 href={pathname === '/' ? homeTargets[label] : href}
                 onClick={() => setOpen(false)}
                 aria-current={pathname === href ? 'page' : undefined}
               >
                 {label}
-              </Link>
+              </NavigationLink>
             ))}
             <button
               className="mobile-signin"
@@ -99,9 +98,8 @@ export function Header() {
   );
 }
 export function Footer() {
-  const pathname = usePathname();
   return (
-    <footer className={`footer container ${pathname === '/' ? homeStyles.footer : ''}`}>
+    <footer className={`footer container ${homeStyles.footer}`}>
       <div className="footer-top">
         <div>
           <Logo />
@@ -184,12 +182,12 @@ export function FinalCTA() {
 }
 export function MarketingShell({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className={homeStyles.marketingShell}>
       <Header />
       <main id="main" className="marketing-main">
         {children}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

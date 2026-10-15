@@ -1,0 +1,573 @@
+.hero {
+  background: var(--dark);
+  padding: 0 48px;
+  color: #f3f4f1;
+}
+.composition {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  column-gap: 85px;
+  max-width: 1320px;
+  margin: auto;
+}
+.intro {
+  padding: 105px 0 70px;
+  min-height: 780px;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+  font-weight: 600;
+  color: var(--sage);
+}
+.eyebrow i {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--sage);
+}
+.intro h1 {
+  font-size: clamp(3.5rem, 5.5vw, 5.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+  margin: 30px 0 27px;
+  color: #f3f4f1;
+}
+.intro > p {
+  max-width: 385px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #b8beba;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px 22px;
+  margin: 30px 0 24px;
+}
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 50px;
+  font-size: 0.78rem;
+  font-weight: 550;
+}
+.actions a:not(.primary) {
+  border-bottom: 1px solid #68736a;
+}
+.primary {
+  padding: 14px 19px;
+  border-radius: 5px;
+  background: var(--sage);
+  color: #15251b;
+}
+.primary:hover {
+  background: #d1dfcf;
+}
+.introNote {
+  font-size: 0.72rem;
+  line-height: 1.8;
+  color: #909b93;
+}
+.introRule {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  border-top: 1px solid #373e38;
+  padding-top: 18px;
+  margin-top: 62px;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #a0aaa1;
+}
+.sceneColumn {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-width: 0;
+  padding: 80px 0 65px;
+}
+.scene {
+  position: sticky;
+  top: 110px;
+  perspective: 1600px;
+}
+:global([data-scene-static='true']) .scene {
+  position: static;
+}
+.sceneLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  color: #a4aea5;
+  margin-bottom: 30px;
+}
+.object {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  --unfold: clamp(0, calc(1 - var(--journey)), 1);
+  --qualify: clamp(0, calc(2 - var(--journey)), 1);
+  --connect: clamp(0, calc(3 - var(--journey)), 1);
+  position: relative;
+  background: #292e31;
+  border: 1px solid #606a61;
+  border-radius: 9px;
+  padding: 0 13px;
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--unfold) * -13deg)) rotateX(calc(var(--unfold) * 7deg))
+    scale(calc(1 - var(--unfold) * 0.025));
+  box-shadow:
+    8px 9px 0 #343c36,
+    9px 10px 0 #526052,
+    22px 32px 48px #0006;
+}
+.objectBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 7px;
+  border-bottom: 1px solid #444d44;
+  font-size: 0.65rem;
+  color: #c6cec3;
+}
+.objectBar > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.objectBar b {
+  font-size: 1rem;
+  padding: 0 5px;
+  background: #d2ddce;
+  color: #1c2d20;
+  border-radius: 3px;
+}
+.recordTitle {
+  padding: 20px 13px;
+}
+.recordTitle > span {
+  display: block;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  color: #a4b89e;
+}
+.hero .recordTitle h2 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  margin: 8px 0;
+}
+.hero .recordTitle p {
+  font-size: 0.7rem;
+  color: #bdc7b8;
+}
+.layer {
+  position: relative;
+  padding: 17px 20px;
+  background: #f6f8f3;
+  color: #26342a;
+  border: 1px solid #bcc8b6;
+  transform-origin: center;
+}
+.capture {
+  border-top: 3px solid #729771;
+  border-radius: 5px 5px 0 0;
+  transform: translate3d(
+    calc(var(--unfold) * -35px),
+    calc(var(--unfold) * -6px),
+    calc(var(--unfold) * 75px)
+  );
+}
+.qualify {
+  transform: translate3d(
+    calc(var(--qualify) * 19px),
+    calc(var(--qualify) * 5px),
+    calc(var(--qualify) * 45px)
+  );
+}
+.connect {
+  border-radius: 0 0 5px 5px;
+  transform: translate3d(
+    calc(var(--connect) * -9px),
+    calc(var(--connect) * 16px),
+    calc(var(--connect) * 22px)
+  );
+}
+.layerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.55rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  color: #5d715b;
+}
+.object[data-active-stage='0'] .capture .layerHeader,
+.object[data-active-stage='1'] .qualify .layerHeader,
+.object[data-active-stage='2'] .connect .layerHeader {
+  color: var(--green);
+}
+.capture dl {
+  margin: 12px 0 0;
+}
+.capture dl > div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 15px;
+  padding: 5px 0;
+  font-size: 0.73rem;
+}
+.capture dt {
+  color: #697765;
+}
+.capture dd {
+  margin: 0;
+  font-weight: 550;
+}
+.badge {
+  background: #e1ecd9;
+  color: #2a5937;
+  border-radius: 3px;
+  padding: 4px 7px;
+  font-size: 0.6rem;
+  letter-spacing: 0;
+}
+.signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 16px;
+  margin: 13px 0 8px;
+}
+.signals > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.65rem;
+}
+.signals svg {
+  color: var(--green);
+}
+.hero .qualify p {
+  font-size: 0.56rem;
+  color: #65745e;
+}
+.owner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 13px 0;
+}
+.owner > span {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e1e8db;
+  font-size: 0.65rem;
+}
+.owner > div {
+  display: grid;
+  gap: 2px;
+}
+.owner strong {
+  font-size: 0.75rem;
+  font-weight: 550;
+}
+.owner small {
+  font-size: 0.6rem;
+  color: #66765e;
+}
+.owner > small {
+  margin-left: auto;
+}
+.next {
+  border-top: 1px solid #d6dfcf;
+  padding-top: 11px;
+}
+.next > span {
+  font-size: 0.5rem;
+  letter-spacing: 0.07em;
+  color: #60745a;
+}
+.next strong {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 0.74rem;
+  font-weight: 550;
+  margin-top: 4px;
+}
+.objectFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 10px 13px;
+  font-size: 0.6rem;
+  color: #c1cfb8;
+}
+.objectFoot i {
+  width: 5px;
+  height: 5px;
+  background: var(--sage);
+  border-radius: 50%;
+}
+.stageControls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  border-bottom: 1px solid #485143;
+  margin-top: 40px;
+}
+.stageControls button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 3px;
+  min-height: 46px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: #b7c1b1;
+  font-size: 0.66rem;
+}
+.stageControls button > span {
+  font-size: 0.5rem;
+  color: #83937b;
+}
+.stageControls button[aria-pressed='true'] {
+  color: #e0ebd8;
+  border-color: #afc9a3;
+}
+.stageControls button:hover {
+  background: #242b22;
+}
+.hero .sceneNote {
+  font-size: 0.6rem;
+  color: #9ba995;
+  margin-top: 14px;
+}
+.story {
+  grid-column: 1;
+  padding: 20px 0 55px;
+  scroll-margin-top: 115px;
+}
+.story > .eyebrow {
+  margin-bottom: 28px;
+}
+.story article {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 20px;
+  padding: 48px 0;
+  min-height: 290px;
+  border-top: 1px solid #3c443a;
+}
+.number {
+  padding-top: 4px;
+  font-size: 0.65rem;
+  color: #87967e;
+}
+.chapterName {
+  color: #a2b897;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero .story h2 {
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  margin: 15px 0 18px;
+}
+.hero .story p {
+  color: #a8b2a2;
+  font-size: 0.95rem;
+  max-width: 340px;
+}
+.active .number {
+  color: #e3eddb;
+}
+.storyEnd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #3c443a;
+  padding: 25px 0;
+  font-size: 0.78rem;
+  color: #d3e2c8;
+}
+@media (min-width: 1050px) and (min-height: 780px) and (max-height: 900px) {
+  .scene {
+    top: 92px;
+  }
+  .sceneLabel {
+    margin-bottom: 18px;
+  }
+  .objectBar {
+    padding-block: 9px;
+  }
+  .recordTitle {
+    padding-block: 12px;
+  }
+  .layer {
+    padding-block: 11px;
+  }
+  .capture dl > div {
+    padding-block: 3px;
+  }
+  .owner {
+    margin-block: 9px;
+  }
+  .objectFoot {
+    padding-block: 18px 10px;
+  }
+  .stageControls {
+    margin-top: 28px;
+  }
+  .sceneColumn {
+    padding-top: 60px;
+  }
+}
+@media (max-width: 1200px) {
+  .composition {
+    column-gap: 50px;
+  }
+  .hero {
+    padding-inline: 32px;
+  }
+  .intro h1 {
+    font-size: 4.1rem;
+  }
+  .intro {
+    padding-top: 85px;
+  }
+}
+@media (max-width: 1049px), (max-height: 779px) {
+  .scene {
+    position: static;
+  }
+  .object {
+    transform: none;
+  }
+  .capture,
+  .qualify,
+  .connect {
+    transform: none;
+  }
+}
+@media (max-width: 1049px) {
+  .composition {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 680px;
+  }
+  .intro {
+    min-height: 0;
+    padding: 65px 0 25px;
+  }
+  .intro h1 {
+    font-size: clamp(3.5rem, 8vw, 5rem);
+  }
+  .introRule {
+    margin-top: 40px;
+  }
+  .sceneColumn {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 25px 0 45px;
+  }
+  .story {
+    grid-row: 3;
+  }
+  .story article {
+    min-height: 0;
+    padding: 35px 0;
+  }
+  .hero .story p {
+    max-width: 530px;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding-inline: 22px;
+  }
+  .intro {
+    padding-top: 45px;
+  }
+  .intro h1 {
+    font-size: clamp(2.65rem, 11.5vw, 4rem);
+    margin-top: 25px;
+  }
+  .intro > p {
+    font-size: 1rem;
+  }
+  .eyebrow {
+    font-size: 0.5rem;
+  }
+  .introNote {
+    font-size: 0.68rem;
+  }
+  .sceneLabel {
+    font-size: 0.45rem;
+  }
+  .object {
+    padding-inline: 8px;
+    box-shadow:
+      5px 6px 0 #343c36,
+      6px 7px 0 #526052;
+  }
+  .objectBar {
+    font-size: 0.55rem;
+  }
+  .recordTitle {
+    padding-inline: 9px;
+  }
+  .layer {
+    padding: 15px 12px;
+  }
+  .capture dl > div {
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: 8px;
+    font-size: 0.7rem;
+  }
+  .signals {
+    gap: 7px 10px;
+  }
+  .signals > span {
+    font-size: 0.58rem;
+  }
+  .stageControls {
+    margin-top: 25px;
+  }
+  .stageControls button {
+    flex-direction: column;
+    align-items: start;
+    gap: 3px;
+    font-size: 0.65rem;
+  }
+  .hero .story h2 {
+    font-size: 1.65rem;
+  }
+  .story article {
+    grid-template-columns: 22px 1fr;
+    gap: 13px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .object,
+  .capture,
+  .qualify,
+  .connect {
+    transform: none !important;
+  }
+}

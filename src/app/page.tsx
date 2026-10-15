@@ -1,15 +1,15 @@
 import { MarketingShell } from '@/components/marketing/shell';
-import { Hero } from '@/components/marketing/hero';
-import { HomepageSections } from '@/components/marketing/homepage';
-import styles from '@/components/marketing/homepage.module.css';
-export const metadata = { alternates: { canonical: '/' } };
+import { PremiumHomepage } from '@/components/marketing/premium-homepage';
+export const metadata = {
+  title: 'Growora — Turn more enquiries into paying customers',
+  description:
+    'Explore a connected lead workspace. Capture enquiries, prioritise opportunities and plan follow-ups with Growora’s interactive product demo.',
+  alternates: { canonical: '/' },
+};
 export default function Home() {
   return (
     <MarketingShell>
-      <div className={styles.home}>
-        <Hero />
-        <HomepageSections />
-      </div>
+      <PremiumHomepage />
     </MarketingShell>
   );
 }

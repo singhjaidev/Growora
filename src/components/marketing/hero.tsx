@@ -1,5 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDown, Check } from 'lucide-react';
 import { ButtonLink, tabKeyboard } from '@/components/ui';
@@ -250,6 +251,9 @@ export function Hero() {
           data-stage={stage}
           data-renderer={ready && show3d ? 'webgl' : fallbackReady ? 'fallback' : 'pending'}
         >
+          <div className="hero-atmosphere" aria-hidden="true">
+            <Image src="/images/growora-hero-light.png" alt="" fill sizes="100vw" preload />
+          </div>
           <div
             className="spatial-content"
             role={story ? 'tabpanel' : undefined}

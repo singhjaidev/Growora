@@ -247,7 +247,7 @@ export default function LeadEngine({
       const openingX = Math.max(3.6, Math.min(5.15, (width / height) * 2.45));
       assembly.position.set(
         openingX + unfold * (3.65 - openingX),
-        0.25 + unfold * 0.9 + breathing,
+        0.65 + unfold * 0.5 + breathing,
         0,
       );
       const openingScale = width > 1200 ? 1.02 : 0.96;

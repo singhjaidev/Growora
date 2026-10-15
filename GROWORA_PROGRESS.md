@@ -132,3 +132,12 @@ Screenshots are in `.checkpoints/console-review/`. Production preview is running
 ## Latest editorial cleanup — 5 October 2026
 
 Completed the homepage refinement requested after the navy iteration: removed scroll captions; quieter enquiry selection rows and typographic workflow steps; compact pricing and corrected Growth contrast; smooth accessible FAQ accordion; full-width navy footer. User selected quiet/editorial styling and a premium/distinctive impression. Build/TypeScript passed; browser checked annual pricing, selected states and FAQ keyboard toggles. Snapshot: .checkpoints/before-editorial-cleanup-20261005.zip. See HOMEPAGE_DESIGN_SYSTEM.md for the latest design direction.
+
+## Latest atmospheric homepage update — 5 October 2026
+
+Completed navbar button hierarchy, generated subtle architectural hero backdrop with scroll-linked fade, raised opening content/console, consistent section labels and regular/italic section headings, new unified Routing Studio with three stages and two scenarios, and removed the footer top divider. Latest user answers recorded in HOMEPAGE_DESIGN_SYSTEM.md; these supersede the earlier no-hero-image direction. TypeScript, targeted ESLint and production build passed; desktop/mobile browser review checked routes, image fade, labels and footer boundary. Snapshot: .checkpoints/before-atmosphere-routing-20261005.zip. Homepage only; authentication/backend remains future work. Await visual feedback before expanding scope.
+
+## Completed premium rebuild — 13 October 2026
+
+The new 15-section homepage and shared marketing shell supersede the earlier homepage milestones above. Includes interactive product demos, original Three.js segmented cube and fluid ribbon, responsive styling and updated metadata. Build, typecheck, lint and all nine tests passed; production route and desktop/mobile browser checks completed. Full implementation details and honest verification limits are in PREMIUM_REBUILD.md. No deployment performed.
+

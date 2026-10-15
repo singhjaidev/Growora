@@ -50,3 +50,15 @@ These are presentation and local interactive illustrations. No backend, live aut
 User preference: quiet/editorial, strong typography and restrained details, with a premium and distinctive impression. Simplified enquiry options to radio-style rows; workflow icon blocks became large typographic step numbers. Removed the bottom-left scroll captions. Pricing cards are compact (approximately 523px desktop in the reviewed browser), with no decorative icon row or redundant bottom captions; Growth badge and body text explicitly use contrasting light colors. FAQ now uses keyboard-operable buttons with aria-expanded, inert collapsed answer regions and a 400ms grid-height transition, respecting reduced motion. Homepage footer is full-width signature navy. Other pages and backend scope remain unchanged.
 
 Future evaluation: favor clarity and distinctive editorial composition over adding more generic icons, shadows or animated ornaments. Ask whether the visitor understands the product, can recognize controls, and can explain the purpose of each visual.
+
+## Atmospheric hero and routing studio — 5 October 2026 (current direction)
+
+This update supersedes the earlier no-hero-image rule and three workflow cards. The user selected soft architectural light and shadows, subtle atmosphere, one large step-by-step interface, smooth selection/scroll motion, and established software company clarity. Keep heading wording and consistently pair regular sans-serif text with italic serif emphasis. All numbered section labels use the same DM Sans treatment.
+
+Homepage changes: plain Log in and highlighted white Get started in the navy navigation; raised hero content and console; architectural backdrop fades with damped scroll progress; a unified Routing Studio with three keyboard-operable stages and two enquiry scenarios; footer top divider removed. Preserve the quiet editorial direction and signature navy #10263f.
+
+New asset: public/images/growora-hero-light.png. Generated with the built-in image-generation tool. Exact prompt:
+
+> Premium website hero background, wide landscape architectural photograph, bright pearl-white modern sculptural architecture with an ascending sweep of translucent ice-blue glass on the right, directional morning sunlight, elegant long soft blue shadows, subtle light caustics, refined architectural studio aesthetic. Almost blank ivory-white left half for overlay headline. Restrained navy-blue and pale silver-blue details only, soft low contrast, airy but dynamic, real material texture, no people, no objects resembling UI, no text, no logo, no watermark. The image is a quiet atmospheric backdrop behind a separate 3D software console, avoid busy central details.
+
+Verification: TypeScript, targeted ESLint and production build passed. Browser verified background opacity changes with scroll, routing stages and alternate scenario content, consistent section labels, zero homepage footer top border and no mobile horizontal overflow. No browser console errors observed. Backend remains a later phase.

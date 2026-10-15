@@ -3,6 +3,7 @@ import '@fontsource-variable/manrope';
 import '@fontsource-variable/dm-sans';
 import '@fontsource-variable/newsreader';
 import '@fontsource-variable/newsreader/wght-italic.css';
+import '@fontsource-variable/inter';
 import './globals.css';
 import './product-surfaces.css';
 import './art-direction.css';
@@ -16,14 +17,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'Growora',
-    title: 'Growora — Every lead, a next step.',
-    description: 'Capture. Qualify. Convert. A connected lead conversion experience.',
+    title: 'Growora — Turn more enquiries into paying customers.',
+    description:
+      'Capture enquiries, prioritise opportunities and plan follow-ups. Explore the Growora interactive workspace.',
     images: ['/opengraph-image'],
   },
   twitter: { card: 'summary_large_image' },
   icons: { icon: '/icon.svg' },
 };
-export const viewport: Viewport = { themeColor: '#f3f0e8' };
+export const viewport: Viewport = { themeColor: '#f7f7f5' };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
