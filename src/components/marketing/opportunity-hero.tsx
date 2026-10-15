@@ -71,7 +71,7 @@ export function OpportunityHero({
           <div className={s.scene} data-product-scene>
             <div className={s.sceneLabel}>
               <span>THE OPPORTUNITY FILE</span>
-              <span>ILLUSTRATIVE RECORD</span>
+              <span>LEAD RECORD</span>
             </div>
             <div className={s.object} data-active-stage={stage}>
               <div className={s.objectBar}>

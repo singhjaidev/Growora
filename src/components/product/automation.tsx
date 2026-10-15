@@ -96,16 +96,16 @@ export function AutomationEditor({ id = 'high-value' }: { id?: string }) {
         5: { name: 'Wait before reminder', detail: 'Wait 3 days', value: '3' },
       },
       'demo-request': {
-        0: { name: 'Demo request captured', detail: 'Product demo form', value: 'Demo request' },
+        0: { name: 'Contact request captured', detail: 'Product enquiry form', value: 'Contact request' },
         1: {
           name: 'Team needs a walkthrough?',
           detail: 'Lead volume above 50',
           value: 'Lead volume above 50',
         },
         2: {
-          name: 'Qualify demo request',
-          detail: 'Set type to Product demo',
-          value: 'Product demo',
+          name: 'Qualify contact request',
+          detail: 'Set type to Product enquiry',
+          value: 'Product enquiry',
         },
         4: {
           name: 'Prepare booking invitation',
@@ -201,7 +201,7 @@ export function AutomationEditor({ id = 'high-value' }: { id?: string }) {
       <div className="automation-toolbar">
         <span>
           <i className={enabled ? 'live-dot' : 'neutral-dot'} />{' '}
-          {enabled ? 'Enabled in demo' : 'Paused'}
+          {enabled ? 'Enabled in workspace' : 'Paused'}
         </span>
         <div>
           <button
@@ -226,7 +226,7 @@ export function AutomationEditor({ id = 'high-value' }: { id?: string }) {
             }}
           >
             <Play size={12} />
-            {running ? 'Stop simulation' : complete ? 'Replay test' : 'Test flow'}
+            {running ? 'Stop test' : complete ? 'Replay test' : 'Test flow'}
           </button>
         </div>
       </div>
@@ -264,7 +264,7 @@ export function AutomationEditor({ id = 'high-value' }: { id?: string }) {
             ? `Test complete · ${passes ? 'YES — primary route' : 'NO — alternative route'}. No messages sent.`
             : running
               ? `Step ${cursor + 1} of ${path.length} · ${path[cursor] === 7 ? alternative.name : nodes[path[cursor]].name}`
-              : 'A finite simulation. Delays are shortened for the preview.'}
+              : 'A test run. Delays are shortened for the preview.'}
         </p>
       </div>
       <div className="automation-layout">

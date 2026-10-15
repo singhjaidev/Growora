@@ -56,7 +56,7 @@ export function Providers({ children }: { children: ReactNode }) {
       if (raw) {
         const parsed = JSON.parse(raw);
         if (valid(parsed)) initial = parsed;
-        else setNotice('Saved demo data could not be read. Sample data has been restored.');
+        else setNotice('Saved workspace data could not be read. Workspace overview has been restored.');
       }
     } catch {
       setNotice('Browser storage is unavailable. Changes will last for this visit.');

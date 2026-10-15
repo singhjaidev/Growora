@@ -62,7 +62,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
       )}
       <div className="capture-grid">
         <div className="capture-story">
-          <span className="small-label">TRY THE LIVE DEMO</span>
+          <span className="small-label">CAPTURE YOUR NEXT OPPORTUNITY</span>
           <h3>
             A little context.
             <br /> A much smarter
@@ -75,7 +75,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
           <div className="capture-rule">
             <ShieldCheck size={19} />
             <span>
-              Your demonstration stays in this browser.
+              Your workspace stays in this browser.
               <br />
               No emails sent. No account required.
             </span>
@@ -97,7 +97,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
             <span>
               <i className="live-dot" /> SMART CAPTURE
             </span>
-            <span>INTERACTIVE DEMO</span>
+            <span>LEAD CAPTURE</span>
           </div>
           {result && phase === -1 ? (
             <div className="lead-result" aria-live="polite">
@@ -228,7 +228,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
               <button className="button" type="submit" disabled={!ready}>
                 {ready ? 'Qualify this lead' : 'Loading your workspace…'} <ArrowUpRight size={16} />
               </button>
-              <p className="micro">LOCAL DEMONSTRATION · TRANSPARENT, RULE-BASED SCORING</p>
+              <p className="micro">CLEAR, RULE-BASED SCORING</p>
             </form>
           )}
         </div>

@@ -50,7 +50,7 @@ export function VolumeChart({
       <svg
         viewBox="0 0 720 225"
         role="img"
-        aria-label={`${records ? 'Cumulative captured leads' : 'Illustrative lead volume'} over ${range} days. ${data.join(', ')}.`}
+        aria-label={`${records ? 'Cumulative captured leads' : 'lead volume'} over ${range} days. ${data.join(', ')}.`}
       >
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -145,7 +145,7 @@ export function VolumeChart({
         </table>
       </details>
       <span className="micro chart-caption">
-        {records ? 'CUMULATIVE WORKSPACE LEADS' : 'ILLUSTRATIVE DAILY TREND'}
+        {records ? 'CUMULATIVE WORKSPACE LEADS' : 'DAILY LEAD TREND'}
       </span>
     </div>
   );
@@ -373,7 +373,7 @@ export function DashboardPreview() {
           <span className="workspace-caption">G / WORKSPACE</span>
           <span>Your opportunity desk</span>
           <span>
-            <i className="live-dot" /> DEMO WORKSPACE
+            <i className="live-dot" /> workspace
           </span>
         </div>
         <div className="preview-layout">
@@ -382,7 +382,7 @@ export function DashboardPreview() {
             <div className="preview-workspace">
               G{' '}
               <span>
-                Growora workspace<small>Demo environment</small>
+                Growora workspace<small>Your connected workspace</small>
               </span>
             </div>
             {['Overview', 'Leads', 'Pipeline', 'Automations', 'Forms', 'Analytics'].map(
@@ -398,7 +398,7 @@ export function DashboardPreview() {
                 </Link>
               ),
             )}
-            <span className="preview-bottom">SAMPLE DATA · REAL INTERACTIONS</span>
+            <span className="preview-bottom">YOUR PIPELINE, CONNECTED</span>
           </aside>
           <Dashboard preview />
         </div>
@@ -408,7 +408,7 @@ export function DashboardPreview() {
           <i className="live-dot" /> Not a screenshot. A real working workspace.
         </span>
         <Link href="/app">
-          Step inside the demo <ArrowUpRight size={15} />
+          Step inside the workspace <ArrowUpRight size={15} />
         </Link>
       </div>
     </section>

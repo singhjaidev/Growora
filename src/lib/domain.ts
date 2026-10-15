@@ -65,7 +65,7 @@ export function createLead(input: LeadInput): Lead {
     value: result.value,
     score: result.score,
     status: result.score >= 75 ? 'Qualified' : 'New',
-    source: 'Website demo',
+    source: 'Website workspace',
     owner: result.score >= 75 ? 'Jamie Lee' : 'Unassigned',
     created: new Date().toISOString(),
     notes: '',

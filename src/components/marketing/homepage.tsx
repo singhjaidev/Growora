@@ -87,7 +87,7 @@ const faqs = [
   ],
   [
     'How does lead qualification work?',
-    'Project context, budget and timing contribute to a transparent intent score. The score helps your team decide where to focus; it does not replace a personal conversation. In the illustrative enquiry above, the service, budget and timing match the example criteria. Your team can use that context to decide whether a discovery call is the right next step.',
+    'Project context, budget and timing contribute to a transparent intent score. The score helps your team decide where to focus; it does not replace a personal conversation. In the enquiry above, the service, budget and timing match the example criteria. Your team can use that context to decide whether a discovery call is the right next step.',
   ],
   [
     'Can the process fit the way our team works?',
@@ -130,7 +130,7 @@ function Workspace({ stage, select }: { stage: number; select: (index: number) =
         <div className={s.workspace}>
           <div className={s.workspaceBar}>
             <span>
-              <b>g.</b> Northline workspace <small>ILLUSTRATIVE DEMO</small>
+              <b>g.</b> Northline workspace <small>WORKSPACE</small>
             </span>
             <Link href="/app">
               Open workspace <ArrowUpRight size={16} />

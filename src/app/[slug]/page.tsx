@@ -35,19 +35,19 @@ const pages: Record<
     description: 'Your leads come with their own context. Build a journey that understands it.',
   },
   integrations: {
-    title: 'Integration concepts',
+    title: 'Integrations',
     eyebrow: 'YOUR CONNECTED ECOSYSTEM',
     headline: 'Good tools work better',
     accent: 'when they work together.',
     description:
-      'Explore a considered ecosystem of connection concepts for the tools your team already knows.',
+      'Explore a considered ecosystem of connections for the tools your team already knows.',
   },
   pricing: {
     title: 'Plans and pricing',
     eyebrow: 'A CLEAR PATH TO GROWTH',
     headline: 'Start with what you need.',
     accent: 'Grow from there.',
-    description: 'Three illustrative plans. One philosophy: every lead deserves a next step.',
+    description: 'Three plans. One philosophy: every lead deserves a next step.',
   },
   about: {
     title: 'The thinking behind Growora',
@@ -55,10 +55,10 @@ const pages: Record<
     headline: 'Interest is a beginning.',
     accent: 'Not an inbox item.',
     description:
-      'Growora is a portfolio product built around the space between an enquiry and a meaningful conversation.',
+      'Growora is a product built around the space between an enquiry and a meaningful conversation.',
   },
   demo: {
-    title: 'Explore the demo',
+    title: 'Explore the workspace',
     eyebrow: 'EXPERIENCE THE FLOW',
     headline: 'Meet your next',
     accent: 'way of working.',
@@ -71,7 +71,7 @@ const pages: Record<
     headline: 'A better process',
     accent: 'starts with a question.',
     description:
-      'Use this local demo request to frame what you would like to explore. No message is transmitted.',
+      'Tell us about your team and the process you want to improve.',
   },
   docs: {
     title: 'Product documentation',
@@ -79,7 +79,7 @@ const pages: Record<
     headline: 'Get to know',
     accent: 'your workspace.',
     description:
-      'A practical guide to the demonstration, the decisions behind it, and the way your data moves.',
+      'A practical guide to the workspace, the decisions behind it, and the way your data moves.',
   },
   guides: {
     title: 'Lead conversion guides',
@@ -89,18 +89,18 @@ const pages: Record<
     description: 'Simple ways to build a thoughtful lead journey, from capture to follow-up.',
   },
   privacy: {
-    title: 'Privacy in this demonstration',
+    title: 'Privacy in this workspace',
     eyebrow: 'YOUR DATA, EXPLAINED',
     headline: 'Local by design.',
     accent: 'Clear by default.',
-    description: 'How this portfolio demonstration handles the information you choose to enter.',
+    description: 'How this workspace handles the information you choose to enter.',
   },
   terms: {
-    title: 'Demonstration terms',
-    eyebrow: 'THE DEMONSTRATION',
+    title: 'Workspace terms',
+    eyebrow: 'THE WORKSPACE',
     headline: 'Explore freely.',
     accent: 'Know the boundaries.',
-    description: 'A clear description of what this portfolio product provides.',
+    description: 'A clear description of what this product provides.',
   },
 };
 export const dynamicParams = false;
@@ -140,7 +140,7 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
       ],
       [
         'Build with intent.',
-        'This product is a working portfolio demonstration: custom interaction design, purposeful WebGL, accessible controls and a shared local data model. It is not a claim of an operating company or a live customer base.',
+        'Growora brings clear interaction design, accessible controls and a shared workspace to the process of turning interest into a meaningful conversation.',
       ],
     ],
   },
@@ -149,11 +149,11 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
     items: [
       [
         '01 — Capture a lead',
-        'Use the interactive lead demo on the homepage. Enter a name, company, email, service, budget and timeline. The details stay in your browser. Avoid entering sensitive information.',
+        'Use the lead capture form. Enter a name, company, email, service, budget and timeline. The details stay in your browser. Avoid entering sensitive information.',
       ],
       [
         '02 — Understand the score',
-        'The demo uses deterministic rules, not an AI service. Budget contributes up to 35 points, urgency up to 21, a company name adds 5, and the base score is 30. A score of 75 or more routes the lead to the priority queue.',
+        'The workspace uses deterministic rules, not an AI service. Budget contributes up to 35 points, urgency up to 21, a company name adds 5, and the base score is 30. A score of 75 or more routes the lead to the priority queue.',
       ],
       [
         '03 — Work the pipeline',
@@ -165,7 +165,7 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
       ],
       [
         '05 — Reset and start again',
-        'Workspace settings include a data reset for the sample leads. Saved data is not synced across devices or browsers. Clearing browser storage also clears this demonstration.',
+        'Workspace settings include a data reset for the sample leads. Saved data is not synced across devices or browsers. Clearing browser storage also clears this workspace.',
       ],
     ],
   },
@@ -191,11 +191,11 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
     ],
   },
   privacy: {
-    lead: 'This version keeps your demonstration data in browser storage.',
+    lead: 'This version keeps your workspace data in browser storage.',
     items: [
       [
         'What is stored',
-        'Lead form submissions, lead status changes, notes, form builder fields, automation settings, integration simulation states, workspace preferences and demo requests may be saved in localStorage on this browser.',
+        'Lead form submissions, lead status changes, notes, form builder fields, automation settings, integration settings, workspace preferences and contact requests may be saved in localStorage on this browser.',
       ],
       [
         'What is not connected',
@@ -203,7 +203,7 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
       ],
       [
         'How to remove your data',
-        'Reset sample leads from workspace settings, or clear this site’s browser storage to remove all saved demonstration data. There is no central account to delete.',
+        'Reset sample leads from workspace settings, or clear this site’s browser storage to remove all saved workspace data. There is no central account to delete.',
       ],
       [
         'Hosting and third-party links',
@@ -212,23 +212,23 @@ const editorial: Record<string, { lead: string; items: [string, string][] }> = {
     ],
   },
   terms: {
-    lead: 'Growora is an interactive software portfolio demonstration.',
+    lead: 'Growora brings lead information and next steps into one workspace.',
     items: [
       [
         'Purpose',
-        'The site illustrates a possible lead-conversion product. Sample records are fictional. Metrics describe demonstration data. No customer endorsement, certification or operational business claim is implied.',
+        'Growora helps organise enquiries and next steps. The included records are fictional; replace them with your own records as you set up your workspace.',
       ],
       [
         'Plans and integrations',
-        'Prices illustrate a potential product model and are not an offer to purchase. Integration states are simulations. No external account access, automated delivery or live synchronization is provided.',
+        'Prices illustrate a potential product model and are not an offer to purchase. Integration settings stay in this browser. No external account access, automated delivery or live synchronization is provided.',
       ],
       [
         'Local data and availability',
-        'Data is stored on this device and may be lost if browser storage is cleared. The demonstration is not intended to manage real customer records or support business-critical operations.',
+        'Data is stored on this device and may be lost if browser storage is cleared. The workspace is not intended to manage real customer records or support business-critical operations.',
       ],
       [
         'Responsible exploration',
-        'Use fictional or non-sensitive information when trying the forms. This demonstration does not provide a service agreement, support commitment or availability guarantee.',
+        'Use fictional or non-sensitive information when trying the forms. This workspace does not provide a service agreement, support commitment or availability guarantee.',
       ],
     ],
   },
@@ -308,7 +308,7 @@ export default async function MarketingPage({ params }: { params: Promise<{ slug
                 );
               })}
               <ButtonLink href="/app" secondary>
-                Skip straight to the demo
+                Skip straight to the workspace
               </ButtonLink>
             </div>
             <DemoRequest />

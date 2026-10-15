@@ -19,9 +19,9 @@ export function IntegrationDirectory({ app = false }: { app?: boolean }) {
       <div className="integration-notice">
         <Plug size={20} />
         <p>
-          These are conceptual integrations.{' '}
+          These are integration settings.{' '}
           {app
-            ? 'Connection controls save a local demonstration state.'
+            ? 'Connection controls save a local workspace state.'
             : 'Explore how Growora could fit into your existing workflow.'}{' '}
           No external accounts are connected and no data is sent.
         </p>
@@ -70,8 +70,8 @@ export function IntegrationDirectory({ app = false }: { app?: boolean }) {
             <button className="text-button" onClick={() => setSelected(i.name)}>
               {app
                 ? connected.includes(i.name)
-                  ? 'Demo connected'
-                  : 'Configure demo'
+                  ? 'Connection configured'
+                  : 'Configure connection'
                 : 'Explore connection'}
               {connected.includes(i.name) ? <Check size={14} /> : <ArrowUpRight size={14} />}
             </button>
@@ -105,7 +105,7 @@ export function IntegrationDirectory({ app = false }: { app?: boolean }) {
         </p>
         <div className="integration-modal-details">
           <span>Connection type</span>
-          <strong>Local simulation</strong>
+          <strong>Connection settings</strong>
           <span>Data transferred</span>
           <strong>None</strong>
           <span>Proposed events</span>
@@ -128,7 +128,7 @@ export function IntegrationDirectory({ app = false }: { app?: boolean }) {
                 setSelected(null);
               }}
             >
-              {selected && connected.includes(selected) ? 'Disconnect demo' : 'Simulate connection'}
+              {selected && connected.includes(selected) ? 'Disconnect' : 'Save connection settings'}
             </button>
           )}
         </div>

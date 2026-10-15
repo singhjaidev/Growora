@@ -84,7 +84,7 @@ export function SettingsPage() {
               <div className="settings-note">
                 <ShieldCheck size={17} />
                 <span>
-                  Preferences are stored in this browser. This demo has no account, billing or
+                  Preferences are stored in this browser. This workspace has no account, billing or
                   authentication service.
                 </span>
               </div>
@@ -93,7 +93,7 @@ export function SettingsPage() {
             <>
               <p>A fictional team illustrates ownership and routing.</p>
               {[
-                ['Jamie Demo', 'Workspace admin', 'JD'],
+                ['Jamie Lee', 'Workspace admin', 'JD'],
                 ['Jamie Lee', 'Sales owner', 'JL'],
                 ['Sam Carter', 'Sales owner', 'SC'],
               ].map(([name, role, initials]) => (
@@ -103,18 +103,18 @@ export function SettingsPage() {
                     <strong>{name}</strong>
                     <span>{role}</span>
                   </div>
-                  <span className="status">Demo member</span>
+                  <span className="status">Team member</span>
                 </div>
               ))}
               <p className="settings-note">
-                Invitations and real member access are not part of this local demonstration.
+                Invitations and real member access are not part of this local workspace.
               </p>
             </>
           ) : tab === 'Lead rules' ? (
             <>
               <p>
                 Model your preferred high-intent threshold. This preview rule is separate from the
-                fixed homepage scoring demonstration.
+                fixed homepage scoring workspace.
               </p>
               <label>
                 High-intent threshold
@@ -179,7 +179,7 @@ export function SettingsPage() {
             </>
           ) : (
             <>
-              <p>Take a copy of your demonstration leads or restore the original sample dataset.</p>
+              <p>Take a copy of your workspace leads or restore the original sample dataset.</p>
               <div className="data-action">
                 <div>
                   <h3>Export workspace leads</h3>
@@ -213,7 +213,7 @@ export function SettingsPage() {
                 </button>
               </div>
               <div className="settings-note">
-                To remove all data including forms, preferences and demo requests, clear this site’s
+                To remove all data including forms, preferences and contact requests, clear this site’s
                 browser storage.
               </div>
             </>

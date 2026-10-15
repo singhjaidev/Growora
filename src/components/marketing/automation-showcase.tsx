@@ -29,7 +29,7 @@ export function AutomationShowcase() {
         <div className="execution-input">
           <span className="kicker">01 / CAPTURE</span>
           <strong>Website enquiry</strong>
-          <span>Illustrative budget · £7,500</span>
+          <span>budget · £7,500</span>
         </div>
         <ArrowRight className="execution-arrow" size={22} />
         <div className="execution-condition">

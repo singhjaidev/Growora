@@ -35,8 +35,8 @@ const flows = [
   },
   {
     id: 'demo-request',
-    name: 'Demo request workflow',
-    description: 'Qualify a demo request and route it toward a discovery conversation.',
+    name: 'Contact request workflow',
+    description: 'Qualify a contact request and route it toward a discovery conversation.',
     icon: Zap,
     type: 'CAPTURE',
     steps: 7,
@@ -60,7 +60,7 @@ export function AutomationsPage() {
         title={current ? current.name : 'A little logic. A lot of momentum.'}
         description={
           current
-            ? 'Configure each step and visualize the signal path. This local demo sends no messages.'
+            ? 'Configure each step and visualize the signal path. This local workspace sends no messages.'
             : 'Thoughtful workflows for the moments that matter. Select one to shape the process.'
         }
       />
@@ -82,7 +82,7 @@ export function AutomationsPage() {
                 A trigger starts the journey. Conditions choose the path. Actions give it momentum.
               </p>
             </div>
-            <span className="status">LOCAL WORKFLOW DEMO</span>
+            <span className="status">FOLLOW-UP WORKFLOW</span>
           </div>
           <div className="automation-list">
             {flows.map((flow, i) => (

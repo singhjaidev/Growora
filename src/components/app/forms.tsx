@@ -287,7 +287,7 @@ export function FormsPage() {
                 />
               </label>
               <label>
-                Demo status
+                Workspace status
                 <select
                   value={form.status}
                   onChange={(e) => update({ status: e.target.value as CaptureForm['status'] })}
@@ -299,7 +299,7 @@ export function FormsPage() {
               <div className="settings-note">
                 <FileInput size={18} />
                 <span>
-                  Published means available within this local demo. No external embed or submission
+                  Published means available within this local workspace. No external embed or submission
                   endpoint is created.
                 </span>
               </div>
@@ -380,7 +380,7 @@ export function FormsPage() {
                 <h2>{f.name}</h2>
                 <p>
                   {f.fields.length} fields ·{' '}
-                  {f.status === 'Published' ? 'Ready in this demo' : 'Not published'}
+                  {f.status === 'Published' ? 'Ready in this workspace' : 'Not published'}
                 </p>
               </div>
               <span className={`stage-tag ${f.status === 'Published' ? 'won' : 'new'}`}>
@@ -401,7 +401,7 @@ export function FormsPage() {
               <ArrowUpRight size={17} />
             </button>
           ))}
-          <p className="micro">FORM TRAFFIC COUNTS ARE ILLUSTRATIVE SAMPLE DATA.</p>
+          <p className="micro">FORM ACTIVITY AT A GLANCE</p>
         </div>
       )}
     </>

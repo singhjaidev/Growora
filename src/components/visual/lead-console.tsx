@@ -135,7 +135,7 @@ export function LeadConsole({ stage, story }: { stage: number; story: boolean })
               {view === 0
                 ? 'Context captured'
                 : view === 4
-                  ? 'Simulation · nothing sent'
+                  ? 'Nothing sent'
                   : 'Ready for the next step'}
             </span>
             <small>G / 001</small>

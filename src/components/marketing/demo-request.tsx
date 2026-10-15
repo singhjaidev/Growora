@@ -33,12 +33,12 @@ export function DemoRequest() {
         <h3>Step inside, {name}.</h3>
         <p>
           {storage
-            ? 'Your demo request is saved in this browser.'
+            ? 'Your contact request is saved in this browser.'
             : 'Your request was captured for this visit; browser storage is unavailable.'}{' '}
-          {plan && `You explored the ${plan} plan. `}This is a portfolio demo, so no request was
+          {plan && `You explored the ${plan} plan. `}Your request stays on this device and was not
           sent and no meeting has been booked. You can explore the workspace now.
         </p>
-        <ButtonLink href="/app">Open your demo workspace</ButtonLink>
+        <ButtonLink href="/app">Open your workspace</ButtonLink>
         <button className="text-button" style={{ marginTop: 20 }} onClick={() => setState('form')}>
           Edit request
         </button>
@@ -120,7 +120,7 @@ export function DemoRequest() {
         <ArrowUpRight size={16} />
       </button>
       <p className="micro">
-        This demonstration saves your request locally. No sales emails, appointments or external
+        This workspace saves your request locally. No sales emails, appointments or external
         submissions.
       </p>
     </form>

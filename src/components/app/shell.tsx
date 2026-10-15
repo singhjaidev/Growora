@@ -80,7 +80,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <span className="workspace-letter">G</span>
           <span>
             {prefs.name}
-            <small>Demo workspace</small>
+            <small>workspace</small>
           </span>
           <ChevronDown size={14} />
         </button>
@@ -103,7 +103,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="demo-workspace-note">
             <span className="live-dot" /> MADE TO BE EXPLORED
             <p>
-              Sample data. Real possibilities.
+              Your leads. Your next steps.
               <br />
               Your changes stay in this browser.
             </p>
@@ -117,7 +117,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <button className="profile" onClick={() => router.push('/app/settings')}>
             <span className="avatar">JD</span>
             <span>
-              Jamie Demo<small>Workspace admin · Local</small>
+              Jamie Lee<small>Workspace admin · Local</small>
             </span>
             <Settings size={15} />
           </button>
@@ -152,7 +152,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               <span>Search anything…</span>
               <kbd>⌘ K</kbd>
             </button>
-            <span className="demo-pill">DEMO</span>
+            <span className="demo-pill">WORKSPACE</span>
             <button
               className="icon-button notification-button"
               aria-label="Open notifications"
@@ -179,7 +179,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </main>
         <div className="app-footer">
           <span>
-            <i className="live-dot" /> Demo workspace · Local data
+            <i className="live-dot" /> workspace · Local data
           </span>
           <Link href="/docs">
             Documentation <BookOpen size={12} />
@@ -241,7 +241,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         onClose={() => setNotifications(false)}
         title="Your activity feed"
       >
-        <p className="micro">RECENT WORKSPACE ACTIVITY · SAMPLE DATA</p>
+        <p className="micro">RECENT WORKSPACE ACTIVITY · WORKSPACE ACTIVITY</p>
         <div className="notification-list">
           {leads.slice(0, 4).map((l) => (
             <Link
@@ -261,14 +261,14 @@ export function AppShell({ children }: { children: ReactNode }) {
       </Dialog>
       <Dialog open={workspace} onClose={() => setWorkspace(false)} title="Your workspace">
         <p>
-          This portfolio demo has one local workspace. Explore the sample data, customize its name,
+          Your workspace is stored on this device. Explore the sample data, customize its name,
           and shape the process in Settings.
         </p>
         <div className="workspace-option">
           <span className="workspace-letter">G</span>
           <div>
             <strong>{prefs.name}</strong>
-            <p>Local demonstration · Admin access</p>
+            <p>Local workspace · Admin access</p>
           </div>
           <span className="status">Active</span>
         </div>

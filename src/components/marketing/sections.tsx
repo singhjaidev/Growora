@@ -35,7 +35,7 @@ export function Problem() {
       <div className="intake-ledger">
         <div className="ledger-heading">
           <span>{organized ? 'AN OPPORTUNITY DESK' : 'AN ORDINARY INBOX'}</span>
-          <span>3 enquiries · illustrative</span>
+          <span>3 enquiries</span>
         </div>
         {[
           ['Website redesign', 'Budget confirmed', 'Jamie · Discovery call'],
@@ -107,7 +107,7 @@ export function Workflow() {
           <p>{storyChapters[active].description}</p>
         </div>
         <div className="product-specimen">
-          <span className="micro">ILLUSTRATIVE OPPORTUNITY</span>
+          <span className="micro">OPPORTUNITY</span>
           <h3>{storyLead.name}</h3>
           <p>
             {storyLead.company} · {storyLead.service}
@@ -194,7 +194,7 @@ export function PipelineSection() {
         <p>Capture a lead to start your pipeline.</p>
       )}
       <div className="under-window">
-        <span>Your changes stay connected across the demo.</span>
+        <span>Your changes stay connected across the workspace.</span>
         <Link href="/app/pipeline">
           See the full pipeline <ArrowUpRight size={15} />
         </Link>
@@ -387,7 +387,7 @@ export function IntegrationUniverse() {
         <ButtonLink href="/integrations" secondary>
           Explore integrations
         </ButtonLink>
-        <span className="micro">CONCEPTUAL CONNECTIONS · NO LIVE SYNC</span>
+        <span className="micro">CONNECT YOUR CONTEXT</span>
       </div>
       <div className="connection-register">
         {integrations.slice(0, 6).map((item) => (
@@ -415,7 +415,7 @@ export function Pricing({ detailed = false }: { detailed?: boolean }) {
         />
       )}
       <div className="pricing-top">
-        <span className="micro">ILLUSTRATIVE PRICING · NO CHECKOUT OR CHARGES</span>
+        <span className="micro">FIND THE RIGHT PLAN FOR YOUR TEAM</span>
         <div className="segmented" aria-label="Billing period">
           <button
             aria-pressed={!annual}
@@ -482,7 +482,7 @@ export function Pricing({ detailed = false }: { detailed?: boolean }) {
             <small className="billing-copy">
               {annual
                 ? `£${Math.round(plan.price * 0.8) * 12} billed yearly`
-                : 'Billed monthly · illustrative plan'}
+                : 'Billed monthly'}
             </small>
             <ButtonLink href={`/demo?plan=${plan.name.toLowerCase()}`} secondary={i !== 1}>
               Explore {plan.name}
@@ -530,16 +530,16 @@ export function Pricing({ detailed = false }: { detailed?: boolean }) {
             <h3>A few good questions.</h3>
             {[
               [
-                'Is this a live paid product?',
-                'Growora is an interactive portfolio demonstration. Prices are illustrative. There is no checkout, subscription or payment collection.',
+                'How do I choose a plan?',
+                'Choose a plan around your team and lead volume. Contact us to discuss pricing and availability.',
               ],
               [
                 'What happens to the data I enter?',
-                'Demo leads and workspace changes stay in your browser. No external service receives your form submissions.',
+                'Your leads and changes stay in your browser. No external service receives your form submissions.',
               ],
               [
                 'Can I try every plan?',
-                'Every demo workspace has the same interactive capabilities. Plan choices illustrate a possible commercial model.',
+                'Explore the workspace, then choose a plan to discuss your team size and requirements.',
               ],
               [
                 'Do integrations send real data?',

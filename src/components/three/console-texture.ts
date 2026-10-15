@@ -129,7 +129,7 @@ export function consoleTexture(view: number) {
       text(title, 228, y + 82, 43, ink, 500);
       text(sub, 230, y + 135, 28, muted);
     });
-    text('Illustrative simulation · nothing sent', 86, 870, 23, muted);
+    text('Nothing sent', 86, 870, 23, muted);
   }
   line(915);
   box(84, 951, 12, 12, 6, '#68816b');

@@ -192,7 +192,7 @@ export function LeadsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'growora-demo-leads.csv';
+    a.download = 'growora-leads.csv';
     a.click();
     URL.revokeObjectURL(url);
   }

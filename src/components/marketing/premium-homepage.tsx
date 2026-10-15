@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type ReactNode,
   type RefObject,
+  type PointerEvent,
 } from 'react';
 import {
   ArrowRight,
@@ -24,7 +25,6 @@ import {
   Plus,
   MoreHorizontal,
   Sparkles,
-  Zap,
   GitBranch,
   BarChart3,
   CalendarDays,
@@ -33,9 +33,15 @@ import {
 import { Mark, Dialog, tabKeyboard } from '@/components/ui';
 import s from './premium-homepage.module.css';
 import { StudioVisual } from './studio-visual';
+import { FlowingRibbon } from './flowing-ribbon';
 
 function Label({ children }: { children: ReactNode }) {
-  return <span className={s.label}>{children}</span>;
+  return (
+    <span className={s.label}>
+      <span className={s.dot} aria-hidden="true" />
+      {children}
+    </span>
+  );
 }
 function Actions() {
   return (
@@ -52,7 +58,7 @@ function Actions() {
 function Avatar({ name = 'JL' }: { name?: string }) {
   return <span className={s.avatar}>{name}</span>;
 }
-function DemoLabel({ children = 'Illustrative workspace' }: { children?: ReactNode }) {
+function DemoLabel({ children = 'Your workspace' }: { children?: ReactNode }) {
   return (
     <span className={s.demoLabel}>
       <i />
@@ -92,152 +98,68 @@ function MiniLead({
   );
 }
 function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
   return (
     <section className={s.hero} aria-labelledby="hero-title">
       <div className={`${s.container} ${s.heroGrid}`}>
         <div className={s.heroCopy}>
-          <Label>
-            <span className={s.dot} /> A little more connected. A lot more possible.
-          </Label>
+          <Label>EVERY CONVERSATION HAS POTENTIAL</Label>
           <h1 id="hero-title">
             Turn more enquiries into <em>paying customers.</em>
           </h1>
           <p>
             Capture leads, automate follow-ups, and keep your sales pipeline moving—all from one
-            workspace.
+            connected workspace.
           </p>
           <Actions />
           <div className={s.heroNote}>
-            <span>
-              <Check size={14} /> Built around your next step
-            </span>
-            <span>Explore the interactive demo</span>
+            <Check size={17} /> Built around your next step
           </div>
         </div>
         <div
-          className={s.heroScene}
-          ref={ref}
-          onPointerMove={(e) => {
+          className={s.heroSculpture}
+          onPointerMove={(event) => {
             if (
-              e.pointerType !== 'mouse' ||
+              event.pointerType !== 'mouse' ||
               window.matchMedia('(prefers-reduced-motion: reduce)').matches
             )
               return;
-            const r = e.currentTarget.getBoundingClientRect();
-            e.currentTarget.style.setProperty(
-              '--rx',
-              `${-(e.clientY - r.top - r.height / 2) / 150}deg`,
-            );
-            e.currentTarget.style.setProperty(
-              '--ry',
-              `${(e.clientX - r.left - r.width / 2) / 180}deg`,
-            );
+            const bounds = event.currentTarget.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            event.currentTarget.style.setProperty('--pointer-x', `${x * 24}deg`);
+            event.currentTarget.style.setProperty('--pointer-y', `${-y * 20}deg`);
           }}
-          onPointerLeave={(e) => {
-            e.currentTarget.style.setProperty('--rx', '0deg');
-            e.currentTarget.style.setProperty('--ry', '0deg');
+          onPointerLeave={(event) => {
+            event.currentTarget.style.setProperty('--pointer-x', '0deg');
+            event.currentTarget.style.setProperty('--pointer-y', '0deg');
           }}
         >
-          <div className={s.sceneOrbit} />
-          <div className={s.heroBoard}>
-            <div className={s.previewTop}>
-              <span>
-                <Mark /> growora<span className={s.divider}>/</span> My workspace
-              </span>
-              <Avatar />
-            </div>
-            <div className={s.previewBody}>
-              <aside>
-                <LayoutDashboard />
-                <Inbox />
-                <Users />
-                <GitBranch />
-                <BarChart3 />
-              </aside>
-              <div className={s.previewContent}>
-                <div className={s.previewTitle}>
-                  <strong>Opportunities</strong>
-                  <span>
-                    <SlidersHorizontal size={13} /> View
-                  </span>
-                </div>
-                <div className={s.previewMetrics}>
-                  <div>
-                    <span>Pipeline value</span>
-                    <strong>
-                      £42,500 <small>↗ 12.4%</small>
-                    </strong>
-                  </div>
-                  <div>
-                    <span>Active leads</span>
-                    <strong>
-                      24 <small>+4 this week</small>
-                    </strong>
-                  </div>
-                </div>
-                <div className={s.miniBoard}>
-                  <div>
-                    <p>
-                      <i /> New enquiries <small>08</small>
-                    </p>
-                    <MiniLead
-                      name="Alex Morgan"
-                      company="Northline Studio"
-                      value="£7,500"
-                      priority
-                    />
-                    <MiniLead name="Noah Ellis" company="Oak & Beam" value="£3,500" />
-                  </div>
-                  <div>
-                    <p>
-                      <i /> In conversation <small>06</small>
-                    </p>
-                    <MiniLead name="Olivia Reed" company="Fieldwork Property" value="£5,000" />
-                    <MiniLead name="Leo Parker" company="Forma Consulting" value="£4,500" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={s.previewBottom}>
-              <span className={s.dot} /> Every opportunity, a clear next step.
-              <span>Sample data</span>
-            </div>
-          </div>
-          <div className={`${s.floatCard} ${s.incoming}`}>
+          <div className={s.heroHalo} />
+          <StudioVisual kind="cube" />
+          <div className={s.heroReceipt}>
             <span className={s.iconTile}>
-              <Inbox size={17} />
+              <Globe size={18} />
             </span>
             <div>
-              <small>NEW ENQUIRY</small>
-              <strong>Meet your next opportunity.</strong>
-              <span>Alex Morgan · Website form</span>
+              <small>01 / CAPTURED</small>
+              <strong>Northline Studio</strong>
+              <span>Website enquiry · £7,500</span>
             </div>
-            <span className={s.dot} />
+            <Check size={16} />
           </div>
-          <div className={`${s.floatCard} ${s.qualified}`}>
-            <div className={s.scoreRing}>91</div>
+          <div className={s.heroOutcome}>
+            <span className={s.scoreRing}>91</span>
             <div>
-              <small>A STRONG FIT</small>
-              <strong>Ready for a conversation</strong>
-              <span>Budget, timing and brief aligned.</span>
+              <small>02 / QUALIFIED</small>
+              <strong>A promising connection.</strong>
+              <span>Next step: discovery with Jamie</span>
             </div>
           </div>
-          <div className={`${s.floatCard} ${s.followup}`}>
-            <span className={s.iconTile}>
-              <Check size={17} />
-            </span>
-            <div>
-              <strong>Next step, taken care of.</strong>
-              <span>Discovery follow-up · Scheduled</span>
-            </div>
-            <span className={s.tinyAvatar}>JL</span>
-          </div>
-          <div className={s.sceneCaption}>YOUR PIPELINE. WITH A LITTLE MORE MOMENTUM.</div>
+          <span className={s.sculptureCaption}>FROM A FIRST HELLO. TO A CLEAR NEXT STEP.</span>
         </div>
       </div>
       <div className={`${s.container} ${s.heroRail}`}>
-        <span>FROM FIRST HELLO TO WHAT’S NEXT</span>
+        <span>ONE CONNECTED WORKSPACE</span>
         <div>
           {['Capture', 'Qualify', 'Assign', 'Follow up', 'Track'].map((x, i) => (
             <span key={x}>
@@ -273,12 +195,12 @@ export function PremiumHomepage() {
     <div className={s.home} ref={root}>
       <Hero />
       <Problems />
+      <CubeSection />
       <Journey />
       <Workspace />
       <Capture />
       <Qualification />
       <Automation />
-      <CubeSection />
       <Intelligence />
       <Analytics />
       <Integrations />
@@ -346,15 +268,62 @@ function Problems() {
             data-reveal
             style={{ '--delay': `${i * 100}ms` } as CSSProperties}
           >
-            <div className={s.problemVisual}>
-              <p.icon size={22} />
-              {p.lines.map((l, j) => (
-                <div key={l} style={{ opacity: 1 - j * 0.2, transform: `translateX(${j * 8}px)` }}>
-                  <span className={s.dot} />
-                  {l}
-                  <span>{j === 1 ? '•••' : '↗'}</span>
+            <div className={s.problemSculpture} data-kind={i} aria-hidden="true">
+              <div className={s.sculptureGlow} />
+              {i === 0 ? (
+                <div className={s.enquiryStack}>
+                  {p.lines.map((line, j) => (
+                    <div
+                      className={s.enquirySheet}
+                      key={line}
+                      style={{ '--sheet': j } as CSSProperties}
+                    >
+                      {j === 0 ? (
+                        <Globe size={20} />
+                      ) : j === 1 ? (
+                        <Mail size={20} />
+                      ) : (
+                        <FileText size={20} />
+                      )}
+                      <span>{line}</span>
+                      <i />
+                      <i />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : i === 1 ? (
+                <div className={s.followupObject}>
+                  <div className={s.clockFace}>
+                    <span className={s.clockTicks} />
+                    <i className={s.hourHand} />
+                    <i className={s.minuteHand} />
+                    <b />
+                  </div>
+                  <div className={s.reminderPlate}>
+                    <Clock3 size={17} />
+                    <span>Follow-up overdue</span>
+                    <span>!</span>
+                  </div>
+                </div>
+              ) : (
+                <div className={s.ownershipObject}>
+                  <div className={s.ownerConnector} />
+                  {['JL', '?', 'SC'].map((name, j) => (
+                    <div
+                      key={name}
+                      className={s.ownerTile}
+                      style={{ '--person': j } as CSSProperties}
+                    >
+                      <span>{name}</span>
+                      <i />
+                    </div>
+                  ))}
+                  <div className={s.assignmentPlate}>
+                    <Users size={17} />
+                    <span>Who’s taking the next step?</span>
+                  </div>
+                </div>
+              )}
             </div>
             <h3>{p.title}</h3>
             <p>{p.copy}</p>
@@ -368,13 +337,13 @@ const stages = [
   {
     name: 'Capture',
     title: 'A new conversation starts here.',
-    detail: 'Alex’s website enquiry arrives with the brief, budget and timing in one record.',
+    detail: 'Alex’s enquiry arrives with the brief, budget and timing in one record.',
     status: 'Alex Morgan · Website enquiry',
   },
   {
     name: 'Qualify',
     title: 'Find the fit behind the form.',
-    detail: 'A £7,500 budget and a 30-day timeline match the example qualification criteria.',
+    detail: 'A £7,500 budget and a 30-day timeline match the qualification criteria.',
     status: 'Intent score 91 · High priority',
   },
   {
@@ -396,66 +365,72 @@ const stages = [
     status: 'In conversation · Next step recorded',
   },
 ];
-function useVisibleSignals(ref: RefObject<SVGSVGElement | null>, paused: boolean, version = 0) {
+function useSequence(
+  ref: RefObject<HTMLDivElement | null>,
+  paused: boolean,
+  count: number,
+  duration = 6000,
+) {
+  const [step, setStep] = useState(0);
   useEffect(() => {
-    const svg = ref.current;
-    if (!svg) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let visible = false;
-    svg.setCurrentTime(0);
-    const sync = () => {
-      if (paused || reduced.matches || !visible || document.hidden) svg.pauseAnimations();
-      else svg.unpauseAnimations();
-    };
-    const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      sync();
-    });
-    observer.observe(svg);
-    document.addEventListener('visibilitychange', sync);
-    reduced.addEventListener('change', sync);
-    sync();
-    return () => {
-      observer.disconnect();
-      document.removeEventListener('visibilitychange', sync);
-      reduced.removeEventListener('change', sync);
-    };
-  }, [ref, paused, version]);
-}
-function Journey() {
-  const [stage, setStage] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const box = useRef<HTMLDivElement>(null);
-  const signals = useRef<SVGSVGElement>(null);
-  useVisibleSignals(signals, !playing, stage);
-  useEffect(() => {
-    const el = box.current;
-    if (!el || !playing) return;
-    let timer: ReturnType<typeof setInterval> | undefined;
+    const el = ref.current;
+    if (!el) return;
+    el.dataset.running = 'false';
+    if (paused) return;
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let visible = false;
+    let timer: ReturnType<typeof setInterval> | undefined;
     const sync = () => {
       clearInterval(timer);
+      el.dataset.running = String(visible && !document.hidden && !motion.matches);
       if (visible && !document.hidden && !motion.matches)
-        timer = setInterval(() => setStage((v) => (v + 1) % 5), 3200);
+        timer = setInterval(() => setStep((v) => (v + 1) % count), duration);
     };
     const observer = new IntersectionObserver(
-      ([e]) => {
-        visible = e.isIntersecting;
+      ([entry]) => {
+        visible = entry.isIntersecting;
         sync();
       },
-      { threshold: 0.25 },
+      { threshold: 0.2 },
     );
     observer.observe(el);
     motion.addEventListener('change', sync);
     document.addEventListener('visibilitychange', sync);
     return () => {
-      observer.disconnect();
       clearInterval(timer);
+      observer.disconnect();
       motion.removeEventListener('change', sync);
       document.removeEventListener('visibilitychange', sync);
     };
-  }, [playing]);
+  }, [ref, paused, count, duration]);
+  return step;
+}
+function Journey() {
+  const [tick, setTick] = useState(0);
+  const box = useRef<HTMLDivElement>(null);
+  const stage = tick % 5;
+  const source = Math.floor(tick / 5);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    let visible = false;
+    const sync = () => {
+      el.dataset.running = String(visible && !document.hidden);
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', sync);
+    };
+  }, []);
   return (
     <section className={`${s.section} ${s.journeySection}`} id="how-it-works">
       <div className={s.container}>
@@ -464,52 +439,77 @@ function Journey() {
           title="One connected journey. From enquiry to customer."
           center
         />
-        <div ref={box} className={s.journey} data-playing={playing}>
+        <div ref={box} className={s.journey} data-running="false">
           <div className={s.network}>
             <div className={s.sourceNodes}>
               {[
                 [Globe, 'Website form'],
                 [Mail, 'Email enquiry'],
                 [Users, 'Referral'],
-              ].map(([Icon, text]) => {
+              ].map(([Icon, text], i) => {
                 const I = Icon as typeof Globe;
                 return (
-                  <div key={String(text)}>
+                  <div key={String(text)} data-active={source === i}>
                     <I size={18} />
-                    {String(text)}
+                    <span>{String(text)}</span>
+                    <span className={s.sourceProgress}>
+                      {source === i ? `${stage + 1} / 5` : ''}
+                    </span>
                   </div>
                 );
               })}
             </div>
-            <svg
-              key={`signal-${stage}`}
-              ref={signals}
-              viewBox="0 0 500 240"
-              className={s.networkPaths}
-              aria-hidden="true"
-            >
-              <path d="M0 35 C180 35 160 120 360 120 M0 120 H360 M0 205 C180 205 160 120 360 120" />
-              <circle r="4" className={s.signal}>
-                <animateMotion
-                  dur="3.2s"
-                  repeatCount="indefinite"
-                  path="M0 35 C180 35 160 120 360 120"
-                />
-              </circle>
-              <circle r="3" className={s.signal}>
-                <animateMotion
-                  dur="3.2s"
-                  begin="1s"
-                  repeatCount="indefinite"
-                  path="M0 205 C180 205 160 120 360 120"
-                />
-              </circle>
+            <svg viewBox="0 0 500 240" className={s.networkPaths} aria-hidden="true">
+              {[
+                'M0 35 C180 35 160 120 360 120',
+                'M0 120 H360',
+                'M0 205 C180 205 160 120 360 120',
+              ].map((d, i) => (
+                <path key={d} d={d} data-active={source === i} />
+              ))}
+              <path
+                key={`trace-${tick}`}
+                className={s.routeTrace}
+                pathLength={100}
+                d={
+                  [
+                    'M0 35 C180 35 160 120 360 120',
+                    'M0 120 H360',
+                    'M0 205 C180 205 160 120 360 120',
+                  ][source]
+                }
+              />
+              <circle
+                key={tick}
+                r="5"
+                className={s.routeSignal}
+                onAnimationEnd={() => setTick((value) => (value + 1) % 15)}
+                style={
+                  {
+                    offsetPath: `path('${['M0 35 C180 35 160 120 360 120', 'M0 120 H360', 'M0 205 C180 205 160 120 360 120'][source]}')`,
+                    animationDuration: '2.4s',
+                  } as CSSProperties
+                }
+              />
             </svg>
-            <div className={s.destination} key={stage}>
+            <div className={s.destination} key={tick}>
+              <small className={s.destinationEyebrow}>ONE CONNECTED WORKSPACE</small>
               <Mark />
               <strong>growora</strong>
-              <span>{stages[stage].status}</span>
-              <CircleCheck size={18} />
+              <span>
+                {stage === 0
+                  ? [
+                      'Alex Morgan · Website enquiry',
+                      'Alex Morgan · Email enquiry',
+                      'Alex Morgan · Referral',
+                    ][source]
+                  : stages[stage].status}
+              </span>
+              <div className={s.journeyMilestones} aria-hidden="true">
+                {stages.map((item, i) => (
+                  <i key={item.name} data-complete={i <= stage} />
+                ))}
+              </div>
             </div>
           </div>
           <div
@@ -527,8 +527,7 @@ function Journey() {
                 aria-controls="journey-panel"
                 tabIndex={stage === i ? 0 : -1}
                 onClick={() => {
-                  setPlaying(false);
-                  setStage(i);
+                  setTick(source * 5 + i);
                 }}
               >
                 <span>0{i + 1}</span>
@@ -547,16 +546,11 @@ function Journey() {
               <h3>{stages[stage].title}</h3>
               <p>{stages[stage].detail}</p>
             </div>
-            <button
-              className={s.smallButton}
-              aria-pressed={playing}
-              onClick={() => setPlaying(!playing)}
-            >
-              {playing ? 'Pause journey' : 'Play journey'}{' '}
-              <span aria-hidden="true">{playing ? 'Ⅱ' : '▷'}</span>
-            </button>
+            <span className={s.journeyStepCount}>
+              0{stage + 1}
+              <span>/ 05</span>
+            </span>
           </div>
-          <DemoLabel>Illustrative lead journey · no external messages sent</DemoLabel>
         </div>
       </div>
     </section>
@@ -604,7 +598,52 @@ const boardLeads = [
     source: 'Website',
   },
 ];
+function useScrollScene() {
+  const scene = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = scene.current;
+    if (!el) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    let nearby = false;
+    const draw = () => {
+      frame = 0;
+      const top = el.getBoundingClientRect().top;
+      const progress = reduced.matches
+        ? 1
+        : Math.max(0, Math.min(1, (window.innerHeight * 0.9 - top) / (window.innerHeight * 0.85)));
+      const eased = progress * progress * (3 - 2 * progress);
+      el.style.setProperty('--workspace-scale', String(0.86 + 0.14 * eased));
+      el.style.setProperty('--workspace-angle', `${14 * (1 - eased)}deg`);
+      el.style.setProperty('--workspace-rise', `${70 * (1 - eased)}px`);
+    };
+    const schedule = () => {
+      if (nearby && !frame) frame = requestAnimationFrame(draw);
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        nearby = entry.isIntersecting;
+        schedule();
+      },
+      { rootMargin: '200px' },
+    );
+    observer.observe(el);
+    draw();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    reduced.addEventListener('change', draw);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      reduced.removeEventListener('change', draw);
+    };
+  }, []);
+  return scene;
+}
 function Workspace() {
+  const scene = useScrollScene();
   const [stage, setStage] = useState(0);
   const [filter, setFilter] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
@@ -616,155 +655,172 @@ function Workspace() {
         title="Your entire pipeline. Finally in one place."
         copy="The brief, the people, the next conversation. Give your team a shared view of every opportunity."
       />
-      <div className={s.workspace} data-reveal>
-        <aside className={s.workspaceSide}>
-          <div>
-            <Mark />
-            <strong>growora</strong>
-          </div>
-          <small>NORTHLINE WORKSPACE</small>
-          {[
-            [LayoutDashboard, 'Overview', '/app'],
-            [Inbox, 'Opportunities', '/app/pipeline'],
-            [Users, 'Contacts', '/app/leads'],
-            [GitBranch, 'Workflows', '/app/automations'],
-            [BarChart3, 'Reports', '/app/analytics'],
-          ].map(([Icon, label, href], i) => {
-            const I = Icon as typeof Globe;
-            return (
-              <Link href={String(href)} data-active={i === 1} key={String(label)}>
-                <I size={15} />
-                {String(label)}
-              </Link>
-            );
-          })}
-          <span className={s.sideFoot}>
-            <Avatar /> Jamie Lee <ChevronDown size={12} />
-          </span>
-        </aside>
-        <div className={s.workspaceMain}>
-          <div className={s.workspaceToolbar}>
+      <div ref={scene} className={s.workspaceScene}>
+        <div className={s.workspaceFrame}>
+          <div className={s.workspaceChrome} aria-hidden="true">
             <span>
-              Workspace <span>/</span> Opportunities
+              <i />
+              <i />
+              <i />
             </span>
-            <DemoLabel>Sample data</DemoLabel>
-          </div>
-          <div className={s.boardHeading}>
-            <h3>
-              Sales pipeline <small>{filter ? 3 : 5} opportunities</small>
-            </h3>
-            <Link className={s.smallButton} href="/app/leads">
-              <Plus size={14} /> Open demo
-            </Link>
-          </div>
-          <div className={s.boardFilters}>
+            <span>growora / your workspace</span>
             <span>
-              <LayoutDashboard size={14} /> Board view
+              <Mark />
             </span>
-            <button
-              className={s.smallButton}
-              aria-pressed={filter}
-              onClick={() => setFilter(!filter)}
-            >
-              <SlidersHorizontal size={13} />
-              {filter ? 'Jamie’s leads' : 'All owners'}
-              <ChevronDown size={12} />
-            </button>
-            <span className={s.boardHint}>Select a lead to see the details</span>
           </div>
-          <div className={s.fullBoard}>
-            {['Qualified', 'In conversation', 'Proposal'].map((name, i) => (
-              <div className={s.lane} key={name}>
-                <h4>
-                  <i />
-                  {name}
-                  <small>
-                    {
-                      boardLeads.filter(
-                        (l, j) =>
-                          (j === 0 ? stage : l.stage) === i && (!filter || l.owner === 'JL'),
-                      ).length
-                    }
-                  </small>
-                </h4>
-                {boardLeads.map(
-                  (l, j) =>
-                    (j === 0 ? stage : l.stage) === i &&
-                    (!filter || l.owner === 'JL') && (
-                      <button
-                        className={s.leadButton}
-                        key={l.company}
-                        onClick={() => setSelected(j)}
-                      >
-                        <MiniLead
-                          name={l.name}
-                          company={l.company}
-                          value={l.value}
-                          priority={j === 0}
-                          owner={l.owner}
-                        />
-                      </button>
-                    ),
-                )}
+          <div className={s.workspace}>
+            <aside className={s.workspaceSide}>
+              <div>
+                <Mark />
+                <strong>growora</strong>
               </div>
-            ))}
-          </div>
-          <div className={s.boardStatus}>
-            <CircleCheck size={14} />
-            <span>
-              Northline Studio ·{' '}
-              {
-                ['Ready for discovery', 'Discovery conversation planned', 'Scope ready to prepare'][
-                  stage
-                ]
-              }
-            </span>
-            <button className={s.smallButton} onClick={() => setStage((stage + 1) % 3)}>
-              {stage === 2 ? 'Reset example' : 'Move example lead'} <ArrowRight size={14} />
-            </button>
+              <small>NORTHLINE WORKSPACE</small>
+              {[
+                [LayoutDashboard, 'Overview', '/app'],
+                [Inbox, 'Opportunities', '/app/pipeline'],
+                [Users, 'Contacts', '/app/leads'],
+                [GitBranch, 'Workflows', '/app/automations'],
+                [BarChart3, 'Reports', '/app/analytics'],
+              ].map(([Icon, label, href], i) => {
+                const I = Icon as typeof Globe;
+                return (
+                  <Link href={String(href)} data-active={i === 1} key={String(label)}>
+                    <I size={15} />
+                    {String(label)}
+                  </Link>
+                );
+              })}
+              <span className={s.sideFoot}>
+                <Avatar /> Jamie Lee <ChevronDown size={12} />
+              </span>
+            </aside>
+            <div className={s.workspaceMain}>
+              <div className={s.workspaceToolbar}>
+                <span>
+                  Workspace <span>/</span> Opportunities
+                </span>
+                <DemoLabel>Workspace overview</DemoLabel>
+              </div>
+              <div className={s.boardHeading}>
+                <h3>
+                  Sales pipeline <small>{filter ? 3 : 5} opportunities</small>
+                </h3>
+                <Link className={s.smallButton} href="/app/leads">
+                  <Plus size={14} /> Open workspace
+                </Link>
+              </div>
+              <div className={s.boardFilters}>
+                <span>
+                  <LayoutDashboard size={14} /> Board view
+                </span>
+                <button
+                  className={s.smallButton}
+                  aria-pressed={filter}
+                  onClick={() => setFilter(!filter)}
+                >
+                  <SlidersHorizontal size={13} />
+                  {filter ? 'Jamie’s leads' : 'All owners'}
+                  <ChevronDown size={12} />
+                </button>
+                <span className={s.boardHint}>Select a lead to see the details</span>
+              </div>
+              <div className={s.fullBoard}>
+                {['Qualified', 'In conversation', 'Proposal'].map((name, i) => (
+                  <div className={s.lane} key={name}>
+                    <h4>
+                      <i />
+                      {name}
+                      <small>
+                        {
+                          boardLeads.filter(
+                            (l, j) =>
+                              (j === 0 ? stage : l.stage) === i && (!filter || l.owner === 'JL'),
+                          ).length
+                        }
+                      </small>
+                    </h4>
+                    {boardLeads.map(
+                      (l, j) =>
+                        (j === 0 ? stage : l.stage) === i &&
+                        (!filter || l.owner === 'JL') && (
+                          <button
+                            className={s.leadButton}
+                            key={l.company}
+                            onClick={() => setSelected(j)}
+                          >
+                            <MiniLead
+                              name={l.name}
+                              company={l.company}
+                              value={l.value}
+                              priority={j === 0}
+                              owner={l.owner}
+                            />
+                          </button>
+                        ),
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className={s.boardStatus}>
+                <CircleCheck size={14} />
+                <span>
+                  Northline Studio ·{' '}
+                  {
+                    [
+                      'Ready for discovery',
+                      'Discovery conversation planned',
+                      'Scope ready to prepare',
+                    ][stage]
+                  }
+                </span>
+                <button className={s.smallButton} onClick={() => setStage((stage + 1) % 3)}>
+                  {stage === 2 ? 'Reset lead' : 'Move lead'} <ArrowRight size={14} />
+                </button>
+              </div>
+            </div>
+            {lead && (
+              <Dialog
+                open={lead !== null}
+                onClose={() => setSelected(null)}
+                title="Selected lead details"
+              >
+                <div className={s.detailSheet}>
+                  <span className={s.companyIcon}>{lead.company[0]}</span>
+                  <h3>{lead.company}</h3>
+                  <p>{lead.name}</p>
+                  <dl>
+                    <div>
+                      <dt>Value</dt>
+                      <dd>{lead.value}</dd>
+                    </div>
+                    <div>
+                      <dt>Source</dt>
+                      <dd>{lead.source}</dd>
+                    </div>
+                    <div>
+                      <dt>Owner</dt>
+                      <dd>{lead.owner === 'JL' ? 'Jamie Lee' : 'Sam Carter'}</dd>
+                    </div>
+                    <div>
+                      <dt>Next step</dt>
+                      <dd>
+                        {selected === 0
+                          ? ['Arrange discovery', 'Discuss the brief', 'Prepare proposal'][stage]
+                          : 'Review project requirements'}
+                      </dd>
+                    </div>
+                  </dl>
+                  <Link className={s.primary} href="/app/leads">
+                    Explore lead workspace <ArrowUpRight size={15} />
+                  </Link>
+                </div>
+              </Dialog>
+            )}
           </div>
         </div>
-        {lead && (
-          <Dialog
-            open={lead !== null}
-            onClose={() => setSelected(null)}
-            title="Selected lead details"
-          >
-            <div className={s.detailSheet}>
-              <span className={s.companyIcon}>{lead.company[0]}</span>
-              <h3>{lead.company}</h3>
-              <p>{lead.name}</p>
-              <dl>
-                <div>
-                  <dt>Value</dt>
-                  <dd>{lead.value}</dd>
-                </div>
-                <div>
-                  <dt>Source</dt>
-                  <dd>{lead.source}</dd>
-                </div>
-                <div>
-                  <dt>Owner</dt>
-                  <dd>{lead.owner === 'JL' ? 'Jamie Lee' : 'Sam Carter'}</dd>
-                </div>
-                <div>
-                  <dt>Next step</dt>
-                  <dd>
-                    {selected === 0
-                      ? ['Arrange discovery', 'Discuss the brief', 'Prepare proposal'][stage]
-                      : 'Review project requirements'}
-                  </dd>
-                </div>
-              </dl>
-              <Link className={s.primary} href="/app/leads">
-                Explore lead workspace <ArrowUpRight size={15} />
-              </Link>
-            </div>
-          </Dialog>
-        )}
       </div>
       <div className={s.underNote}>
-        <span>Try moving the example lead. Your saved workspace stays unchanged.</span>
+        <span>Move a lead to see its next stage.</span>
         <Link href="/app/pipeline">
           Explore the pipeline <ArrowUpRight size={14} />
         </Link>
@@ -775,68 +831,167 @@ function Workspace() {
 function Capture() {
   const [captured, setCaptured] = useState(false);
   return (
-    <section className={`${s.section} ${s.softSection}`}>
-      <div className={`${s.container} ${s.split}`}>
-        <div>
+    <section className={`${s.section} ${s.captureEditorial}`} id="lead-capture">
+      <div className={`${s.container} ${s.captureLayout}`}>
+        <div className={s.captureStatement}>
           <Label>01 / CAPTURE THE CONTEXT</Label>
-          <h2>New leads, wherever they come from.</h2>
+          <h2>
+            <span>New leads,</span>
+            <span className={s.captureAside}>
+              wherever they
+              <br />
+              come from.
+            </span>
+          </h2>
+          <div className={s.captureSources}>
+            <span>Website.</span>
+            <span>Inbox.</span>
+            <span>Introduction.</span>
+          </div>
           <p className={s.bodyCopy}>
-            Start with the details that matter. Bring a new enquiry into one clear record, ready for
-            your team to pick up.
+            Different ways in. One clear starting point. Bring the details together, so the first
+            conversation starts a step ahead.
           </p>
-          <ul className={s.checkList}>
-            <li>
-              <Check /> A useful brief from the first hello
-            </li>
-            <li>
-              <Check /> Source, budget and timing together
-            </li>
-            <li>
-              <Check /> One place to begin the conversation
-            </li>
-          </ul>
+          <dl className={s.capturePrinciples}>
+            <div>
+              <dt>
+                <span>01</span>The brief
+              </dt>
+              <dd>Know what they have in mind.</dd>
+            </div>
+            <div>
+              <dt>
+                <span>02</span>The context
+              </dt>
+              <dd>Source, budget and timing. Together.</dd>
+            </div>
+            <div>
+              <dt>
+                <span>03</span>The next step
+              </dt>
+              <dd>A clear record, ready for your team.</dd>
+            </div>
+          </dl>
           <Link className={s.textLink} href="/app/forms">
             Explore capture forms <ArrowUpRight size={16} />
           </Link>
         </div>
-        <div className={s.captureVisual} data-reveal>
-          <div className={s.captureForm}>
-            <div>
-              <Globe size={15} /> yourwebsite.com <span>ENQUIRY FORM</span>
-            </div>
-            <h3>Let’s make something happen.</h3>
-            <span>Your name</span>
-            <p>Alex Morgan</p>
-            <span>What do you have in mind?</span>
-            <p>A new website for Northline Studio.</p>
-            <button className={s.primary} onClick={() => setCaptured(!captured)}>
-              {captured ? 'Reset example' : 'Capture example enquiry'} <ArrowRight size={15} />
-            </button>
-          </div>
-          <div className={s.captureReceipt} data-active={captured}>
-            <span className={s.iconTile}>{captured ? <CircleCheck /> : <Inbox />}</span>
-            <div>
-              <small>{captured ? 'LEAD RECORD CREATED' : 'READY TO CAPTURE'}</small>
-              <strong>Northline Studio</strong>
+        <div
+          className={s.captureDimension}
+          data-captured={captured}
+          onPointerMove={(event) => {
+            if (
+              event.pointerType !== 'mouse' ||
+              window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            )
+              return;
+            const rect = event.currentTarget.getBoundingClientRect();
+            event.currentTarget.style.setProperty(
+              '--capture-x',
+              `${((event.clientY - rect.top) / rect.height - 0.5) * -5}deg`,
+            );
+            event.currentTarget.style.setProperty(
+              '--capture-y',
+              `${((event.clientX - rect.left) / rect.width - 0.5) * 7}deg`,
+            );
+          }}
+          onPointerLeave={(event) => {
+            event.currentTarget.style.setProperty('--capture-x', '0deg');
+            event.currentTarget.style.setProperty('--capture-y', '0deg');
+          }}
+        >
+          <div className={s.captureDepth}>
+            <div className={s.captureBackplate}>
+              <Mark />
               <span>
-                {captured
-                  ? 'Alex Morgan · Website · Just now'
-                  : 'Your next opportunity starts here'}
+                EVERY DETAIL.
+                <br />A BETTER BEGINNING.
               </span>
+              <small>growora / capture</small>
             </div>
-            <Avatar />
+            <div className={s.capturePaper}>
+              <div className={s.capturePaperBar}>
+                <Globe size={15} />
+                <span>yourwebsite.com</span>
+                <span>↗</span>
+              </div>
+              <div className={s.capturePaperBody}>
+                <small>LET’S START A CONVERSATION</small>
+                <h3>
+                  A little about
+                  <br />
+                  your next project.
+                </h3>
+                <dl>
+                  <div>
+                    <dt>Your name</dt>
+                    <dd>Alex Morgan</dd>
+                  </div>
+                  <div>
+                    <dt>The brief</dt>
+                    <dd>A new website for Northline Studio.</dd>
+                  </div>
+                  <div>
+                    <dt>Project budget</dt>
+                    <dd>£5,000 – £10,000</dd>
+                  </div>
+                </dl>
+                <button className={s.primary} onClick={() => setCaptured((v) => !v)}>
+                  {captured ? 'Reset form' : 'See it become a lead'}
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </div>
+            <div className={s.captureRecord} aria-live="polite">
+              <span className={s.captureRecordIcon}>
+                {captured ? <CircleCheck size={21} /> : <Inbox size={21} />}
+              </span>
+              <div>
+                <small>{captured ? 'CONTEXT CAPTURED' : 'ONE CONNECTED RECORD'}</small>
+                <strong>Northline Studio</strong>
+                <span>
+                  {captured
+                    ? 'Alex Morgan · Website · Ready for your team'
+                    : 'Brief, budget and source. All in one place.'}
+                </span>
+              </div>
+              <Avatar name="AM" />
+            </div>
           </div>
-          <DemoLabel>Interactive example · no form is submitted</DemoLabel>
+          <p className={s.capturePreviewNote}>Every detail, ready for the next step.</p>
         </div>
       </div>
     </section>
   );
 }
+function moveDepth(event: PointerEvent<HTMLElement>) {
+  if (
+    event.pointerType !== 'mouse' ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+    return;
+  const element = event.currentTarget;
+  const bounds = element.getBoundingClientRect();
+  element.style.setProperty(
+    '--depth-x',
+    `${((event.clientY - bounds.top) / bounds.height - 0.5) * -7}deg`,
+  );
+  element.style.setProperty(
+    '--depth-y',
+    `${((event.clientX - bounds.left) / bounds.width - 0.5) * 9}deg`,
+  );
+}
+function resetDepth(event: PointerEvent<HTMLElement>) {
+  event.currentTarget.style.removeProperty('--depth-x');
+  event.currentTarget.style.removeProperty('--depth-y');
+}
+const depthEvents = { onPointerMove: moveDepth, onPointerLeave: resetDepth };
+
 function Qualification() {
   const [tab, setTab] = useState(0);
   return (
     <section className={`${s.section} ${s.container} ${s.split}`}>
-      <div className={s.qualificationPanel} data-reveal>
+      <div className={`${s.qualificationPanel} ${s.qualificationDepth}`} {...depthEvents}>
         <div className={s.panelBar}>
           <span>
             <Users size={15} /> Lead details
@@ -905,7 +1060,7 @@ function Qualification() {
                   <div className={s.scoreTrack}>
                     <i />
                   </div>
-                  <p>Service, budget and timing match the example criteria.</p>
+                  <p>Service, budget and timing match the qualification criteria.</p>
                 </div>
               </>
             ) : tab === 1 ? (
@@ -937,7 +1092,7 @@ function Qualification() {
           </div>
         </div>
         <div className={s.panelFoot}>
-          <DemoLabel>Illustrative qualification</DemoLabel>
+          <DemoLabel>Lead qualification</DemoLabel>
           <Check size={14} /> Context retained
         </div>
       </div>
@@ -982,21 +1137,17 @@ const workflows = [
 ];
 function Automation() {
   const [trigger, setTrigger] = useState(0);
-  const [run, setRun] = useState(-1);
-  useEffect(() => {
-    if (run < 0 || run > 2) return;
-    const timer = setTimeout(() => setRun(run + 1), 850);
-    return () => clearTimeout(timer);
-  }, [run]);
+  const sequenceRef = useRef<HTMLDivElement>(null);
+  const phase = useSequence(sequenceRef, false, 3, 2200);
   return (
     <section className={`${s.section} ${s.automationSection}`}>
       <div className={s.container}>
         <Heading
           label="03 / KEEP THE MOMENTUM"
           title="The right follow-up, without the busywork."
-          copy="Build a repeatable next step around the moments that matter. Explore how a simple workflow could work for your team."
+          copy="Keep every conversation moving with a thoughtful next step, a clear owner, and a timely follow-up."
         />
-        <div className={s.automationLayout}>
+        <div className={`${s.automationLayout} ${s.automationDepth}`} ref={sequenceRef}>
           <div
             className={s.triggerList}
             role="tablist"
@@ -1006,6 +1157,7 @@ function Automation() {
             {workflows.map((w, i) => (
               <button
                 key={w.trigger}
+                {...depthEvents}
                 role="tab"
                 id={`trigger-${i}`}
                 aria-selected={trigger === i}
@@ -1013,7 +1165,6 @@ function Automation() {
                 tabIndex={trigger === i ? 0 : -1}
                 onClick={() => {
                   setTrigger(i);
-                  setRun(-1);
                 }}
               >
                 <span className={s.iconTile}>
@@ -1028,21 +1179,26 @@ function Automation() {
             ))}
           </div>
           <div
-            className={s.workflowPanel}
+            className={`${s.workflowPanel} ${s.followupDepth}`}
+            {...depthEvents}
             id="workflow-panel"
             role="tabpanel"
             aria-labelledby={`trigger-${trigger}`}
           >
             <div className={s.panelBar}>
               <span>
-                <GitBranch size={16} /> Follow-up workflow
+                <GitBranch size={16} /> Every next step, connected
               </span>
-              <DemoLabel>Simulation</DemoLabel>
             </div>
             <div className={s.workflowSteps}>
               {workflows[trigger].steps.map((step, i) => (
-                <div key={step} className={s.workflowNode} data-done={run >= i}>
-                  <span>{run >= i ? <Check size={17} /> : i + 1}</span>
+                <div
+                  key={step}
+                  className={s.workflowNode}
+                  data-active={phase === i}
+                  {...depthEvents}
+                >
+                  <span>{i + 1}</span>
                   <div>
                     <small>{['TRIGGER', 'ACTION', 'NEXT STEP'][i]}</small>
                     <strong>{step}</strong>
@@ -1052,19 +1208,7 @@ function Automation() {
               ))}
             </div>
             <div className={s.workflowResult}>
-              <p>
-                {run === 3
-                  ? 'Example complete. No emails were sent or tasks saved.'
-                  : workflows[trigger].copy}
-              </p>
-              <button
-                className={s.primary}
-                disabled={run >= 0 && run < 3}
-                onClick={() => setRun(0)}
-              >
-                {run >= 0 && run < 3 ? 'Running…' : run === 3 ? 'Replay workflow' : 'Run example'}{' '}
-                <Zap size={15} />
-              </button>
+              <p>{workflows[trigger].copy}</p>
             </div>
           </div>
         </div>
@@ -1073,26 +1217,156 @@ function Automation() {
   );
 }
 
+function ConnectedSystemCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let visible = false;
+    const sync = () => {
+      el.dataset.running = String(visible && !document.hidden);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    });
+    observer.observe(el);
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', sync);
+    };
+  }, []);
+  return (
+    <div
+      ref={ref}
+      className={s.connectedCard}
+      data-running="false"
+      onPointerMove={(event) => {
+        if (
+          event.pointerType !== 'mouse' ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        )
+          return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        event.currentTarget.style.setProperty(
+          '--card-x',
+          `${((event.clientY - rect.top) / rect.height - 0.5) * -8}deg`,
+        );
+        event.currentTarget.style.setProperty(
+          '--card-y',
+          `${((event.clientX - rect.left) / rect.width - 0.5) * 10}deg`,
+        );
+      }}
+      onPointerLeave={(event) => {
+        event.currentTarget.style.setProperty('--card-x', '0deg');
+        event.currentTarget.style.setProperty('--card-y', '0deg');
+      }}
+    >
+      <div className={s.connectedCardTop}>
+        <Mark />
+        <span>THE CONNECTED WORKSPACE</span>
+        <span className={s.connectedIndicator} />
+      </div>
+      <div className={s.recordStage}>
+        <div className={s.recordAssembly}>
+          <div className={s.recordSpine} aria-hidden="true" />
+          {[
+            {
+              icon: Inbox,
+              label: '01 / CAPTURE',
+              title: 'One enquiry. Every detail.',
+              detail: 'Northline Studio',
+              meta: 'Brief + budget + source',
+              tag: 'Received',
+            },
+            {
+              icon: SlidersHorizontal,
+              label: '02 / QUALIFY',
+              title: 'The right fit comes into focus.',
+              detail: 'Budget & timing aligned',
+              meta: 'Owner: Jamie Lee',
+              tag: 'Matched',
+            },
+            {
+              icon: CalendarDays,
+              label: '03 / CONNECT',
+              title: 'A next step with context.',
+              detail: 'Discovery conversation',
+              meta: 'Original brief attached',
+              tag: 'Prepared',
+            },
+          ].map((item, i) => (
+            <div
+              key={item.label}
+              className={s.recordPlane}
+              style={{ '--layer': i, '--phase': `${i * 6}s` } as CSSProperties}
+            >
+              <div className={s.recordPlaneHeader}>
+                <item.icon size={18} />
+                <span>{item.label}</span>
+                <small>{item.tag}</small>
+              </div>
+              <strong>{item.title}</strong>
+              <div className={s.recordPlaneDetails}>
+                <span>{item.detail}</span>
+                <span>{item.meta}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={s.connectedCardFoot}>
+        <span>
+          <Check size={16} /> One shared record
+        </span>
+        <span>
+          Context carried forward <ArrowRight size={15} />
+        </span>
+      </div>
+    </div>
+  );
+}
 function CubeSection() {
   return (
     <section className={s.cinematic} id="connected-system">
-      <div className={s.container}>
-        <Label>THE POWER OF CONNECTED THINKING</Label>
-        <h2>
-          Everything works better
-          <br />
-          when it works together.
-        </h2>
-        <StudioVisual kind="cube" />
-        <div className={s.cubeCaption}>
-          <span>ONE WORKSPACE. MANY MOVING PARTS.</span>
+      <div className={`${s.container} ${s.systemGrid}`}>
+        <div className={s.systemCopy}>
+          <Label>CONNECTED ON THE INSIDE</Label>
+          <h2>Everything works better when it works together.</h2>
           <p>
-            From first interest to a clear next step.
-            <br />
-            Every detail has its place.
+            One enquiry sets the right things in motion. See how the details become a clear, shared
+            next step.
           </p>
-          <span>CAPTURE / QUALIFY / CONNECT</span>
+          <ol className={s.systemSteps}>
+            {[
+              [
+                'Capture the whole story',
+                'The brief, source and budget arrive in one lead record.',
+              ],
+              [
+                'Give it direction',
+                'Qualification criteria surface the fit. An owner takes responsibility.',
+              ],
+              [
+                'Keep the next step moving',
+                'A follow-up is prepared with the original context intact.',
+              ],
+            ].map(([title, copy], i) => (
+              <li key={title}>
+                <span>0{i + 1}</span>
+                <div>
+                  <strong>{title}</strong>
+                  <p>{copy}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <a href="#how-it-works" className={s.textLink}>
+            Follow an enquiry <ArrowRight size={16} />
+          </a>
         </div>
+        <ConnectedSystemCard />
       </div>
     </section>
   );
@@ -1103,7 +1377,55 @@ function Intelligence() {
     <section className={`${s.section} ${s.container}`}>
       <div className={s.intelligence}>
         <div className={s.fluidWrap}>
-          <StudioVisual kind="fluid" />
+          <div className={s.reasoningCard}>
+            <div className={s.reasoningTop}>
+              <Sparkles size={20} />
+              <span>OPPORTUNITY BRIEF</span>
+              <span>01</span>
+            </div>
+            <div className={s.reasoningProfile}>
+              <Avatar name="AM" />
+              <div>
+                <strong>Alex Morgan</strong>
+                <span>Northline Studio · Website enquiry</span>
+              </div>
+            </div>
+            <h3>
+              A good fit.
+              <br />
+              And a clear way forward.
+            </h3>
+            <div className={s.evidenceGrid}>
+              {[
+                ['Budget', '£7,500', 'Within your range'],
+                ['Timeline', '30 days', 'Ready to get started'],
+                ['Intent', 'Website redesign', 'A detailed project brief'],
+              ].map(([label, value, note]) => (
+                <div key={label}>
+                  <small>{label}</small>
+                  <strong>{value}</strong>
+                  <span>
+                    <Check size={12} />
+                    {note}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className={s.recommendation}>
+              <span className={s.iconTile}>
+                <CalendarDays size={19} />
+              </span>
+              <div>
+                <small>SUGGESTED NEXT STEP</small>
+                <strong>Book a discovery conversation</strong>
+                <span>Jamie Lee · Suggested owner</span>
+              </div>
+              <ArrowUpRight size={18} />
+            </div>
+            <div className={s.reasoningFoot}>
+              <span className={s.dot} /> Context connected. Ready for your review.
+            </div>
+          </div>
           <span className={s.fluidLabel}>
             <Sparkles size={13} /> A little perspective changes everything.
           </span>
@@ -1127,13 +1449,14 @@ function Intelligence() {
               <ArrowRight size={15} />
             </button>
           </div>
-          <small>AI concept preview · prewritten example, reviewed by you.</small>
+          <small>Prepared with context. Reviewed by you.</small>
         </div>
       </div>
     </section>
   );
 }
 function Analytics() {
+  const scene = useScrollScene();
   const [period, setPeriod] = useState(0);
   const bars = period
     ? [32, 42, 36, 58, 51, 66, 74, 60, 85, 76, 88, 96]
@@ -1145,117 +1468,154 @@ function Analytics() {
         title="See what’s working. Find what’s slowing you down."
         copy="Bring the patterns into focus. Understand where enquiries come from and where conversations need a little attention."
       />
-      <div className={s.analytics} data-reveal>
-        <div className={s.panelBar}>
-          <span>
-            <BarChart3 size={16} /> Pipeline overview
-          </span>
-          <div className={s.period} role="group" aria-label="Analytics period">
-            {['This month', 'Last month'].map((x, i) => (
-              <button key={x} aria-pressed={period === i} onClick={() => setPeriod(i)}>
-                {x}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className={s.statGrid}>
-          {[
-            ['New enquiries', period ? '108' : '124', 'Across all sources'],
-            ['Qualified leads', period ? '72' : '86', 'Ready for a conversation'],
-            ['Median response', period ? '2.8h' : '2.4h', 'From enquiry to first reply'],
-            ['Pipeline value', period ? '£38,000' : '£42,500', 'Open opportunities'],
-          ].map(([k, v, sub]) => (
-            <div key={k}>
-              <span>{k}</span>
-              <strong>{v}</strong>
-              <small>{sub}</small>
-            </div>
-          ))}
-        </div>
-        <div className={s.chartGrid}>
-          <div className={s.barChart}>
-            <div>
-              <h3>Pipeline activity</h3>
+      <div ref={scene} className={s.workspaceScene}>
+        <div className={s.workspaceFrame}>
+          <div className={s.analytics}>
+            <div className={s.panelBar}>
               <span>
-                <i /> Enquiries <i /> Qualified
+                <BarChart3 size={16} /> Pipeline overview
               </span>
+              <div className={s.period} role="group" aria-label="Analytics period">
+                {['This month', 'Last month'].map((x, i) => (
+                  <button key={x} aria-pressed={period === i} onClick={() => setPeriod(i)}>
+                    {x}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div
-              className={s.bars}
-              role="img"
-              aria-label={
-                period
-                  ? 'Last month: 108 enquiries, 72 qualified.'
-                  : 'This month: 124 enquiries, 86 qualified.'
-              }
-            >
-              {bars.map((v, i) => (
-                <div key={i}>
-                  <i style={{ height: `${v}%` }} />
-                  <b style={{ height: `${v * 0.66}%` }} />
+            <div className={s.statGrid}>
+              {[
+                ['New enquiries', period ? '108' : '124', 'Across all sources'],
+                ['Qualified leads', period ? '72' : '86', 'Ready for a conversation'],
+                ['Median response', period ? '2.8h' : '2.4h', 'From enquiry to first reply'],
+                ['Pipeline value', period ? '£38,000' : '£42,500', 'Open opportunities'],
+              ].map(([k, v, sub]) => (
+                <div key={k}>
+                  <span>{k}</span>
+                  <strong>{v}</strong>
+                  <small>{sub}</small>
                 </div>
               ))}
             </div>
-            <div className={s.chartAxis}>
-              <span>Week 1</span>
-              <span>Week 2</span>
-              <span>Week 3</span>
-              <span>Week 4</span>
-            </div>
-          </div>
-          <div className={s.sourceChart}>
-            <h3>Where leads begin</h3>
-            {[
-              ['Website forms', 52],
-              ['Referrals', 28],
-              ['Direct enquiries', 20],
-            ].map(([name, n]) => (
-              <div key={name}>
-                <span>
-                  {name}
-                  <b>{n}%</b>
-                </span>
+            <div className={s.chartGrid}>
+              <div className={s.barChart}>
                 <div>
-                  <i style={{ width: `${n}%` }} />
+                  <h3>Pipeline activity</h3>
+                  <span>
+                    <i /> Enquiries <i /> Qualified
+                  </span>
+                </div>
+                <div
+                  className={s.bars}
+                  role="img"
+                  aria-label={
+                    period
+                      ? 'Last month: 108 enquiries, 72 qualified.'
+                      : 'This month: 124 enquiries, 86 qualified.'
+                  }
+                >
+                  {bars.map((v, i) => (
+                    <div key={i}>
+                      <i style={{ height: `${v}%` }} />
+                      <b style={{ height: `${v * 0.66}%` }} />
+                    </div>
+                  ))}
+                </div>
+                <div className={s.chartAxis}>
+                  <span>Week 1</span>
+                  <span>Week 2</span>
+                  <span>Week 3</span>
+                  <span>Week 4</span>
                 </div>
               </div>
-            ))}
-            <div className={s.responseTrend}>
-              <span>Response trend</span>
-              <strong>
-                {period ? '3.1h → 2.8h' : '2.8h → 2.4h'} <ArrowRight size={14} />
-              </strong>
+              <div className={s.sourceChart}>
+                <h3>Where leads begin</h3>
+                {[
+                  ['Website forms', 52],
+                  ['Referrals', 28],
+                  ['Direct enquiries', 20],
+                ].map(([name, n]) => (
+                  <div key={name}>
+                    <span>
+                      {name}
+                      <b>{n}%</b>
+                    </span>
+                    <div>
+                      <i style={{ width: `${n}%` }} />
+                    </div>
+                  </div>
+                ))}
+                <div className={s.responseTrend}>
+                  <span>Response trend</span>
+                  <strong>
+                    {period ? '3.1h → 2.8h' : '2.8h → 2.4h'} <ArrowRight size={14} />
+                  </strong>
+                </div>
+              </div>
+            </div>
+            <div className={s.stageProgress}>
+              <span>Stage progression</span>
+              {[
+                ['Enquiries', period ? 108 : 124],
+                ['Qualified', period ? 72 : 86],
+                ['In conversation', period ? 39 : 48],
+                ['Proposal', period ? 17 : 21],
+              ].map(([k, v]) => (
+                <div key={k}>
+                  <span>{k}</span>
+                  <strong>{v}</strong>
+                </div>
+              ))}
+            </div>
+            <div className={s.panelFoot}>
+              <DemoLabel>Pipeline activity</DemoLabel>
+              <Link href="/app/analytics">
+                Explore reports <ArrowUpRight size={14} />
+              </Link>
             </div>
           </div>
-        </div>
-        <div className={s.stageProgress}>
-          <span>Stage progression</span>
-          {[
-            ['Enquiries', period ? 108 : 124],
-            ['Qualified', period ? 72 : 86],
-            ['In conversation', period ? 39 : 48],
-            ['Proposal', period ? 17 : 21],
-          ].map(([k, v]) => (
-            <div key={k}>
-              <span>{k}</span>
-              <strong>{v}</strong>
-            </div>
-          ))}
-        </div>
-        <div className={s.panelFoot}>
-          <DemoLabel>Illustrative analytics · sample data, not customer results</DemoLabel>
-          <Link href="/app/analytics">
-            Explore reports <ArrowUpRight size={14} />
-          </Link>
         </div>
       </div>
     </section>
   );
 }
 function Integrations() {
-  const signals = useRef<SVGSVGElement>(null);
+  const map = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
-  useVisibleSignals(signals, paused);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const el = map.current;
+    if (!el) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let visible = false;
+    const sync = () => {
+      el.dataset.running = String(visible && !paused && !document.hidden && !reduced.matches);
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.2 },
+    );
+    sync();
+    observer.observe(el);
+    reduced.addEventListener('change', sync);
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      observer.disconnect();
+      reduced.removeEventListener('change', sync);
+      document.removeEventListener('visibilitychange', sync);
+    };
+  }, [paused]);
+  const routes = [
+    'M90 60 Q250 60 250 200',
+    'M410 60 Q250 60 250 200',
+    'M48 200 H250',
+    'M452 200 H250',
+    'M90 340 Q250 340 250 200',
+    'M410 340 Q250 340 250 200',
+  ];
   return (
     <section className={`${s.section} ${s.softSection}`} id="connections">
       <div className={`${s.container} ${s.split}`}>
@@ -1271,24 +1631,44 @@ function Integrations() {
             conversations and next steps could stay in sync.
           </p>
           <Link className={s.textLink} href="/integrations">
-            Explore connection concepts <ArrowUpRight size={16} />
+            Explore connections <ArrowUpRight size={16} />
           </Link>
           <p className={s.disclosure}>
-            Conceptual connections. Confirm availability before choosing a plan.
+            Tool connections. Confirm availability before choosing a plan.
           </p>
         </div>
-        <div className={s.integrationMap}>
-          <svg ref={signals} viewBox="0 0 500 400" aria-hidden="true">
-            <path d="M90 60 Q250 60 250 200 T410 340 M410 60 Q250 60 250 200 T90 340 M60 200 H440" />
-            {['M90 60 Q250 60 250 200', 'M410 340 Q250 340 250 200', 'M60 200 H250'].map((d, i) => (
-              <circle key={d} r="3.5">
-                <animateMotion dur="5s" begin={`${i * 1.5}s`} repeatCount="indefinite" path={d} />
-              </circle>
+        <div className={s.integrationMap} ref={map}>
+          <svg viewBox="0 0 500 400" aria-hidden="true">
+            {routes.map((d, i) => (
+              <path key={d} d={d} data-active={i === active} />
             ))}
+            <circle
+              key={active}
+              r="5"
+              className={s.routeSignal}
+              onAnimationEnd={() => setActive((value) => (value + 1) % routes.length)}
+              style={
+                {
+                  offsetPath: `path('${routes[active]}')`,
+                } as CSSProperties
+              }
+            />
           </svg>
           <div className={s.integrationHub}>
             <Mark />
-            <strong>growora</strong>
+            <strong>growora</strong>{' '}
+            <small className={s.hubStatus}>
+              {
+                [
+                  'Reply linked',
+                  'Meeting recorded',
+                  'Enquiry captured',
+                  'Owner updated',
+                  'Next step ready',
+                  'Event received',
+                ][active]
+              }
+            </small>
           </div>
           {[
             [Mail, 'Email'],
@@ -1305,6 +1685,7 @@ function Integrations() {
                 href="/integrations"
                 className={s.integrationNode}
                 data-node={i}
+                data-active={active === i}
               >
                 <I size={21} />
                 <span>{String(name)}</span>
@@ -1335,7 +1716,7 @@ function UseCases() {
         {[
           {
             title: 'Service businesses',
-            copy: 'Turn quote requests into well-prepared conversations, even when you’re busy doing the work.',
+            copy: 'Turn quote requests into conversations that win work.',
             label: 'QUOTE REQUEST',
             company: 'Oak & Beam',
             detail: 'Kitchen renovation · Ready for a quote',
@@ -1478,10 +1859,6 @@ function Pricing() {
             </article>
           ))}
         </div>
-        <p className={s.pricingNote}>
-          Illustrative plans and pricing from the Growora demo. Confirm availability and
-          requirements with the team. No payment is taken here.
-        </p>
       </div>
     </section>
   );
@@ -1489,7 +1866,7 @@ function Pricing() {
 const faqs = [
   [
     'What does Growora do?',
-    'Growora brings lead capture, qualification, ownership and next actions into a connected workspace. This website includes an interactive product demonstration so you can explore that journey.',
+    'Growora brings lead capture, qualification, ownership and next actions into a connected workspace. ',
   ],
   [
     'Who is Growora for?',
@@ -1497,19 +1874,19 @@ const faqs = [
   ],
   [
     'How does lead management work?',
-    'Enquiries become lead records with a source, project context, owner and pipeline stage. In the demo you can explore lead details, change stages and try filters. Saved demo changes stay in your browser.',
+    'Enquiries become lead records with a source, project context, owner and pipeline stage. In the workspace you can explore lead details, change stages and try filters. Saved workspace changes stay in your browser.',
   ],
   [
     'What can I automate?',
-    'The demo lets you explore example rules for qualification, assignment and follow-up. These workflows simulate actions; they do not send emails or run a background service. Discuss your actual requirements with the team.',
+    'The workspace lets you explore example rules for qualification, assignment and follow-up. These workflow tests show the steps; they do not send emails or run a background service. Discuss your actual requirements with the team.',
   ],
   [
     'Can I connect my existing tools?',
-    'The integration views demonstrate possible connection categories and states. Live external integrations, OAuth and synchronisation are not implemented in this demonstration. Confirm availability before making a decision.',
+    'The integration views demonstrate possible connection categories and states. Live external integrations, OAuth and synchronisation are not implemented in this workspace. Confirm availability before making a decision.',
   ],
   [
     'Is there a free trial? How does pricing work?',
-    'You can explore the interactive demo without an account. The Starter, Growth and Scale prices are illustrative and no subscription is created. Choose a plan to discuss your needs; the contact form currently saves a request locally and does not send it.',
+    'You can explore the workspace without an account. Choose Starter, Growth or Scale to discuss your requirements; the contact form currently saves a request locally and does not send it.',
   ],
 ];
 function FAQ() {
@@ -1563,20 +1940,17 @@ function FAQ() {
 function Closing() {
   return (
     <section className={s.closing}>
-      <div className={s.closingMotif} aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <span />
-      </div>
-      <div className={s.container}>
-        <Label>YOUR NEXT CHAPTER STARTS WITH A CONVERSATION</Label>
-        <h2>
-          Give every opportunity
-          <br />a better chance.
-        </h2>
-        <p>A little less friction. A little more forward.</p>
-        <Actions />
+      <div className={`${s.container} ${s.closingGrid}`}>
+        <div>
+          <Label>YOUR NEXT CHAPTER STARTS WITH A CONVERSATION</Label>
+          <h2>
+            Give every opportunity
+            <br />a better chance.
+          </h2>
+          <p>A little less friction. A little more forward.</p>
+          <Actions />
+        </div>
+        <FlowingRibbon />
       </div>
     </section>
   );

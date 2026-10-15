@@ -1,53 +1,48 @@
 'use client';
-import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import s from './premium-homepage.module.css';
-const Scene = dynamic(() => import('../three/studio-scene'), { ssr: false });
+
+/** Six compositor-transformed faces: no WebGL context, texture upload or render loop. */
 export function StudioVisual({ kind }: { kind: 'cube' | 'fluid' }) {
   const host = useRef<HTMLDivElement>(null);
-  const [load, setLoad] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [paused, setPaused] = useState(false);
-  const onReady = useCallback(() => setReady(true), []);
   useEffect(() => {
     const el = host.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '150px' },
-    );
+    let visible = false;
+    const sync = () => el.setAttribute('data-running', String(visible && !document.hidden));
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    });
     observer.observe(el);
-    return () => observer.disconnect();
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', sync);
+    };
   }, []);
   return (
     <div
       ref={host}
-      className={`${s.studio} ${kind === 'fluid' ? s.fluidStudio : ''}`}
+      className={s.dimensionStudio}
+      data-running="false"
       role="group"
-      aria-label={
-        kind === 'cube'
-          ? 'An original dark segmented cube, with softly lit bevels and rotating layers.'
-          : 'A translucent cyan ribbon, slowly folding and flowing in three dimensions.'
-      }
+      aria-label={`Rotating three-dimensional ${kind === 'cube' ? 'connected workspace cube' : 'workspace sculpture'}`}
     >
-      <div
-        className={s.studioFallback}
-        style={{ backgroundImage: `url(/images/growora-${kind}-still.svg)` }}
-      />
-      {load && <Scene kind={kind} paused={paused} onReady={onReady} />}
-      <button
-        className={s.sceneControl}
-        aria-pressed={paused}
-        onClick={() => setPaused(!paused)}
-        disabled={!ready}
-      >
-        {paused ? 'Play motion' : 'Pause motion'}
-      </button>
+      <div className={s.cubeShadow} />
+      <div className={s.cubeFloat}>
+        <div className={s.dimensionCube} aria-hidden="true">
+          {['front', 'back', 'right', 'left', 'top', 'bottom'].map((face, i) => (
+            <div key={face} className={s.cubeFace} data-face={face}>
+              {Array.from({ length: 9 }, (_, j) => (
+                <span key={j} className={j === 4 ? s.cubeTileCenter : undefined}>
+                  {j === 4 ? ['G', 'G', '↗', '+', 'G', 'G'][i] : ''}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
