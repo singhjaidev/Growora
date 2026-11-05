@@ -1,0 +1,33 @@
+.selectBox {
+  margin: 0 0 10px;
+  min-width: 0;
+}
+.selectBox label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.selectBox select,
+.select {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  border: 1px solid #b7c9b8;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #fffffb;
+  color: #193d30;
+  font: inherit;
+}
+.row {
+  flex-wrap: wrap;
+}
+.join {
+  min-height: 100svh;
+  background: #f5f6ef;
+  padding: clamp(20px, 5vw, 60px);
+  color: #193d30;
+}
+.join > div {
+  max-width: 540px;
+  margin: 0 auto;
+}

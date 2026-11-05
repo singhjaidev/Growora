@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+const git=(...args)=>execFileSync('git',args,{encoding:'utf8',maxBuffer:20*1024*1024,windowsHide:true});
+const ref='refs/checkpoints/growora-before-phase6';
+const baseline=new Map(git('ls-tree','-rz','--full-tree',ref).split('\0').filter(Boolean).map(x=>{const [meta,path]=x.split('\t');return[path,meta.split(' ')[2]];}));
+const paths=[...new Set(git('ls-files','--cached','--others','--exclude-standard','-z').split('\0').filter(p=>p&&!p.startsWith('.checkpoints/')))].filter(p=>fs.existsSync(p));
+const hashes=execFileSync('git',['-c','core.autocrlf=false','hash-object','--stdin-paths'],{input:paths.join('\n')+'\n',encoding:'utf8',windowsHide:true}).trim().split(/\r?\n/);
+const created=[],updated=[],removed=[];
+paths.forEach((p,i)=>{if(!baseline.has(p))created.push(p);else if(baseline.get(p)!==hashes[i])updated.push(p);});
+for(const p of baseline.keys())if(!fs.existsSync(p))removed.push(p);
+const protectedChanges=[...updated,...removed].filter(p=>p.startsWith('src/components/marketing/')||p.startsWith('src/app/(auth)/')||p.startsWith('src/components/auth/')||p.startsWith('public/')||p.startsWith('src/app/[slug]/')||p.startsWith('src/app/how-it-works/')||p.endsWith('.css')||['src/app/page.tsx','src/app/layout.tsx'].includes(p));
+const result={checkpoint:git('rev-parse',ref).trim(),created,updated,removed,protectedChanges};
+fs.mkdirSync('test-results/phase6',{recursive:true});fs.writeFileSync('test-results/phase6/audit.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));if(protectedChanges.length||removed.length)process.exitCode=1;

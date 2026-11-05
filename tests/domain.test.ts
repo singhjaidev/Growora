@@ -40,7 +40,7 @@ test('lead creation preserves inputs and produces unique identities', () => {
   assert.equal(first.email, input.email);
   assert.equal(first.status, 'Qualified');
   assert.equal(first.owner, 'Jamie Lee');
-  assert.equal(first.source, 'Website demo');
+  assert.equal(first.source, 'Website workspace');
 });
 test('workspace metrics respond to pipeline changes and handle an empty workspace', () => {
   const a = createLead(input);

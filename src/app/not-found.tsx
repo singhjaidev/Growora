@@ -10,9 +10,6 @@ export default function NotFound() {
       <p>This path doesn’t lead to an opportunity. Let’s get you moving in the right direction.</p>
       <div>
         <ButtonLink href="/">Return home</ButtonLink>
-        <ButtonLink href="/app" secondary>
-          Explore the platform
-        </ButtonLink>
       </div>
     </main>
   );

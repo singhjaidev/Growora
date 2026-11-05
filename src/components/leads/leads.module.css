@@ -1,0 +1,162 @@
+.fields textarea,
+.fields select,
+.filters select {
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #b7c9b8;
+  border-radius: 10px;
+  background: #fffffb;
+  color: #193d30;
+  font: inherit;
+}
+.fields textarea {
+  resize: vertical;
+}
+.fields label {
+  max-width: 100%;
+}
+.fields .check {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 400;
+}
+.check input {
+  width: auto;
+  margin-top: 6px;
+  accent-color: #193d30;
+}
+.public {
+  --ink: #193d30;
+  --muted: #56695f;
+  --line: #d3ded1;
+  min-height: 100svh;
+  background: #f5f6ef;
+  color: var(--ink);
+  padding: clamp(20px, 5vw, 60px);
+}
+.public > div {
+  max-width: 650px;
+  margin: auto;
+}
+.public h1 {
+  font:
+    500 clamp(2.1rem, 6vw, 3.5rem)/1.1 'Newsreader Variable',
+    serif;
+  letter-spacing: -0.035em;
+  margin: 30px 0 10px;
+  overflow-wrap: anywhere;
+}
+.public :focus-visible {
+  outline: 3px solid #648b61;
+  outline-offset: 3px;
+}
+.message {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.share {
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+}
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.controls,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: end;
+}
+.controls > form {
+  flex: 1;
+  min-width: 180px;
+}
+.filters label {
+  margin: 0;
+  flex: 1 1 140px;
+}
+.filters input {
+  width: 100%;
+}
+.tableWrap {
+  overflow: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.table td,
+.table th {
+  padding: 13px 10px;
+  border-bottom: 1px solid #d3ded1;
+  vertical-align: top;
+}
+.table th {
+  font-weight: 600;
+  color: #56695f;
+  white-space: nowrap;
+}
+.table td:first-child {
+  min-width: 140px;
+}
+.table td:nth-child(2) {
+  min-width: 180px;
+}
+.table a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #e4ecdd;
+  font-size: 0.73rem;
+  font-weight: 650;
+}
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+}
+.pages a {
+  color: inherit;
+  text-decoration: underline;
+}
+.activity {
+  padding-left: 22px;
+}
+.activity li {
+  margin: 14px 0;
+}
+.activity small {
+  display: block;
+  color: #56695f;
+}
+.delete {
+  margin-top: 24px;
+  border-top: 1px solid #d3ded1;
+  padding-top: 14px;
+}
+.delete summary {
+  cursor: pointer;
+}
+.public button {
+  cursor: pointer;
+}
+.public button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

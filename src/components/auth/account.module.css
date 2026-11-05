@@ -1,0 +1,95 @@
+.screen {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at top left, #d9e8d4, transparent 60%), #f5f6ef;
+  color: #183e30;
+  font-family: 'DM Sans Variable', sans-serif;
+}
+.card {
+  width: min(100%, 440px);
+  border: 1px solid #cdd9cc;
+  border-radius: 24px;
+  background: #fffffb;
+  padding: clamp(24px, 5vw, 44px);
+  box-shadow: 0 24px 80px #284d3612;
+}
+.card h1 {
+  font:
+    500 clamp(32px, 5vw, 45px)/1.06 'Newsreader Variable',
+    serif;
+  letter-spacing: -0.04em;
+  margin: 38px 0 10px;
+}
+.card p,
+.foot,
+.form small {
+  color: #4b6054;
+}
+.form {
+  display: grid;
+  gap: 16px;
+  margin-top: 26px;
+}
+.form label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+}
+.form input {
+  width: 100%;
+  padding: 11px 14px;
+  background: white;
+  color: #183e30;
+  border: 1px solid #b9c9b9;
+  border-radius: 10px;
+}
+.form input:focus-visible,
+.form button:focus-visible {
+  outline: 3px solid #7da789;
+  outline-offset: 2px;
+}
+.form button {
+  border: 0;
+  border-radius: 24px;
+  padding: 12px;
+  background: #193f30;
+  color: white;
+  font-weight: 650;
+  cursor: pointer;
+}
+.form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.foot {
+  margin-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.form a,
+.foot a {
+  color: #244f37;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.form p[role='alert'] {
+  color: #862e2b;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.home {
+  padding: 6px 14px;
+  border: 1px solid #b9c9b9;
+  border-radius: 24px;
+  color: #244f37;
+  font-weight: 600;
+}

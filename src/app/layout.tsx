@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: '#f7f7f5' };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en">
       <body>
         <a href="#main" className="skip-link">
           Skip to content

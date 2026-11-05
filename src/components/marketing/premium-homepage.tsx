@@ -46,12 +46,12 @@ function Label({ children }: { children: ReactNode }) {
 function Actions() {
   return (
     <div className={s.actions}>
-      <Link className={s.primary} href="/app">
-        Explore Growora <ArrowUpRight size={17} />
-      </Link>
-      <a className={s.secondary} href="#how-it-works">
+      <Link className={s.primary} href="/how-it-works">
         See how it works <ArrowRight size={17} />
-      </a>
+      </Link>
+      <Link className={s.secondary} href="#connected-system">
+        Explore workspace
+      </Link>
     </div>
   );
 }
@@ -104,11 +104,15 @@ function Hero() {
         <div className={s.heroCopy}>
           <Label>EVERY CONVERSATION HAS POTENTIAL</Label>
           <h1 id="hero-title">
-            Turn more enquiries into <em>paying customers.</em>
+            Turn more
+            <br />
+            enquiries into
+            <br />
+            <em>paying customers.</em>
           </h1>
           <p>
-            Capture leads, automate follow-ups, and keep your sales pipeline moving—all from one
-            connected workspace.
+            Growora is a lead management workspace for service businesses and sales teams. Organise
+            enquiries, assign an owner, and see the next step for every potential customer.
           </p>
           <Actions />
           <div className={s.heroNote}>
@@ -196,18 +200,9 @@ export function PremiumHomepage() {
       <Hero />
       <Problems />
       <CubeSection />
-      <Journey />
-      <Workspace />
-      <Capture />
-      <Qualification />
-      <Automation />
-      <Intelligence />
-      <Analytics />
-      <Integrations />
-      <UseCases />
+      <Company />
       <Pricing />
       <FAQ />
-      <Closing />
     </div>
   );
 }
@@ -233,102 +228,188 @@ function Heading({
     </div>
   );
 }
+function Company() {
+  return (
+    <section className={`${s.companySection} ${s.companySpotlight}`} id="about-growora">
+      <div className={`${s.container} ${s.companyStageNew}`}>
+        <div className={s.companyManifestoCenter}>
+          <Label>MEET GROWORA</Label>
+          <h2>
+            Your enquiries. Your team.
+            <br />
+            <em>One place to move forward.</em>
+          </h2>
+          <p>
+            Growora brings customer enquiries, the people responsible and the next action into one
+            shared workspace. So a promising conversation always has somewhere to go.
+          </p>
+          <div className={s.companyAudiencePill}>
+            <Users size={18} />
+            <span>Built for service businesses, agencies and small sales teams</span>
+          </div>
+        </div>
+
+        <div className={s.companyHorizontalBoard} aria-label="An example connected opportunity">
+          <div className={s.boardCard}>
+            <div className={s.boardCardTop}>
+              <span className={s.boardStepBadge}>01 · CAPTURE</span>
+              <Inbox size={18} className={s.boardIcon} />
+            </div>
+            <small>THE ENQUIRY</small>
+            <h3>“We’re ready for a new website.”</h3>
+            <p>Northline Studio · Project brief received</p>
+            <div className={s.storyChips}>
+              <span>£7,500 budget</span>
+              <span>Within 30 days</span>
+            </div>
+            <div className={s.boardCardFooter}>
+              <span className={s.statusDotActive} />
+              <span>Inbound enquiry confirmed</span>
+            </div>
+          </div>
+
+          <div className={s.boardCard}>
+            <div className={s.boardCardTop}>
+              <span className={s.boardStepBadge}>02 · ASSIGN</span>
+              <Avatar name="JL" />
+            </div>
+            <small>THE OWNER</small>
+            <h3>Jamie takes responsibility.</h3>
+            <p>One direct owner. The full context inherited.</p>
+            <div className={s.storyChips}>
+              <span>Lead Partner</span>
+              <span>Context synced</span>
+            </div>
+            <div className={s.boardCardFooter}>
+              <Check size={14} className={s.checkMint} />
+              <span>Ownership accepted in 4m</span>
+            </div>
+          </div>
+
+          <div className={`${s.boardCard} ${s.boardCardFeatured}`}>
+            <div className={s.boardCardTop}>
+              <span className={s.boardStepBadgeLight}>03 · NEXT STEP</span>
+              <CalendarDays size={18} className={s.boardIconLight} />
+            </div>
+            <small>FORWARD MOMENTUM</small>
+            <h3>A discovery conversation.</h3>
+            <p>Original brief and requirements attached.</p>
+            <div className={s.storyChipsLight}>
+              <span>Thu 2:00 PM</span>
+              <span>Prep brief synced</span>
+            </div>
+            <div className={s.boardCardFooterLight}>
+              <CircleCheck size={14} />
+              <span>Next step locked & tracked</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={s.storyFootCenter}>
+          <CircleCheck size={18} /> Less searching across inboxes. More conversations moving forward.
+        </div>
+      </div>
+    </section>
+  );
+}
 function Problems() {
   return (
-    <section className={`${s.section} ${s.container}`}>
-      <Heading
-        label="GOOD ENQUIRIES DESERVE BETTER"
-        title="Every missed follow-up is a missed opportunity."
-        center
-      />
-      <div className={s.problemGrid}>
-        {[
-          {
-            icon: Inbox,
-            title: 'Scattered enquiries',
-            copy: 'An inbox here. A spreadsheet there. The details you need are always somewhere else.',
-            lines: ['Website enquiry', 'Email conversation', 'Another spreadsheet'],
-          },
-          {
-            icon: Clock3,
-            title: 'Missed follow-ups',
-            copy: 'Busy days turn into quiet leads. A promising conversation slips through the cracks.',
-            lines: ['Reply to Alex Morgan', 'Follow-up overdue', 'Opportunity cooling'],
-          },
-          {
-            icon: Users,
-            title: 'Unclear ownership',
-            copy: 'When everyone thinks someone else is handling it, nobody takes the next step.',
-            lines: ['New project enquiry', 'Owner: unassigned', 'Who’s picking this up?'],
-          },
-        ].map((p, i) => (
-          <article
-            className={s.problemCard}
-            key={p.title}
-            data-reveal
-            style={{ '--delay': `${i * 100}ms` } as CSSProperties}
-          >
-            <div className={s.problemSculpture} data-kind={i} aria-hidden="true">
-              <div className={s.sculptureGlow} />
-              {i === 0 ? (
-                <div className={s.enquiryStack}>
-                  {p.lines.map((line, j) => (
-                    <div
-                      className={s.enquirySheet}
-                      key={line}
-                      style={{ '--sheet': j } as CSSProperties}
-                    >
-                      {j === 0 ? (
-                        <Globe size={20} />
-                      ) : j === 1 ? (
-                        <Mail size={20} />
-                      ) : (
-                        <FileText size={20} />
-                      )}
-                      <span>{line}</span>
-                      <i />
-                      <i />
+    <section className={`${s.section} ${s.problemsSection}`}>
+      <div className={s.container}>
+        <Heading
+          label="GOOD ENQUIRIES DESERVE BETTER"
+          title="Every missed follow-up is a missed opportunity."
+          center
+        />
+        <div className={s.problemGrid}>
+          {[
+            {
+              icon: Inbox,
+              title: 'Scattered enquiries',
+              copy: 'Bring every enquiry and its details into one place.',
+              lines: ['Website enquiry', 'Email conversation', 'Another spreadsheet'],
+            },
+            {
+              icon: Clock3,
+              title: 'Missed follow-ups',
+              copy: 'Keep the next action visible before a good lead goes quiet.',
+              lines: ['Reply to Alex Morgan', 'Follow-up overdue', 'Opportunity cooling'],
+            },
+            {
+              icon: Users,
+              title: 'Unclear ownership',
+              copy: 'Give every opportunity an owner who knows what comes next.',
+              lines: ['New project enquiry', 'Owner: unassigned', 'Who’s picking this up?'],
+            },
+          ].map((p, i) => (
+            <article
+              className={s.problemCard}
+              key={p.title}
+              data-reveal
+              style={{ '--delay': `${i * 100}ms` } as CSSProperties}
+            >
+              <div className={s.problemSculpture} data-kind={i} aria-hidden="true">
+                <div className={s.sculptureGlow} />
+                {i === 0 ? (
+                  <div className={s.enquiryStack}>
+                    {p.lines.map((line, j) => (
+                      <div
+                        className={s.enquirySheet}
+                        key={line}
+                        style={{ '--sheet': j } as CSSProperties}
+                      >
+                        {j === 0 ? (
+                          <Globe size={20} />
+                        ) : j === 1 ? (
+                          <Mail size={20} />
+                        ) : (
+                          <FileText size={20} />
+                        )}
+                        <span>{line}</span>
+                        <i />
+                        <i />
+                      </div>
+                    ))}
+                  </div>
+                ) : i === 1 ? (
+                  <div className={s.followupObject}>
+                    <div className={s.clockFace}>
+                      <span className={s.clockTicks} />
+                      <i className={s.hourHand} />
+                      <i className={s.minuteHand} />
+                      <b />
                     </div>
-                  ))}
-                </div>
-              ) : i === 1 ? (
-                <div className={s.followupObject}>
-                  <div className={s.clockFace}>
-                    <span className={s.clockTicks} />
-                    <i className={s.hourHand} />
-                    <i className={s.minuteHand} />
-                    <b />
-                  </div>
-                  <div className={s.reminderPlate}>
-                    <Clock3 size={17} />
-                    <span>Follow-up overdue</span>
-                    <span>!</span>
-                  </div>
-                </div>
-              ) : (
-                <div className={s.ownershipObject}>
-                  <div className={s.ownerConnector} />
-                  {['JL', '?', 'SC'].map((name, j) => (
-                    <div
-                      key={name}
-                      className={s.ownerTile}
-                      style={{ '--person': j } as CSSProperties}
-                    >
-                      <span>{name}</span>
-                      <i />
+                    <div className={s.reminderPlate}>
+                      <Clock3 size={17} />
+                      <span>Follow-up overdue</span>
+                      <span>!</span>
                     </div>
-                  ))}
-                  <div className={s.assignmentPlate}>
-                    <Users size={17} />
-                    <span>Who’s taking the next step?</span>
                   </div>
-                </div>
-              )}
-            </div>
-            <h3>{p.title}</h3>
-            <p>{p.copy}</p>
-          </article>
-        ))}
+                ) : (
+                  <div className={s.ownershipObject}>
+                    <div className={s.ownerConnector} />
+                    {['JL', '?', 'SC'].map((name, j) => (
+                      <div
+                        key={name}
+                        className={s.ownerTile}
+                        style={{ '--person': j } as CSSProperties}
+                      >
+                        <span>{name}</span>
+                        <i />
+                      </div>
+                    ))}
+                    <div className={s.assignmentPlate}>
+                      <Users size={17} />
+                      <span>Who’s taking the next step?</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <h3>{p.title}</h3>
+              <p>{p.copy}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1333,10 +1414,10 @@ function CubeSection() {
       <div className={`${s.container} ${s.systemGrid}`}>
         <div className={s.systemCopy}>
           <Label>CONNECTED ON THE INSIDE</Label>
-          <h2>Everything works better when it works together.</h2>
+          <h2>One enquiry. A clear path forward.</h2>
           <p>
-            One enquiry sets the right things in motion. See how the details become a clear, shared
-            next step.
+            From the first hello to the next conversation, keep your team working from the same
+            story.
           </p>
           <ol className={s.systemSteps}>
             {[
@@ -1362,9 +1443,6 @@ function CubeSection() {
               </li>
             ))}
           </ol>
-          <a href="#how-it-works" className={s.textLink}>
-            Follow an enquiry <ArrowRight size={16} />
-          </a>
         </div>
         <ConnectedSystemCard />
       </div>
@@ -1760,7 +1838,7 @@ function UseCases() {
             </div>
             <h3>{x.title}</h3>
             <p>{x.copy}</p>
-            <Link href="/solutions">
+            <Link href="/contact">
               Find your flow <ArrowUpRight size={15} />
             </Link>
           </article>
@@ -1773,7 +1851,7 @@ const plans = [
   {
     name: 'Starter',
     price: 29,
-    copy: 'A clear home for your first opportunities.',
+    copy: 'For a solo business owner organising enquiries and managing their own pipeline.',
     features: [
       '250 leads per month',
       '3 capture forms',
@@ -1784,7 +1862,7 @@ const plans = [
   {
     name: 'Growth',
     price: 79,
-    copy: 'A connected process for an ambitious team.',
+    copy: 'For a small team sharing lead ownership and building repeatable follow-up workflows.',
     features: [
       '2,000 leads per month',
       'Unlimited capture forms',
@@ -1795,7 +1873,7 @@ const plans = [
   {
     name: 'Scale',
     price: 179,
-    copy: 'More people. More possibilities. One process.',
+    copy: 'For a larger team managing higher enquiry volumes across several pipelines.',
     features: [
       '10,000 leads per month',
       'Advanced routing rules',
@@ -1812,6 +1890,7 @@ function Pricing() {
         <Heading
           label="START FOCUSED. GROW WITH INTENT."
           title="Simple plans for every stage of growth."
+          copy="Choose by your monthly enquiry volume and the number of people managing it. Each plan lists its lead allowance, team size and the tools included."
           center
         />
         <div className={s.billing} role="group" aria-label="Billing preference">
@@ -1840,14 +1919,10 @@ function Pricing() {
                 <span>/ month</span>
               </div>
               <small>
-                {annual ? `£${Math.round(p.price * 0.8) * 12} billed yearly` : 'Monthly billing'}
+                {annual
+                  ? `£${Math.round(p.price * 0.8) * 12} billed yearly · per workspace`
+                  : 'Billed monthly · per workspace'}
               </small>
-              <Link
-                className={i === 1 ? s.primary : s.secondary}
-                href={`/contact?plan=${p.name.toLowerCase()}`}
-              >
-                Discuss {p.name} <ArrowUpRight size={15} />
-              </Link>
               <ul>
                 {p.features.map((x) => (
                   <li key={x}>
@@ -1859,6 +1934,11 @@ function Pricing() {
             </article>
           ))}
         </div>
+        <p className={s.pricingNote}>
+          Lead allowances are shown per month; workspace members are the people on your team with
+          access. Yearly prices show the monthly equivalent, with the full year billed together.
+          Plans are a preview of the proposed offering. Live subscriptions are not available yet.
+        </p>
       </div>
     </section>
   );
@@ -1866,7 +1946,7 @@ function Pricing() {
 const faqs = [
   [
     'What does Growora do?',
-    'Growora brings lead capture, qualification, ownership and next actions into a connected workspace. ',
+    'Growora is a lead management workspace for businesses that sell services or projects. It keeps customer enquiries, project details, team ownership and next actions together so you can follow each opportunity from first contact to a decision.',
   ],
   [
     'Who is Growora for?',
@@ -1874,84 +1954,165 @@ const faqs = [
   ],
   [
     'How does lead management work?',
-    'Enquiries become lead records with a source, project context, owner and pipeline stage. In the workspace you can explore lead details, change stages and try filters. Saved workspace changes stay in your browser.',
+    'An enquiry becomes a record with the project details, an owner and a pipeline stage. The walkthrough shows how those details stay connected as the conversation moves forward.',
   ],
   [
     'What can I automate?',
-    'The workspace lets you explore example rules for qualification, assignment and follow-up. These workflow tests show the steps; they do not send emails or run a background service. Discuss your actual requirements with the team.',
+    'Growora is designed to support qualification, assignment and follow-up workflows. The walkthrough explains those steps using sample information; it does not run automations or send messages.',
   ],
   [
     'Can I connect my existing tools?',
-    'The integration views demonstrate possible connection categories and states. Live external integrations, OAuth and synchronisation are not implemented in this workspace. Confirm availability before making a decision.',
+    'Live integrations are not available in this preview. The walkthrough focuses on how an enquiry and its next actions stay connected.',
   ],
   [
     'Is there a free trial? How does pricing work?',
-    'You can explore the workspace without an account. Choose Starter, Growth or Scale to discuss your requirements; the contact form currently saves a request locally and does not send it.',
+    'The walkthrough is free to explore without an account. Starter, Growth and Scale show the proposed plan structure; subscriptions and live billing are not available yet.',
   ],
 ];
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className={`${s.section} ${s.container} ${s.faqLayout}`}>
-      <div>
-        <Label>A LITTLE CLARITY</Label>
-        <h2>
-          A few things
-          <br />
-          worth knowing.
-        </h2>
-        <p className={s.bodyCopy}>Something else on your mind?</p>
-        <Link className={s.textLink} href="/contact">
-          Let’s talk <ArrowUpRight size={16} />
-        </Link>
-      </div>
-      <div className={s.faqList}>
-        {faqs.map(([q, a], i) => (
-          <article key={q} data-open={open === i}>
-            <h3>
-              <button
-                aria-expanded={open === i}
-                aria-controls={`premium-answer-${i}`}
-                id={`premium-question-${i}`}
-                onClick={() => setOpen(open === i ? null : i)}
+    <section className={s.faqSection} id="faq">
+      <div className={`${s.container} ${s.faqLayout}`}>
+        <div className={s.faqStickyCol}>
+          <div className={s.faqHeadingGreenCard}>
+            <Label>A LITTLE CLARITY</Label>
+            <h2>
+              A few things
+              <br />
+              worth knowing.
+            </h2>
+            <p className={s.bodyCopy}>Get to know the workspace and what you can explore today.</p>
+          </div>
+        </div>
+        <div className={s.faqList}>
+          {faqs.map(([q, a], i) => (
+            <article key={q} data-open={open === i}>
+              <h3>
+                <button
+                  aria-expanded={open === i}
+                  aria-controls={`premium-answer-${i}`}
+                  id={`premium-question-${i}`}
+                  onClick={() => setOpen(open === i ? null : i)}
+                >
+                  <span>{q}</span>
+                  <Plus size={20} />
+                </button>
+              </h3>
+              <div
+                className={s.faqAnswer}
+                id={`premium-answer-${i}`}
+                role="region"
+                aria-labelledby={`premium-question-${i}`}
+                aria-hidden={open !== i}
+                inert={open !== i}
               >
-                {q}
-                <Plus size={17} />
-              </button>
-            </h3>
-            <div
-              className={s.faqAnswer}
-              id={`premium-answer-${i}`}
-              role="region"
-              aria-labelledby={`premium-question-${i}`}
-              aria-hidden={open !== i}
-              inert={open !== i}
-            >
-              <div>
-                <p>{a}</p>
+                <div>
+                  <p>{a}</p>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-function Closing() {
+export function Closing() {
   return (
-    <section className={s.closing}>
-      <div className={`${s.container} ${s.closingGrid}`}>
-        <div>
-          <Label>YOUR NEXT CHAPTER STARTS WITH A CONVERSATION</Label>
-          <h2>
-            Give every opportunity
-            <br />a better chance.
-          </h2>
-          <p>A little less friction. A little more forward.</p>
-          <Actions />
+    <section className={s.closingSection}>
+      <div className={s.container}>
+        <div className={s.closingWhiteCard}>
+          <div className={s.closingGrid}>
+            <div className={s.closingCopy}>
+              <Label>YOUR NEXT CHAPTER STARTS WITH A CONVERSATION</Label>
+              <h2>
+                Give every opportunity
+                <br />a better chance.
+              </h2>
+              <p>A little less friction. A little more forward.</p>
+              <Actions />
+            </div>
+            <div className={s.closingEmblemStage} aria-hidden="true">
+              <div className={s.closingEmblemOuter}>
+                <div className={s.closingEmblemMid}>
+                  <div className={s.closingEmblemBadge}>
+                    <Mark className={s.closingEmblemIcon} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <FlowingRibbon />
       </div>
+    </section>
+  );
+}
+
+function FeatureExplorer() {
+  const features = [
+    { id: 'capture', label: 'Capture', content: <Capture /> },
+    { id: 'qualification', label: 'Qualify', content: <Qualification /> },
+    { id: 'automation', label: 'Follow up', content: <Automation /> },
+    { id: 'intelligence', label: 'Prioritise', content: <Intelligence /> },
+    { id: 'analytics', label: 'Measure', content: <Analytics /> },
+  ];
+  const [active, setActive] = useState('capture');
+  useEffect(() => {
+    const sync = () => {
+      const id = window.location.hash.slice(1);
+      if (['capture', 'qualification', 'automation', 'intelligence', 'analytics'].includes(id)) {
+        setActive(id);
+        document.getElementById('features')?.scrollIntoView({ block: 'start' });
+      }
+    };
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
+  }, []);
+  return (
+    <section className={s.featureExplorer} id="features" aria-label="Explore product features">
+      <div className={s.container}>
+        <Heading
+          label="A CLOSER LOOK"
+          title="The tools behind your next step."
+          copy="Choose a feature to see how it works."
+        />
+        <div
+          className={s.featureTabs}
+          role="tablist"
+          aria-label="Product features"
+          onKeyDown={tabKeyboard}
+        >
+          {features.map((feature) => (
+            <button
+              key={feature.id}
+              id={`feature-tab-${feature.id}`}
+              role="tab"
+              aria-selected={active === feature.id}
+              aria-controls={`feature-panel-${feature.id}`}
+              tabIndex={active === feature.id ? 0 : -1}
+              onClick={() => {
+                setActive(feature.id);
+                window.history.replaceState(null, '', `#${feature.id}`);
+              }}
+            >
+              {feature.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {features.map((feature) => (
+        <div
+          key={feature.id}
+          id={`feature-panel-${feature.id}`}
+          role="tabpanel"
+          aria-labelledby={`feature-tab-${feature.id}`}
+          hidden={active !== feature.id}
+        >
+          {active === feature.id && feature.content}
+        </div>
+      ))}
     </section>
   );
 }
