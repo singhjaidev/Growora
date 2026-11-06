@@ -1,27 +1,45 @@
 import { GET as readForm, POST as submit } from '@/server/leads/public-http';
-import { publicIdValid } from '@/server/leads/ingestion';
+import { destination } from '@/server/marketing/destination';
 import { reply } from '@/server/auth/http';
 
 export const dynamic = 'force-dynamic';
 
-// Only operator configuration selects the destination, never a session or customer field.
-function destination() {
-  const id = process.env.MARKETING_ENQUIRY_FORM_ID ?? '';
-  return publicIdValid(id) ? id : null;
-}
-const unavailable = () => reply(503, { message: 'Website enquiries are temporarily unavailable. Please try again later.' });
+const unavailable = () =>
+  reply(503, { message: 'Website enquiries are temporarily unavailable. Please try again later.' });
 
 export async function GET(request: Request) {
-  const publicFormId = destination();
-  if (!publicFormId) return unavailable();
-  return readForm(request, { params: Promise.resolve({ publicFormId }) });
+  try {
+    const selected = await destination();
+    if (!selected) return unavailable();
+    const response = await readForm(request, {
+      params: Promise.resolve({ publicFormId: selected.publicId }),
+    });
+    if (!response.ok) return response;
+    return reply(200, { ...(await response.json()), destinationVersion: selected.version });
+  } catch {
+    return unavailable();
+  }
 }
 
 export async function POST(request: Request) {
-  const publicFormId = destination();
-  if (!publicFormId) return unavailable();
-  // Bind consent and retries to the destination whose notice the visitor saw.
-  if (request.headers.get('x-marketing-form') !== publicFormId)
-    return reply(409, { message: 'The enquiry destination changed. Reload and review the privacy notice before submitting.' });
-  return submit(request, { params: Promise.resolve({ publicFormId }) });
+  try {
+    const selected = await destination();
+    if (!selected) return unavailable();
+    const publicFormId = selected.publicId;
+    // Bind consent and retries to the destination whose notice the visitor saw.
+    if (
+      request.headers.get('x-marketing-form') !== publicFormId ||
+      request.headers.get('x-marketing-version') !== String(selected.version)
+    )
+      return reply(409, {
+        message:
+          'The enquiry destination changed. Reload and review the privacy notice before submitting.',
+      });
+    return await submit(request, {
+      params: Promise.resolve({ publicFormId }),
+      marketingVersion: selected.version,
+    });
+  } catch {
+    return unavailable();
+  }
 }

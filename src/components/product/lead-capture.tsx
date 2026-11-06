@@ -1,51 +1,94 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Check, RotateCcw, ShieldCheck } from 'lucide-react';
-import { useLeads } from '@/components/providers';
-import { ButtonLink, SectionTitle, ScoreMeter } from '@/components/ui';
-import { createLead, qualify, nextAction, type LeadInput } from '@/lib/domain';
-const steps = [
-  'Lead captured',
-  'Analyzing responses',
-  'Qualifying intent',
-  'Calculating score',
-  'Selecting route',
-];
+import { SectionTitle } from '@/components/ui';
+type Destination = {
+  publicId: string;
+  version: number;
+  destinationVersion: number;
+  privacyNotice: string;
+  retentionDays: number | null;
+};
 export function LeadCapture({ compact = false }: { compact?: boolean }) {
-  const { addLead, notice, ready, leads } = useLeads();
-  const [phase, setPhase] = useState(-1);
-  const [resultId, setResultId] = useState<string | null>(null);
-  const result = leads.find((lead) => lead.id === resultId);
-  const submitted = useRef(false);
-  const resultHeading = useRef<HTMLHeadingElement>(null);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-  useEffect(
-    () => () => {
-      if (timer.current) clearInterval(timer.current);
-    },
-    [],
-  );
+  const [form, setForm] = useState<Destination | null>(null),
+    [error, setError] = useState(''),
+    [busy, setBusy] = useState(false),
+    [done, setDone] = useState(false);
+  const inFlight = useRef(false),
+    key = useRef(''),
+    lastBody = useRef(''),
+    heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
-    if (resultId && phase === -1) resultHeading.current?.focus({ preventScroll: true });
-  }, [resultId, phase]);
-  function submit(event: React.FormEvent<HTMLFormElement>) {
+    let active = true;
+    fetch('/api/marketing/enquiry')
+      .then(async (r) => {
+        const value = await r.json();
+        if (!active) return;
+        if (!r.ok) {
+          setError(value.message || 'Website enquiries are unavailable.');
+          return;
+        }
+        setForm(value);
+      })
+      .catch(() => {
+        if (active) setError('Unable to load enquiry details. Reload to retry.');
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+  useEffect(() => {
+    if (done) heading.current?.focus({ preventScroll: true });
+  }, [done]);
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!ready || submitted.current || !event.currentTarget.reportValidity()) return;
-    submitted.current = true;
-    const data = Object.fromEntries(new FormData(event.currentTarget)) as LeadInput;
-    const lead = createLead(data);
-    addLead(lead);
-    setResultId(lead.id);
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    setPhase(0);
-    let index = 0;
-    timer.current = setInterval(() => {
-      index++;
-      if (index === steps.length) {
-        if (timer.current) clearInterval(timer.current);
-        setPhase(-1);
-      } else setPhase(index);
-    }, 450);
+    if (!form || inFlight.current || !event.currentTarget.reportValidity()) return;
+    const d = new FormData(event.currentTarget);
+    const body = JSON.stringify({
+      formVersion: form.version,
+      customerName: d.get('name'),
+      customerEmail: d.get('email'),
+      subject: d.get('service'),
+      message: [
+        'Company: ' + d.get('company'),
+        'Project budget: ' + d.get('budget'),
+        'Timeline: ' + d.get('timeline'),
+      ].join('\n'),
+      company: d.get('website') || '',
+      consent: d.get('consent') === 'on',
+    });
+    if (lastBody.current !== body) {
+      key.current = crypto.randomUUID();
+      lastBody.current = body;
+    }
+    inFlight.current = true;
+    setBusy(true);
+    setError('');
+    try {
+      const r = await fetch('/api/marketing/enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': key.current,
+          'X-Marketing-Form': form.publicId,
+          'X-Marketing-Version': String(form.destinationVersion),
+        },
+        body,
+      });
+      const result = await r.json();
+      if (!r.ok) throw Error(result.message || 'Unable to save your enquiry.');
+      if (result.ok !== true) throw Error('Could not confirm your submission. Please retry.');
+      setDone(true);
+    } catch (e) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : 'Could not confirm your submission. Please retry; unchanged details are saved only once.',
+      );
+    } finally {
+      setBusy(false);
+      inFlight.current = false;
+    }
   }
   return (
     <section
@@ -57,7 +100,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
           number="03"
           kicker="MEET YOUR NEXT OPPORTUNITY"
           title="Not every enquiry is equal."
-          description="Send a signal. Watch Growora find the intent behind it. Then follow your lead into the workspace."
+          description="Share your requirements with the Growora team. Your enquiry is saved securely for authorized team members to review."
         />
       )}
       <div className="capture-grid">
@@ -75,9 +118,9 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
           <div className="capture-rule">
             <ShieldCheck size={19} />
             <span>
-              Your workspace stays in this browser.
+              Your details are stored for authorized team members.
               <br />
-              No emails sent. No account required.
+              No account required to enquire.
             </span>
           </div>
           <div className="rule-example">
@@ -88,7 +131,7 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
               02 <i /> BUDGET SIGNAL
             </span>
             <span>
-              03 <i /> TIMING & INTENT
+              03 <i /> TIMING &amp; INTENT
             </span>
           </div>
         </div>
@@ -99,73 +142,33 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
             </span>
             <span>LEAD CAPTURE</span>
           </div>
-          {result && phase === -1 ? (
+          {done ? (
             <div className="lead-result" aria-live="polite">
               <span className="result-check">
                 <Check />
               </span>
-              <p className="kicker">CAPTURED · QUALIFIED · ROUTED</p>
-              <h3 ref={resultHeading} tabIndex={-1}>
-                Your lead. A clear next step.
+              <p className="kicker">ENQUIRY SAVED</p>
+              <h3 ref={heading} tabIndex={-1}>
+                Your enquiry has been received.
               </h3>
-              <div className="score-result">
-                <ScoreMeter score={result.score} />
-                <div>
-                  <span className="result-priority">
-                    {qualify(result).priority} priority · {result.status}
-                  </span>
-                  <h4>{result.name}</h4>
-                  <p>{result.company}</p>
-                </div>
-              </div>
-              <dl className="result-details">
-                <div>
-                  <dt>Project</dt>
-                  <dd>{result.service}</dd>
-                </div>
-                <div>
-                  <dt>Route</dt>
-                  <dd>{qualify(result).route}</dd>
-                </div>
-                <div>
-                  <dt>Suggested action</dt>
-                  <dd>{nextAction(result)}</dd>
-                </div>
-              </dl>
-              <ButtonLink href={`/app/leads?highlight=${result.id}`}>
-                View lead in dashboard
-              </ButtonLink>
+              <p>
+                Authorized team members can now review your requirements. No AI score or automatic
+                response is promised.
+              </p>
               <button
                 className="text-button"
                 onClick={() => {
-                  setResultId(null);
-                  submitted.current = false;
+                  setDone(false);
+                  key.current = '';
+                  lastBody.current = '';
                 }}
               >
                 <RotateCcw size={14} />
-                Try another lead
+                Send another enquiry
               </button>
-              {notice && <p role="status">{notice}</p>}
-            </div>
-          ) : phase >= 0 ? (
-            <div className="processing" role="status" aria-live="polite">
-              <h3>Finding the opportunity.</h3>
-              <p>Your lead is captured. Reviewing its score and route.</p>
-              {steps.map((step, i) => (
-                <div className={`process-step ${phase >= i ? 'active' : ''}`} key={step}>
-                  <span>{phase > i ? <Check size={15} /> : String(i + 1).padStart(2, '0')}</span>
-                  {step}
-                  {phase === i && <i className="live-dot" />}
-                </div>
-              ))}
-              {result && (
-                <ButtonLink href={`/app/leads?highlight=${result.id}`}>
-                  Open captured lead
-                </ButtonLink>
-              )}
             </div>
           ) : (
-            <form onSubmit={submit} className="lead-form">
+            <form onSubmit={submit} className="lead-form" aria-busy={busy}>
               <div className="form-grid">
                 <label>
                   Name
@@ -225,10 +228,32 @@ export function LeadCapture({ compact = false }: { compact?: boolean }) {
                   </select>
                 </label>
               </div>
-              <button className="button" type="submit" disabled={!ready}>
-                {ready ? 'Qualify this lead' : 'Loading your workspace…'} <ArrowUpRight size={16} />
+
+              <div hidden aria-hidden="true">
+                <label>
+                  Website
+                  <input name="website" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+              {form && (
+                <>
+                  <p className="micro">
+                    {form.privacyNotice}
+                    {form.retentionDays
+                      ? ` Review scheduled after ${form.retentionDays} days.`
+                      : ''}
+                  </p>
+                  <label>
+                    <input type="checkbox" name="consent" required disabled={busy} /> I acknowledge
+                    this use of my information.
+                  </label>
+                </>
+              )}
+              {error && <p role="alert">{error}</p>}
+              <button className="button" type="submit" disabled={!form || busy}>
+                {busy ? 'Sending enquiry…' : 'Send enquiry'} <ArrowUpRight size={16} />
               </button>
-              <p className="micro">CLEAR, RULE-BASED SCORING</p>
+              <p className="micro">STORED SECURELY FOR TEAM REVIEW</p>
             </form>
           )}
         </div>

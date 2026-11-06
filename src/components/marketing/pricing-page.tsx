@@ -39,7 +39,7 @@ const plans: Plan[] = [
     monthlyPrice: 29,
     yearlyPrice: 23,
     cta: 'Explore Starter',
-    ctaHref: '/demo?plan=starter',
+    ctaHref: '/how-it-works',
     features: [
       '250 leads / month included',
       '3 smart enquiry capture forms',
@@ -59,7 +59,7 @@ const plans: Plan[] = [
     monthlyPrice: 79,
     yearlyPrice: 63,
     cta: 'Explore Growth',
-    ctaHref: '/demo?plan=growth',
+    ctaHref: '/how-it-works',
     popular: true,
     features: [
       '2,000 leads / month included',
@@ -80,7 +80,7 @@ const plans: Plan[] = [
     monthlyPrice: 179,
     yearlyPrice: 143,
     cta: 'Explore Scale',
-    ctaHref: '/demo?plan=scale',
+    ctaHref: '/how-it-works',
     features: [
       '10,000 leads / month included',
       'Unlimited smart capture forms',

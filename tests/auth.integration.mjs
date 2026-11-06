@@ -3,6 +3,7 @@ import { testIntelligenceAPI } from './intelligence-api.integration.mjs';
 import { testLeads } from './leads.integration.mjs';
 import { testRoutingAPI } from './routing-api.integration.mjs';
 import { testAuditAPI } from './audit-api.integration.mjs';
+import { seedMarketingOwner, testMarketing } from './marketing.integration.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
@@ -29,7 +30,7 @@ async function unusedPort() {
 
 test(
   'production HTTP account lifecycle with disposable PostgreSQL and SMTP',
-  { timeout: 120000 },
+  { timeout: process.env.PHASE8_BROWSER === '1' ? 180000 : 120000 },
   async (t) => {
     const port = await unusedPort();
     const password = randomBytes(24).toString('hex');
@@ -77,6 +78,7 @@ test(
     await client.connect();
     await migrate(drizzle(client), { migrationsFolder: 'migrations' });
     await migrate(drizzle(client), { migrationsFolder: 'migrations' });
+    const marketingOwner = await seedMarketingOwner(client);
 
     const inbox = [];
     smtp = new SMTPServer({
@@ -118,6 +120,7 @@ test(
           SMTP_PASSWORD: '',
           MAIL_FROM: 'accounts@example.test',
           AUTH_CLIENT_IP_HEADER: '',
+          MARKETING_WEBSITE_OWNER_IDS: marketingOwner.id,
           AI_ENABLED: 'true',
           OPENAI_API_KEY: 'TEST_FIXTURE_KEY_NEVER_SENT',
           AI_MODEL: 'TEST_FIXTURE_NOT_LIVE',
@@ -342,6 +345,7 @@ test(
     await testIntelligenceAPI({ t, base, origin, client, get, ca, cb, ua, ub });
     await testRoutingAPI({ t, base, origin, client, get, ca, cb, ua, ub });
     await testAuditAPI({ t, base, origin, client, get, ca, cb, ua, ub });
+    await testMarketing({ t, base, origin, client, get, ca, cb, ua, ub, login, marketingOwner });
     const sb = (await client.query('SELECT id FROM auth_session WHERE user_id=$1', [ub.id])).rows[0]
       .id;
     assert.equal((await accountPost('profile', { name: 'No', id: ub.id }, ca)).status, 400);

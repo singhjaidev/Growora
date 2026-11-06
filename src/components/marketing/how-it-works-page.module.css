@@ -1,0 +1,936 @@
+/* ==========================================================================
+   GROWORA HOW IT WORKS PAGE STYLES
+   Structured, elegant, clear walkthrough in the exact Growora design system
+   ========================================================================== */
+
+.howItWorksPage {
+  position: relative;
+  width: 100%;
+  background: #f8faf8;
+  color: #14251f;
+  font-family: 'DM Sans Variable', sans-serif;
+  overflow-x: clip;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   1. Hero Section — Dark Jade Obsidian with Ambient Trajectory Glow
+   -------------------------------------------------------------------------- */
+.heroSection {
+  position: relative;
+  padding-top: 138px;
+  padding-bottom: 74px;
+  background-color: #051813;
+  background-image:
+    radial-gradient(ellipse 950px 520px at 50% 25%, rgba(16, 185, 129, 0.22) 0%, rgba(6, 78, 59, 0.1) 45%, transparent 75%),
+    radial-gradient(circle 500px at 80% 70%, rgba(45, 212, 191, 0.1) 0%, transparent 60%),
+    linear-gradient(180deg, #051813 0%, #04120e 100%);
+  border-bottom: 1px solid rgba(184, 245, 217, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 860px;
+  margin: 0 auto 48px;
+  position: relative;
+  z-index: 2;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8F5D9;
+  background: rgba(184, 245, 217, 0.1);
+  border: 1px solid rgba(184, 245, 217, 0.22);
+  padding: 5px 15px;
+  border-radius: 9999px;
+  margin-bottom: 22px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
+}
+
+.heroTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(38px, 4.4vw, 58px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: #F5F8F5;
+  margin: 0 auto 20px;
+}
+
+.heroTitle em {
+  font-style: italic;
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 400;
+  color: #B8F5D9;
+}
+
+.heroCopy {
+  font-size: clamp(16.5px, 1.8vw, 19px);
+  line-height: 1.65;
+  color: #B1C0BA;
+  max-width: 62ch;
+  margin: 0 auto 34px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #B8F5D9;
+  color: #071B16;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.primaryAction:hover {
+  background: #d4fae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #F5F8F5;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 550;
+  text-decoration: none;
+  border: 1px solid rgba(184, 245, 217, 0.25);
+  transition: all 0.25s ease;
+}
+
+.secondaryAction:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(184, 245, 217, 0.45);
+  color: #ffffff;
+}
+
+/* Metrics Bar */
+.metricsBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(20px, 4vw, 48px);
+  padding: 24px 32px;
+  background: rgba(8, 30, 24, 0.6);
+  border: 1px solid rgba(184, 245, 217, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.metricItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.metricNumber {
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #B8F5D9;
+  letter-spacing: -0.02em;
+}
+
+.metricLabel {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #92b5a7;
+  line-height: 1.35;
+  text-align: left;
+}
+
+/* --------------------------------------------------------------------------
+   Shared Section Typography
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: 84px;
+  position: relative;
+}
+
+.sectionBordered {
+  border-top: 1px solid #e2ebe6;
+  border-bottom: 1px solid #e2ebe6;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.sectionHeading .label {
+  color: #0b624b;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.22);
+}
+
+.sectionTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: #0f2720;
+  margin: 0 auto 16px;
+  max-width: 28ch;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 400;
+  color: #093c31;
+}
+
+.sectionSubtitle {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: #4b635a;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Interactive 5-Stage Journey Walkthrough
+   -------------------------------------------------------------------------- */
+.stageTabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 38px;
+}
+
+.stageTabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #455a52;
+  background: #edf3f0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.stageTabBtn:hover {
+  background: #e2ede8;
+  color: #0d2823;
+}
+
+.stageTabBtn[aria-selected='true'] {
+  background: #071B16;
+  color: #F5F8F5;
+  box-shadow: 0 4px 14px rgba(7, 27, 22, 0.25);
+  border-color: #071B16;
+}
+
+.stageNumPill {
+  font-size: 11px;
+  font-weight: 750;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.stageTabBtn[aria-selected='true'] .stageNumPill {
+  background: rgba(184, 245, 217, 0.2);
+  color: #B8F5D9;
+}
+
+/* Walkthrough Card */
+.walkthroughCard {
+  background: #ffffff;
+  border: 1px solid #dce8e1;
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0 16px 48px -15px rgba(10, 42, 34, 0.08);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.walkLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.walkStageIndex {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: #0b624b;
+  margin-bottom: 12px;
+}
+
+.walkStageIndex small {
+  font-size: 16px;
+  font-weight: 600;
+  color: #79988e;
+}
+
+.walkLeft h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #0f2720;
+  margin: 0 0 16px 0;
+}
+
+.walkLeft p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #4b635a;
+  margin: 0 0 24px 0;
+}
+
+.takeawayBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #f1f8f4;
+  border: 1px solid #d4ebd9;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.takeawayBox svg {
+  color: #059669;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.takeawayBox p {
+  font-size: 14.5px;
+  font-weight: 550;
+  color: #1a4234;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.stageChecklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stageChecklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #375347;
+}
+
+.stageChecklist li svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.stageNavControls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navPrevBtn,
+.navNextBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navPrevBtn {
+  background: #edf4f0;
+  color: #395247;
+  border: 1px solid #d4dfd9;
+}
+
+.navPrevBtn:hover:not(:disabled) {
+  background: #e2ede7;
+  color: #0e2820;
+}
+
+.navPrevBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.navNextBtn {
+  background: #071B16;
+  color: #F5F8F5;
+  border: 1px solid #071B16;
+  box-shadow: 0 4px 14px rgba(7, 27, 22, 0.2);
+}
+
+.navNextBtn:hover {
+  background: #0f352c;
+}
+
+/* Walk Right: Live Specimen Dossier */
+.walkSpecimenCard {
+  background: #071b16;
+  border: 1px solid rgba(184, 245, 217, 0.2);
+  border-radius: 22px;
+  padding: 28px;
+  color: #ffffff;
+  box-shadow: 0 16px 40px -10px rgba(7, 27, 22, 0.35);
+}
+
+.specimenTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(184, 245, 217, 0.14);
+  margin-bottom: 20px;
+}
+
+.specimenTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4ee2b6;
+  background: rgba(78, 226, 182, 0.12);
+  border: 1px solid rgba(78, 226, 182, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.specimenClientTitle {
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 20px;
+  font-weight: 750;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.specimenClientSub {
+  font-size: 13.5px;
+  color: #92b8aa;
+  margin: 0 0 20px 0;
+}
+
+.specimenGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.specimenCell {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 245, 217, 0.1);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.specimenCell dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8fb1a4;
+  margin-bottom: 3px;
+}
+
+.specimenCell dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 650;
+  color: #ffffff;
+}
+
+.specimenActionBanner {
+  background: rgba(78, 226, 182, 0.08);
+  border: 1px solid rgba(78, 226, 182, 0.28);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #B8F5D9;
+}
+
+.specimenActionBanner strong {
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   3. Lifecycle Architecture Pillars
+   -------------------------------------------------------------------------- */
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.pillarCard {
+  background: #ffffff;
+  border: 1px solid #e1e9e3;
+  border-radius: 24px;
+  padding: 36px 30px;
+  box-shadow: 0 4px 18px -4px rgba(16, 42, 34, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.pillarCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px -10px rgba(16, 42, 34, 0.12);
+  border-color: #bfe0d4;
+}
+
+.pillarIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #edf8f3;
+  color: #065f46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  border: 1px solid #d1ebd9;
+}
+
+.pillarCard h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #0f2720;
+  margin: 0 0 12px 0;
+}
+
+.pillarCard p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #536b60;
+  margin: 0 0 24px 0;
+  flex: 1;
+}
+
+.pillarFeatureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  border-top: 1px solid #eef3f0;
+  padding-top: 20px;
+}
+
+.pillarFeatureList li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: #263d33;
+}
+
+.pillarFeatureList li svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. The Friction Comparison Matrix (Before vs Growora)
+   -------------------------------------------------------------------------- */
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.beforeCard {
+  background: #ffffff;
+  border: 1px solid #eedddb;
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 4px 18px -4px rgba(220, 38, 38, 0.05);
+}
+
+.beforeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.beforeCard h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 22px;
+  font-weight: 750;
+  color: #1f2937;
+  margin: 0 0 12px 0;
+}
+
+.beforeCard p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 0 24px 0;
+}
+
+.beforeList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.beforeList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.beforeList li svg {
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.afterCard {
+  background: linear-gradient(150deg, #071e18 0%, #0d2823 55%, #081a15 100%);
+  color: #ffffff;
+  border: 1px solid #1e5e50;
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 12px 40px -10px rgba(16, 46, 40, 0.32);
+}
+
+.afterBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4ee2b6;
+  background: rgba(78, 226, 182, 0.14);
+  border: 1px solid rgba(78, 226, 182, 0.35);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.afterCard h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 22px;
+  font-weight: 750;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+
+.afterCard p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b8ded3;
+  margin: 0 0 24px 0;
+}
+
+.afterList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.afterList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e2f2ec;
+}
+
+.afterList li svg {
+  color: #4ee2b6;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Sticky FAQ Section (Exact Website Theme)
+   -------------------------------------------------------------------------- */
+.faqSection {
+  position: relative;
+  overflow: visible;
+  padding-block: 68px;
+  background: #f8faf8;
+  border-top: 1px solid #e2ebe6;
+  border-bottom: 1px solid #e2ebe6;
+}
+
+.faqLayout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: clamp(40px, 5vw, 70px);
+  align-items: start;
+  position: relative;
+}
+
+.faqStickyCol {
+  position: sticky;
+  top: 130px;
+  align-self: start;
+}
+
+.faqHeadingGreenCard {
+  background-color: #061511;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.19) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 24px;
+  padding: 42px 38px;
+  border: 1px solid rgba(184, 245, 217, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(6, 21, 17, 0.22);
+}
+
+.faqHeadingGreenCard :global(.label),
+.faqHeadingGreenCard .faqCardLabel {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8F5D9 !important;
+  background: rgba(184, 245, 217, 0.12);
+  border: 1px solid rgba(184, 245, 217, 0.25);
+  border-radius: 9999px;
+  padding: 4px 12px;
+}
+
+.faqHeadingGreenCard h2 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(32px, 3.5vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #ffffff !important;
+  margin: 16px 0 16px 0 !important;
+}
+
+.faqHeadingGreenCard .bodyCopy {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #b1c7be !important;
+  max-width: 32ch;
+  margin: 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faqList article {
+  border-bottom: 1px solid #dee6db;
+  transition: background 0.2s ease;
+}
+
+.faqList article:first-child {
+  border-top: 1px solid #dee6db;
+}
+
+.faqList article:hover {
+  background: rgba(20, 184, 166, 0.04);
+}
+
+.faqList h3 {
+  margin: 0;
+}
+
+.faqList h3 button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 0;
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 18.5px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: #14251f;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: color 0.2s ease;
+}
+
+.faqList article:hover h3 button {
+  color: #0f766e;
+}
+
+.faqList h3 button svg {
+  color: #3b6b55;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faqList article[data-open='true'] h3 button svg {
+  transform: rotate(45deg);
+  color: #0f766e;
+}
+
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faqList article[data-open='true'] .faqAnswer {
+  grid-template-rows: 1fr;
+}
+
+.faqAnswer > div {
+  overflow: hidden;
+}
+
+.faqAnswer p {
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #536b60;
+  padding: 0 25px 22px 0;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .walkthroughCard {
+    grid-template-columns: 1fr;
+    padding: 36px;
+  }
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .faqLayout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .faqStickyCol {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding-top: 105px;
+  }
+  .metricsBar {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .walkthroughCard {
+    padding: 24px;
+  }
+  .specimenGrid {
+    grid-template-columns: 1fr;
+  }
+  .faqHeadingGreenCard {
+    padding: 32px 24px;
+  }
+}

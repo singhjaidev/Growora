@@ -7,6 +7,7 @@ import { leadForm, lead, leadActivity, leadReceipt } from './schema';
 import { intake, revision, type Fields } from './validation';
 import { intelligence, jobs } from '@/server/intelligence/schema';
 import { routingPolicy, routingJobs } from '@/server/routing/schema';
+import { checkBinding } from '@/server/marketing/destination';
 
 export const publicIdValid = (id: string) => /^[a-f0-9]{48}$/.test(id);
 export async function publicForm(publicId: string) {
@@ -23,7 +24,7 @@ export async function publicForm(publicId: string) {
     .where(and(eq(leadForm.publicId, publicId), eq(leadForm.enabled, true)));
   return form ?? null;
 }
-export async function ingest(publicId: string, key: string, f: Fields) {
+export async function ingest(publicId: string, key: string, f: Fields, marketingVersion?: number) {
   if (!publicIdValid(publicId)) return deny(404, 'Enquiry form unavailable.');
   if (!uuid(key)) return deny(400, 'A valid submission key is required.');
   const { formVersion, ...input } = f;
@@ -41,6 +42,7 @@ export async function ingest(publicId: string, key: string, f: Fields) {
   if (!reference) return deny(404, 'Enquiry form unavailable.');
   await db.transaction(async (tx) => {
     await lockedWorkspace(tx, reference.workspaceId, false);
+    if (marketingVersion !== undefined) await checkBinding(tx, publicId, marketingVersion);
     const [form] = await tx
       .select()
       .from(leadForm)

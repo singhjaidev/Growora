@@ -4,7 +4,7 @@ import { readFields, reply, RequestSizeError, withinLimit } from '@/server/auth/
 import { WorkspaceError } from '@/server/workspace/access';
 import { ingest, publicForm } from '@/server/leads/ingestion';
 import { intake } from '@/server/leads/validation';
-type Context = { params: Promise<{ publicFormId: string }> };
+type Context = { params: Promise<{ publicFormId: string }>; marketingVersion?: number };
 export async function GET(_request: Request, { params }: Context) {
   try {
     const form = await publicForm((await params).publicFormId);
@@ -14,7 +14,7 @@ export async function GET(_request: Request, { params }: Context) {
     return reply(503, { message: 'Enquiry service temporarily unavailable.' });
   }
 }
-export async function POST(request: Request, { params }: Context) {
+export async function POST(request: Request, { params, marketingVersion }: Context) {
   try {
     const { origin } = getService();
     if (request.headers.get('origin') !== origin)
@@ -44,10 +44,15 @@ export async function POST(request: Request, { params }: Context) {
       !(await withinLimit('enquiry-form', publicFormId, 100))
     )
       return reply(429, { message: 'Too many submissions. Try again in 10 minutes.' });
-    await ingest(publicFormId, request.headers.get('idempotency-key') ?? '', {
-      formVersion,
-      ...body,
-    });
+    await ingest(
+      publicFormId,
+      request.headers.get('idempotency-key') ?? '',
+      {
+        formVersion,
+        ...body,
+      },
+      marketingVersion,
+    );
     return reply(200, { ok: true });
   } catch (e) {
     if (e instanceof RequestSizeError) return reply(413, { message: 'Enquiry is too large.' });

@@ -15,6 +15,8 @@ import { IntegrationDirectory } from '@/components/product/integrations';
 import { ButtonLink } from '@/components/ui';
 import { PricingPage } from '@/components/marketing/pricing-page';
 import { ProductPage } from '@/components/marketing/product-page';
+import { SolutionsPage } from '@/components/marketing/solutions-page';
+import { IntegrationsPage } from '@/components/marketing/integrations-page';
 const pages: Record<
   string,
   { title: string; eyebrow: string; headline: string; accent: string; description: string }
@@ -87,6 +89,22 @@ export default async function MarketingPage({ params }: { params: Promise<{ slug
     return (
       <MarketingShell>
         <ProductPage />
+      </MarketingShell>
+    );
+  }
+
+  if (slug === 'solutions') {
+    return (
+      <MarketingShell>
+        <SolutionsPage />
+      </MarketingShell>
+    );
+  }
+
+  if (slug === 'integrations') {
+    return (
+      <MarketingShell>
+        <IntegrationsPage />
       </MarketingShell>
     );
   }

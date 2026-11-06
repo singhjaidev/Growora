@@ -17,6 +17,7 @@ const links = [
   { url: '/dashboard/leads', label: 'Leads', icon: LayoutGrid },
   { url: '/dashboard/lead-forms', label: 'Enquiry forms', icon: Settings },
   { url: '/dashboard/settings/workspace', label: 'Workspace settings', icon: Settings },
+  { url: '/dashboard/settings/marketing', label: 'Website enquiries', icon: Settings },
   { url: '/dashboard/settings/profile', label: 'Account settings', icon: UserRound },
   { url: '/dashboard/settings/security', label: 'Security settings', icon: ShieldCheck },
 ];

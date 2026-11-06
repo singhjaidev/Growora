@@ -362,7 +362,7 @@ export function SolutionsSelector({ full = false }: { full?: boolean }) {
               Example rule: when the enquiry is qualified, assign an owner and prepare a response.
             </span>
           </div>
-          <Link href="/demo">
+          <Link href="/how-it-works">
             Try this journey <ArrowUpRight size={14} />
           </Link>
         </div>

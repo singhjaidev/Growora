@@ -19,19 +19,32 @@
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section — Cinematic Dark Emerald Atmosphere
+   Hero Section — Deep Midnight Obsidian & Precision Technical Blueprint Matrix
+   (Distinct high-tech product architecture palette, not green)
    -------------------------------------------------------------------------- */
 .heroSection {
   position: relative;
-  padding-top: 135px;
-  padding-bottom: 72px;
-  background-color: #071B16;
+  padding-top: 138px;
+  padding-bottom: 76px;
+  background-color: #080d16;
   background-image:
-    radial-gradient(ellipse 800px 500px at 70% 35%, rgba(50, 175, 142, 0.28) 0%, rgba(25, 105, 85, 0.14) 50%, transparent 75%),
-    radial-gradient(circle 500px at 20% 20%, rgba(16, 44, 36, 0.35) 0%, transparent 60%),
-    linear-gradient(180deg, #071B16 0%, #061511 100%);
-  border-bottom: 1px solid rgba(184, 245, 217, 0.12);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    /* Precision Technical Grid Matrix */
+    linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    /* Radial Ambient Cobalt-Cyan Luminance */
+    radial-gradient(ellipse 950px 580px at 50% 25%, rgba(56, 189, 248, 0.16) 0%, rgba(99, 102, 241, 0.13) 42%, rgba(15, 23, 42, 0.3) 75%, transparent 100%),
+    /* Ambient Horizon Glow */
+    radial-gradient(circle 650px at 80% 75%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
+    /* Deep Twilight Midnight Base */
+    linear-gradient(180deg, #070b12 0%, #0c1320 60%, #080d16 100%);
+  background-size:
+    44px 44px,
+    44px 44px,
+    auto,
+    auto,
+    auto;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.18);
+  box-shadow: 0 20px 50px -15px rgba(2, 6, 23, 0.7);
   overflow: hidden;
 }
 
@@ -43,7 +56,7 @@
   z-index: 2;
 }
 
-.label {
+.heroSection .label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -52,20 +65,21 @@
   font-weight: 750;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #B8F5D9;
-  background: rgba(184, 245, 217, 0.1);
-  border: 1px solid rgba(184, 245, 217, 0.22);
+  color: #7dd3fc;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 2px 12px rgba(56, 189, 248, 0.15);
   padding: 5px 15px;
   border-radius: 9999px;
   margin-bottom: 22px;
 }
 
-.dot {
+.heroSection .dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4ee2b6;
-  box-shadow: 0 0 10px rgba(78, 226, 182, 0.8);
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
 }
 
 .heroTitle {
@@ -74,7 +88,7 @@
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.035em;
-  color: #F5F8F5;
+  color: #f8fafc;
   margin: 0 auto 20px;
 }
 
@@ -82,13 +96,13 @@
   font-style: italic;
   font-family: 'Newsreader Variable', Georgia, serif;
   font-weight: 400;
-  color: #B8F5D9;
+  color: #38bdf8;
 }
 
 .heroCopy {
   font-size: clamp(16.5px, 1.8vw, 19px);
   line-height: 1.65;
-  color: #B1C0BA;
+  color: #94a3b8;
   max-width: 58ch;
   margin: 0 auto 34px;
 }
@@ -105,22 +119,23 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: #B8F5D9;
-  color: #071B16;
+  background: #38bdf8;
+  color: #031326;
   padding: 13px 26px;
   border-radius: 9999px;
   font-size: 15px;
-  font-weight: 650;
+  font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
   transition: all 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .primaryAction:hover {
-  background: #d4fae8;
+  background: #7dd3fc;
+  color: #020914;
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 26px rgba(56, 189, 248, 0.45);
 }
 
 .secondaryAction {
@@ -128,29 +143,31 @@
   align-items: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.05);
-  color: #F5F8F5;
+  color: #e2e8f0;
   padding: 13px 26px;
   border-radius: 9999px;
   font-size: 15px;
   font-weight: 550;
   text-decoration: none;
-  border: 1px solid rgba(184, 245, 217, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.28);
   transition: all 0.25s ease;
 }
 
 .secondaryAction:hover {
   background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(184, 245, 217, 0.45);
+  border-color: rgba(56, 189, 248, 0.4);
   color: #ffffff;
 }
 
-/* Hero Stage Preview — Realistic Pipeline Snapshot */
+/* Hero Stage Preview — Precision Technical Command Center */
 .heroBoardPreview {
-  background: rgba(10, 31, 25, 0.85);
-  border: 1px solid rgba(184, 245, 217, 0.2);
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(56, 189, 248, 0.22);
   border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.6);
+  box-shadow:
+    0 24px 60px -15px rgba(2, 6, 23, 0.75),
+    0 0 35px rgba(56, 189, 248, 0.08);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   max-width: 1080px;
@@ -162,7 +179,7 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 18px;
-  border-bottom: 1px solid rgba(184, 245, 217, 0.12);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.14);
   margin-bottom: 20px;
 }
 
@@ -176,16 +193,16 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #4ee2b6;
-  box-shadow: 0 0 10px rgba(78, 226, 182, 0.7);
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
 }
 
 .boardTitle {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #B8F5D9;
+  color: #e2e8f0;
 }
 
 .boardStatusBadge {
@@ -194,9 +211,9 @@
   gap: 6px;
   font-size: 12px;
   font-weight: 600;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
   padding: 4px 12px;
   border-radius: 9999px;
 }
@@ -208,8 +225,8 @@
 }
 
 .stageCol {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(184, 245, 217, 0.08);
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -223,50 +240,53 @@
   justify-content: space-between;
   font-size: 12px;
   font-weight: 700;
-  color: #92b8aa;
+  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .stageColCount {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: rgba(56, 189, 248, 0.14);
+  color: #7dd3fc;
   padding: 2px 7px;
   border-radius: 10px;
   font-size: 11px;
+  font-weight: 700;
 }
 
 .stageDealCard {
-  background: #0d2822;
-  border: 1px solid rgba(184, 245, 217, 0.16);
+  background: #111a2c;
+  border: 1px solid rgba(56, 189, 248, 0.14);
   border-radius: 12px;
   padding: 14px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .stageDealCard:hover {
   transform: translateY(-2px);
-  border-color: rgba(184, 245, 217, 0.35);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.4);
 }
 
 .dealActive {
-  border-color: #4ee2b6 !important;
-  box-shadow: 0 4px 18px rgba(78, 226, 182, 0.2);
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
+  background: #142238 !important;
 }
 
 .dealName {
   font-size: 13.5px;
   font-weight: 650;
-  color: #ffffff;
+  color: #f8fafc;
   display: block;
   margin-bottom: 4px;
 }
 
 .dealCompany {
   font-size: 11.5px;
-  color: #8daea1;
+  color: #94a3b8;
   display: block;
   margin-bottom: 10px;
 }
@@ -276,8 +296,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 11px;
-  color: #4ee2b6;
-  font-weight: 600;
+  color: #38bdf8;
+  font-weight: 650;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -286,13 +306,14 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #19463a;
-  color: #b8f5d9;
+  background: #1e293b;
+  color: #7dd3fc;
   font-size: 9px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
 /* --------------------------------------------------------------------------

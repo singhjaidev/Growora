@@ -49,7 +49,7 @@ function Actions() {
       <Link className={s.primary} href="/how-it-works">
         See how it works <ArrowRight size={17} />
       </Link>
-      <Link className={s.secondary} href="#connected-system">
+      <Link className={s.secondary} href="/signup">
         Explore workspace
       </Link>
     </div>

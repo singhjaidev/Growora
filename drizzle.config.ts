@@ -7,6 +7,7 @@ export default defineConfig({
     './src/server/leads/schema.ts',
     './src/server/intelligence/schema.ts',
     './src/server/routing/schema.ts',
+    './src/server/marketing/schema.ts',
   ],
   out: './migrations',
   dbCredentials: { url: process.env.DATABASE_URL ?? '' },
