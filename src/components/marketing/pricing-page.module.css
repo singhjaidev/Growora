@@ -1,0 +1,714 @@
+/* ==========================================================================
+   GROWORA PRICING PAGE STYLES
+   Maintains exact website theme, typography, color scheme, and micro-interactions
+   ========================================================================== */
+
+.pricingPage {
+  position: relative;
+  width: 100%;
+  background: #f8faf8;
+  color: #14251f;
+  font-family: 'DM Sans Variable', sans-serif;
+  overflow-x: clip;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section with Custom Mint-Emerald 3D Stage Background
+   (Strictly bounded to the hero header & trust badges)
+   -------------------------------------------------------------------------- */
+.heroSection {
+  position: relative;
+  padding-top: 135px;
+  padding-bottom: 52px;
+  text-align: center;
+  background-color: #071B16;
+  background-image:
+    linear-gradient(180deg, rgba(7, 27, 22, 0.4) 0%, rgba(7, 27, 22, 0.05) 25%, rgba(7, 27, 22, 0.03) 65%, rgba(7, 27, 22, 0.22) 100%),
+    url('/images/hero-bg.png');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border-bottom: 1px solid #dce8e1;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #065f46;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  box-shadow: 0 2px 10px rgba(7, 27, 22, 0.06);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.heroTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(38px, 4.4vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: #071B16;
+  margin: 0 auto 18px;
+  max-width: 24ch;
+  text-shadow: 0 1px 24px rgba(255, 255, 255, 0.8);
+}
+
+.heroTitle em {
+  font-style: italic;
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 400;
+  color: #084c3b;
+}
+
+.heroCopy {
+  font-size: clamp(16px, 1.8vw, 18.5px);
+  line-height: 1.6;
+  color: #1e3a31;
+  font-weight: 500;
+  max-width: 56ch;
+  margin: 0 auto 28px;
+  text-shadow: 0 1px 16px rgba(255, 255, 255, 0.7);
+}
+
+.trustBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(16px, 3vw, 32px);
+  margin-bottom: 0;
+}
+
+.trustItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #14352b;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(16, 185, 129, 0.16);
+}
+
+.trustItem svg {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2nd Section: Plans & Billing (Starts from monthly billing)
+   -------------------------------------------------------------------------- */
+.plansSection {
+  background: #f8faf8;
+  padding-block: 44px 56px;
+  position: relative;
+}
+
+.billingWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+/* --------------------------------------------------------------------------
+   Billing Period Pill Toggle
+   -------------------------------------------------------------------------- */
+.billing {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 5px;
+  border-radius: 9999px;
+  gap: 4px;
+  margin: 8px auto 44px;
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  box-shadow: 0 4px 18px rgba(7, 27, 22, 0.08);
+}
+
+.billing button {
+  padding: 9px 22px;
+  border-radius: 9999px;
+  font-size: 14.5px;
+  font-weight: 550;
+  color: #455a52;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.billing button[aria-pressed='true'] {
+  background: #ffffff;
+  color: #0d2823;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  font-weight: 650;
+}
+
+.billing button span {
+  margin-left: 6px;
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 650;
+}
+
+/* --------------------------------------------------------------------------
+   Pricing Cards Grid
+   -------------------------------------------------------------------------- */
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 48px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2ebe6;
+  border-radius: 24px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 4px 18px -4px rgba(16, 42, 34, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px -10px rgba(16, 42, 34, 0.12);
+  border-color: #bfe0d4;
+}
+
+.cardTop {
+  margin-bottom: 24px;
+}
+
+.cardLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4b6b5e;
+  margin-bottom: 12px;
+}
+
+.cardLabelBadge {
+  background: rgba(16, 185, 129, 0.14);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  border-radius: 9999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.cardName {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 26px;
+  font-weight: 750;
+  color: #0f2720;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+.cardDesc {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #556c62;
+  margin: 0;
+  min-height: 44px;
+}
+
+.priceBlock {
+  padding: 20px 0 16px;
+  border-top: 1px solid #eaf0ec;
+  border-bottom: 1px solid #eaf0ec;
+  margin-bottom: 24px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.priceAmount {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 42px;
+  font-weight: 750;
+  color: #0d2823;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.pricePeriod {
+  font-size: 15px;
+  font-weight: 500;
+  color: #556c62;
+}
+
+.billingNote {
+  display: block;
+  font-size: 12px;
+  color: #72877e;
+  margin-top: 6px;
+}
+
+.cardAction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 14.5px;
+  font-weight: 650;
+  text-decoration: none;
+  background: #071B16;
+  color: #ffffff;
+  border: 1px solid #071B16;
+  margin-bottom: 28px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cardAction:hover {
+  background: #14382e;
+  border-color: #14382e;
+  box-shadow: 0 6px 18px rgba(7, 27, 22, 0.2);
+}
+
+.cardFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.cardFeatures li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #2e443b;
+}
+
+.cardFeatures li svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Featured Growth Plan (Signature Emerald Glow) */
+.growthCard {
+  background: linear-gradient(150deg, #0d2823 0%, #122f29 55%, #0f2621 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #1e5e50 !important;
+  box-shadow: 0 12px 40px -10px rgba(16, 46, 40, 0.32) !important;
+}
+
+.growthCard:hover {
+  box-shadow: 0 24px 54px -10px rgba(16, 46, 40, 0.45) !important;
+  border-color: #388a75 !important;
+}
+
+.growthCard .cardLabel {
+  color: #a4c9bf;
+}
+
+.growthCard .cardLabelBadge {
+  color: #4ee2b6;
+  background: rgba(78, 226, 182, 0.14);
+  border-color: rgba(78, 226, 182, 0.35);
+}
+
+.growthCard .cardName {
+  color: #ffffff;
+}
+
+.growthCard .cardDesc {
+  color: #b5d5cc;
+}
+
+.growthCard .priceBlock {
+  border-color: rgba(184, 245, 217, 0.16);
+}
+
+.growthCard .priceAmount {
+  color: #ffffff;
+}
+
+.growthCard .pricePeriod {
+  color: #9bc2b6;
+}
+
+.growthCard .billingNote {
+  color: #9bc2b6;
+}
+
+.growthCard .cardAction {
+  background: #ffffff !important;
+  color: #071B16 !important;
+  border-color: #ffffff !important;
+}
+
+.growthCard .cardAction:hover {
+  background: #d4fae8 !important;
+  border-color: #d4fae8 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.growthCard .cardFeatures li {
+  color: #d8ede6;
+}
+
+.growthCard .cardFeatures li svg {
+  color: #4ee2b6;
+}
+
+.pricingDisclaimer {
+  text-align: center;
+  font-size: 13px;
+  color: #698277;
+  max-width: 72ch;
+  margin: 0 auto 72px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Comparison Table Section
+   -------------------------------------------------------------------------- */
+.comparisonSection {
+  padding-block: 54px 72px;
+  border-top: 1px solid #e2ebe6;
+  position: relative;
+}
+
+.comparisonHeading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.comparisonTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(28px, 3.2vw, 38px);
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: #0f2720;
+  margin: 0 0 10px 0;
+}
+
+.comparisonSubtitle {
+  font-size: 15.5px;
+  color: #556c62;
+  margin: 0;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #ffffff;
+  border: 1px solid #e1e9e3;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px -4px rgba(16, 42, 34, 0.05);
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 680px;
+}
+
+.comparisonTable thead th {
+  background: #f7faf8;
+  padding: 22px 24px;
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #14251f;
+  border-bottom: 1px solid #e1e9e3;
+}
+
+.comparisonTable thead th:not(:first-child) {
+  text-align: center;
+  width: 22%;
+}
+
+.comparisonTable thead th.featuredHeader {
+  color: #065f46;
+  background: #eef8f3;
+}
+
+.categoryRow th {
+  background: #f1f6f3;
+  padding: 14px 24px;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2b5546;
+  border-top: 1px solid #e1e9e3;
+  border-bottom: 1px solid #e1e9e3;
+}
+
+.comparisonTable tbody tr:not(.categoryRow) {
+  border-bottom: 1px solid #ecf2ee;
+  transition: background 0.2s ease;
+}
+
+.comparisonTable tbody tr:not(.categoryRow):hover {
+  background: rgba(20, 184, 166, 0.03);
+}
+
+.comparisonTable td,
+.comparisonTable tbody th {
+  padding: 16px 24px;
+  font-size: 14px;
+  color: #2b3e36;
+}
+
+.comparisonTable tbody th {
+  font-weight: 550;
+  color: #14251f;
+}
+
+.comparisonTable td {
+  text-align: center;
+}
+
+.checkCell svg {
+  color: #10b981;
+}
+
+.dashCell {
+  color: #9cb1a7;
+  font-size: 18px;
+}
+
+.featuredCell {
+  background: rgba(16, 185, 129, 0.02);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Section (Exact Homepage Style with Sticky Dark-Green Dotted Card)
+   -------------------------------------------------------------------------- */
+.faqSection {
+  position: relative;
+  overflow: visible;
+  padding-block: 68px;
+  background: #f8faf8;
+  border-top: 1px solid #e2ebe6;
+  border-bottom: 1px solid #e2ebe6;
+}
+
+.faqLayout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: clamp(40px, 5vw, 70px);
+  align-items: start;
+  position: relative;
+}
+
+.faqStickyCol {
+  position: sticky;
+  top: 130px;
+  align-self: start;
+}
+
+.faqHeadingGreenCard {
+  background-color: #061511;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.19) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 24px;
+  padding: 42px 38px;
+  border: 1px solid rgba(184, 245, 217, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(6, 21, 17, 0.22);
+}
+
+.faqHeadingGreenCard :global(.label),
+.faqHeadingGreenCard .faqCardLabel {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8F5D9 !important;
+  background: rgba(184, 245, 217, 0.12);
+  border: 1px solid rgba(184, 245, 217, 0.25);
+  border-radius: 9999px;
+  padding: 4px 12px;
+}
+
+.faqHeadingGreenCard h2 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(32px, 3.5vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #ffffff !important;
+  margin: 16px 0 16px 0 !important;
+}
+
+.faqHeadingGreenCard .bodyCopy {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #b1c7be !important;
+  max-width: 32ch;
+  margin: 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faqList article {
+  border-bottom: 1px solid #dee6db;
+  transition: background 0.2s ease;
+}
+
+.faqList article:first-child {
+  border-top: 1px solid #dee6db;
+}
+
+.faqList article:hover {
+  background: rgba(20, 184, 166, 0.04);
+}
+
+.faqList h3 {
+  margin: 0;
+}
+
+.faqList h3 button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 0;
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 18.5px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: #14251f;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: color 0.2s ease;
+}
+
+.faqList article:hover h3 button {
+  color: #0f766e;
+}
+
+.faqList h3 button svg {
+  color: #3b6b55;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faqList article[data-open='true'] h3 button svg {
+  transform: rotate(45deg);
+  color: #0f766e;
+}
+
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faqList article[data-open='true'] .faqAnswer {
+  grid-template-rows: 1fr;
+}
+
+.faqAnswer > div {
+  overflow: hidden;
+}
+
+.faqAnswer p {
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #536b60;
+  padding: 0 25px 22px 0;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .faqLayout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .faqStickyCol {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding-top: 105px;
+  }
+  .trustBar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card {
+    padding: 28px 24px 24px;
+  }
+  .faqHeadingGreenCard {
+    padding: 32px 24px;
+  }
+}

@@ -7091,7 +7091,6 @@
     radial-gradient(ellipse 900px 320px at 50% 100%, rgba(32, 115, 95, 0.22) 0%, transparent 70%),
     linear-gradient(180deg, #071B16 0%, #06130F 100%);
   overflow: hidden;
-  
   border-bottom: 1px solid rgba(184, 245, 217, 0.08);
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
 }
@@ -8306,6 +8305,8 @@
   .home .pageIntro { padding-top: 110px; }
   .home .companySpotlight { padding-block: 60px; }
   .marketingShell .footer :global(.footer-top) { grid-template-columns: 1fr 1fr; }
+  /* Let footer grid items shrink inside the mobile viewport instead of widening the page. */
+  .marketingShell .footer :global(.footer-top > div) { min-width: 0; }
   .walkthrough { padding-block: 38px 48px; }
   .walkRecord { padding: 24px; }
 }

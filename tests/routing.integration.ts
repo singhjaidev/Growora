@@ -13,6 +13,7 @@ import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { runRoutingOnce } from '../src/server/routing/worker.ts';
 import { defaultPolicy } from '../src/server/routing/engine.ts';
 import { context } from '../src/server/routing/context.ts';
+import { spawn } from 'node:child_process';
 test('routing with real disposable PostgreSQL', { timeout: 120000 }, async (t) => {
   const server = createServer();
   server.listen(0, '127.0.0.1');
@@ -379,6 +380,93 @@ test('routing with real disposable PostgreSQL', { timeout: 120000 }, async (t) =
           JSON.stringify({ ...rules, useReviewedAI: true }),
         ]);
         assert.equal((await context(pool, w, id))?.features.source, 'FORM_POLICY');
+      },
+    );
+    await t.test(
+      'commit acknowledgement loss cannot duplicate persisted assignment effects',
+      async () => {
+        await reset();
+        const id = await enqueue();
+        let commits = 0;
+        const faultPool = {
+          connect: async () => {
+            const c = await pool.connect();
+            return {
+              query: async (...args: Parameters<typeof c.query>) => {
+                const result = await c.query(...args);
+                if (args[0] === 'COMMIT' && ++commits === 2)
+                  throw Error('Injected lost commit acknowledgement');
+                return result;
+              },
+              release: () => c.release(),
+            };
+          },
+        } as unknown as Pool;
+        const errors: string[] = [];
+        const originalError = console.error;
+        console.error = (message) => {
+          errors.push(String(message));
+        };
+        try {
+          await runRoutingOnce(faultPool);
+        } finally {
+          console.error = originalError;
+        }
+        assert.ok(
+          !errors.some((message) => message.includes('routing.failed')),
+          'a committed decision must not be logged as a failed task',
+        );
+        assert.equal((await job(id)).status, 'COMPLETED');
+        assert.equal((await lead(id)).assigned_to_user_id, 'a');
+        assert.equal(await tick(), false);
+        assert.equal(
+          (await pool.query('SELECT * FROM routing_decision WHERE lead_id=$1', [id])).rowCount,
+          1,
+        );
+        assert.equal(
+          (
+            await pool.query(
+              "SELECT * FROM lead_activity WHERE lead_id=$1 AND action='AUTO_ASSIGNED'",
+              [id],
+            )
+          ).rowCount,
+          1,
+        );
+      },
+    );
+    await t.test(
+      'routing and disabled-AI CLI workers release pools and naturally exit in once mode',
+      async () => {
+        await reset();
+        await enqueue();
+        for (const script of ['scripts/routing-worker.ts', 'scripts/ai-worker.ts']) {
+          const child = spawn(process.execPath, ['--experimental-strip-types', script, '--once'], {
+            windowsHide: true,
+            stdio: ['ignore', 'pipe', 'pipe'],
+            env: {
+              ...process.env,
+              NODE_ENV: 'production',
+              DATABASE_URL:
+                'postgresql://routing_test:' + password + '@127.0.0.1:' + port + '/postgres',
+              AI_ENABLED: 'false',
+            },
+          });
+          let logs = '';
+          child.stdout.on('data', (b) => {
+            logs += b;
+          });
+          child.stderr.on('data', (b) => {
+            logs += b;
+          });
+          const timer = setTimeout(() => child.kill(), 10000);
+          try {
+            const [code] = await once(child, 'exit');
+            assert.equal(code, 0, logs);
+            assert.ok(!logs.includes('database_error'));
+          } finally {
+            clearTimeout(timer);
+          }
+        }
       },
     );
     await t.test('repeated transient transaction failures stop at three attempts', async () => {

@@ -13,6 +13,8 @@ import { LeadCapture } from '@/components/product/lead-capture';
 import { AutomationSection } from '@/components/product/automation';
 import { IntegrationDirectory } from '@/components/product/integrations';
 import { ButtonLink } from '@/components/ui';
+import { PricingPage } from '@/components/marketing/pricing-page';
+import { ProductPage } from '@/components/marketing/product-page';
 const pages: Record<
   string,
   { title: string; eyebrow: string; headline: string; accent: string; description: string }
@@ -72,6 +74,22 @@ export default async function MarketingPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const page = pages[slug];
   if (!page) notFound();
+
+  if (slug === 'pricing') {
+    return (
+      <MarketingShell>
+        <PricingPage />
+      </MarketingShell>
+    );
+  }
+
+  if (slug === 'product') {
+    return (
+      <MarketingShell>
+        <ProductPage />
+      </MarketingShell>
+    );
+  }
   return (
     <MarketingShell>
       <div className="container">

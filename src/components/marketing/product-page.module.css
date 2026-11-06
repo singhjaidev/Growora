@@ -1,0 +1,945 @@
+/* ==========================================================================
+   GROWORA PRODUCT PAGE STYLES
+   Unified, cohesive, aligned, and matching the exact website theme
+   ========================================================================== */
+
+.productPage {
+  position: relative;
+  width: 100%;
+  background: #f8faf8;
+  color: #14251f;
+  font-family: 'DM Sans Variable', sans-serif;
+  overflow-x: clip;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section — Cinematic Dark Emerald Atmosphere
+   -------------------------------------------------------------------------- */
+.heroSection {
+  position: relative;
+  padding-top: 135px;
+  padding-bottom: 72px;
+  background-color: #071B16;
+  background-image:
+    radial-gradient(ellipse 800px 500px at 70% 35%, rgba(50, 175, 142, 0.28) 0%, rgba(25, 105, 85, 0.14) 50%, transparent 75%),
+    radial-gradient(circle 500px at 20% 20%, rgba(16, 44, 36, 0.35) 0%, transparent 60%),
+    linear-gradient(180deg, #071B16 0%, #061511 100%);
+  border-bottom: 1px solid rgba(184, 245, 217, 0.12);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 52px;
+  position: relative;
+  z-index: 2;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8F5D9;
+  background: rgba(184, 245, 217, 0.1);
+  border: 1px solid rgba(184, 245, 217, 0.22);
+  padding: 5px 15px;
+  border-radius: 9999px;
+  margin-bottom: 22px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ee2b6;
+  box-shadow: 0 0 10px rgba(78, 226, 182, 0.8);
+}
+
+.heroTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(38px, 4.6vw, 62px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: #F5F8F5;
+  margin: 0 auto 20px;
+}
+
+.heroTitle em {
+  font-style: italic;
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 400;
+  color: #B8F5D9;
+}
+
+.heroCopy {
+  font-size: clamp(16.5px, 1.8vw, 19px);
+  line-height: 1.65;
+  color: #B1C0BA;
+  max-width: 58ch;
+  margin: 0 auto 34px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #B8F5D9;
+  color: #071B16;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.primaryAction:hover {
+  background: #d4fae8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.4);
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #F5F8F5;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 550;
+  text-decoration: none;
+  border: 1px solid rgba(184, 245, 217, 0.25);
+  transition: all 0.25s ease;
+}
+
+.secondaryAction:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(184, 245, 217, 0.45);
+  color: #ffffff;
+}
+
+/* Hero Stage Preview — Realistic Pipeline Snapshot */
+.heroBoardPreview {
+  background: rgba(10, 31, 25, 0.85);
+  border: 1px solid rgba(184, 245, 217, 0.2);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.boardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(184, 245, 217, 0.12);
+  margin-bottom: 20px;
+}
+
+.boardTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.boardDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4ee2b6;
+  box-shadow: 0 0 10px rgba(78, 226, 182, 0.7);
+}
+
+.boardTitle {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B8F5D9;
+}
+
+.boardStatusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.columnsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stageCol {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(184, 245, 217, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stageColHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: #92b8aa;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stageColCount {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.stageDealCard {
+  background: #0d2822;
+  border: 1px solid rgba(184, 245, 217, 0.16);
+  border-radius: 12px;
+  padding: 14px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.stageDealCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(184, 245, 217, 0.35);
+}
+
+.dealActive {
+  border-color: #4ee2b6 !important;
+  box-shadow: 0 4px 18px rgba(78, 226, 182, 0.2);
+}
+
+.dealName {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.dealCompany {
+  font-size: 11.5px;
+  color: #8daea1;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.dealFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #4ee2b6;
+  font-weight: 600;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dealAvatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #19463a;
+  color: #b8f5d9;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Section Structure & Headings (Website Theme)
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: 84px;
+  position: relative;
+}
+
+.sectionBordered {
+  border-top: 1px solid #e2ebe6;
+  border-bottom: 1px solid #e2ebe6;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionHeading .label {
+  color: #0b5e48;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.22);
+}
+
+.sectionTitle {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(32px, 3.8vw, 46px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: #0f2720;
+  margin: 0 auto 16px;
+  max-width: 26ch;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  font-family: 'Newsreader Variable', Georgia, serif;
+  font-weight: 400;
+  color: #093c31;
+}
+
+.sectionSubtitle {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: #4b635a;
+  max-width: 58ch;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   The 4 Product Pillars (Interactive Feature Showcase)
+   -------------------------------------------------------------------------- */
+.pillarTabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.pillarTabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 9999px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #455a52;
+  background: #edf3f0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pillarTabBtn:hover {
+  background: #e2ede8;
+  color: #0d2823;
+}
+
+.pillarTabBtn[aria-selected='true'] {
+  background: #071B16;
+  color: #F5F8F5;
+  box-shadow: 0 4px 14px rgba(7, 27, 22, 0.25);
+  border-color: #071B16;
+}
+
+.pillarCard {
+  background: #ffffff;
+  border: 1px solid #dce8e1;
+  border-radius: 28px;
+  padding: 48px;
+  box-shadow: 0 16px 48px -15px rgba(10, 42, 34, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.pillarInfo h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: #0f2720;
+  margin: 0 0 16px 0;
+}
+
+.pillarInfo p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #4b635a;
+  margin: 0 0 28px 0;
+}
+
+.pillarList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pillarList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #253d33;
+}
+
+.pillarList li svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pillarStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: #f1f8f4;
+  border: 1px solid #d4ebd9;
+  border-radius: 16px;
+  padding: 14px 20px;
+}
+
+.pillarStatNumber {
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #065f46;
+  line-height: 1;
+}
+
+.pillarStatLabel {
+  font-size: 12.5px;
+  font-weight: 550;
+  color: #3b5e50;
+  line-height: 1.35;
+}
+
+.pillarSpecimen {
+  background: #0a1f19;
+  border: 1px solid rgba(184, 245, 217, 0.2);
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 16px 40px -10px rgba(7, 27, 22, 0.35);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Specimen Details Inside Pillar (Real UI Previews)
+   -------------------------------------------------------------------------- */
+.specimenHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(184, 245, 217, 0.14);
+  margin-bottom: 18px;
+}
+
+.specimenTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4ee2b6;
+}
+
+.specimenBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.specimenRow {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 245, 217, 0.1);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.specimenKey {
+  color: #92b8aa;
+  font-size: 12px;
+}
+
+.specimenVal {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.specimenValHighlight {
+  color: #4ee2b6;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Product Workflow Timeline (How an Enquiry Travels)
+   -------------------------------------------------------------------------- */
+.timelineGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.timelineCard {
+  background: #ffffff;
+  border: 1px solid #e1e9e3;
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 18px -4px rgba(16, 42, 34, 0.05);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -8px rgba(16, 42, 34, 0.12);
+  border-color: #bfe0d4;
+}
+
+.timelineStepNum {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #e9f5ef;
+  color: #065f46;
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 15px;
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.timelineCard h4 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #0f2720;
+  margin: 0 0 10px 0;
+}
+
+.timelineCard p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #536b60;
+  margin: 0 0 20px 0;
+  flex: 1;
+}
+
+.timelineMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0b5e48;
+  background: #f1f8f4;
+  padding: 4px 10px;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Lead Simulator Section
+   -------------------------------------------------------------------------- */
+.simulatorCard {
+  background: #ffffff;
+  border: 1px solid #dce8e1;
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 0 18px 48px -15px rgba(10, 42, 34, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.simIntro h3 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 26px;
+  font-weight: 750;
+  color: #0f2720;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.025em;
+}
+
+.simIntro p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b635a;
+  margin: 0 0 24px 0;
+}
+
+.simEnquiryButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.simPickBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid #dbe6df;
+  background: #f7faf8;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s ease;
+}
+
+.simPickBtn:hover {
+  background: #edf5f0;
+  border-color: #b8ded0;
+}
+
+.simPickBtn[aria-pressed='true'] {
+  background: #071B16;
+  color: #ffffff;
+  border-color: #071B16;
+  box-shadow: 0 6px 18px rgba(7, 27, 22, 0.2);
+}
+
+.simPickBtn strong {
+  display: block;
+  font-size: 14px;
+}
+
+.simPickBtn span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.simOutputStage {
+  background: #09201a;
+  border: 1px solid rgba(184, 245, 217, 0.2);
+  border-radius: 20px;
+  padding: 24px;
+  color: #ffffff;
+}
+
+.simScoreHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.simScoreRing {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(78, 226, 182, 0.15);
+  border: 2px solid #4ee2b6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #4ee2b6;
+}
+
+.simContextGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.simContextBox {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 245, 217, 0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.simContextBox small {
+  display: block;
+  font-size: 11px;
+  color: #90b2a5;
+  margin-bottom: 2px;
+}
+
+.simContextBox strong {
+  display: block;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.simRoutingCard {
+  background: rgba(78, 226, 182, 0.08);
+  border: 1px solid rgba(78, 226, 182, 0.25);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.simRoutingInfo strong {
+  font-size: 13px;
+  color: #B8F5D9;
+  display: block;
+}
+
+.simRoutingInfo span {
+  font-size: 11.5px;
+  color: #8daea1;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Section (Exact Website Theme)
+   -------------------------------------------------------------------------- */
+.faqSection {
+  position: relative;
+  overflow: visible;
+  padding-block: 68px;
+  background: #f8faf8;
+  border-top: 1px solid #e2ebe6;
+  border-bottom: 1px solid #e2ebe6;
+}
+
+.faqLayout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: clamp(40px, 5vw, 70px);
+  align-items: start;
+  position: relative;
+}
+
+.faqStickyCol {
+  position: sticky;
+  top: 130px;
+  align-self: start;
+}
+
+.faqHeadingGreenCard {
+  background-color: #061511;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.19) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 24px;
+  padding: 42px 38px;
+  border: 1px solid rgba(184, 245, 217, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(6, 21, 17, 0.22);
+}
+
+.faqHeadingGreenCard :global(.label),
+.faqHeadingGreenCard .faqCardLabel {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #B8F5D9 !important;
+  background: rgba(184, 245, 217, 0.12);
+  border: 1px solid rgba(184, 245, 217, 0.25);
+  border-radius: 9999px;
+  padding: 4px 12px;
+}
+
+.faqHeadingGreenCard h2 {
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: clamp(32px, 3.5vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.035em !important;
+  color: #ffffff !important;
+  margin: 16px 0 16px 0 !important;
+}
+
+.faqHeadingGreenCard .bodyCopy {
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+  color: #b1c7be !important;
+  max-width: 32ch;
+  margin: 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faqList article {
+  border-bottom: 1px solid #dee6db;
+  transition: background 0.2s ease;
+}
+
+.faqList article:first-child {
+  border-top: 1px solid #dee6db;
+}
+
+.faqList article:hover {
+  background: rgba(20, 184, 166, 0.04);
+}
+
+.faqList h3 {
+  margin: 0;
+}
+
+.faqList h3 button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 22px 0;
+  font-family: 'Manrope Variable', 'DM Sans Variable', sans-serif;
+  font-size: 18.5px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: #14251f;
+  cursor: pointer;
+  line-height: 1.45;
+  transition: color 0.2s ease;
+}
+
+.faqList article:hover h3 button {
+  color: #0f766e;
+}
+
+.faqList h3 button svg {
+  color: #3b6b55;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.faqList article[data-open='true'] h3 button svg {
+  transform: rotate(45deg);
+  color: #0f766e;
+}
+
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.faqList article[data-open='true'] .faqAnswer {
+  grid-template-rows: 1fr;
+}
+
+.faqAnswer > div {
+  overflow: hidden;
+}
+
+.faqAnswer p {
+  font-family: 'DM Sans Variable', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #536b60;
+  padding: 0 25px 22px 0;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .columnsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pillarCard {
+    grid-template-columns: 1fr;
+    padding: 36px;
+  }
+  .timelineGrid {
+    grid-template-columns: 1fr;
+  }
+  .simulatorCard {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .faqLayout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .faqStickyCol {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroSection {
+    padding-top: 105px;
+  }
+  .columnsGrid {
+    grid-template-columns: 1fr;
+  }
+  .pillarCard {
+    padding: 24px;
+  }
+  .faqHeadingGreenCard {
+    padding: 32px 24px;
+  }
+}

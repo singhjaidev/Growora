@@ -71,7 +71,7 @@ try {
   await guest.getByRole('button', { name: 'Accept invitation' }).click();
   await guest.waitForURL(base + '/dashboard/workspace');
   await guest.goto(base + '/dashboard/team');
-  await guest.getByText('Workspace test member (you)').waitFor();
+  await guest.locator('main:visible').getByText('Workspace test member (you)').waitFor();
   assert.equal(await guest.getByRole('button', { name: 'Send invitation' }).count(), 0);
   await owner.reload();
   await owner.getByRole('button', { name: 'Make admin' }).click();

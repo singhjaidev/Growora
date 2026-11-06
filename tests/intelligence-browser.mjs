@@ -60,6 +60,7 @@ try {
   await page.goto(base + '/dashboard/leads/' + id);
   await page.getByRole('heading', { name: 'AI Insights', exact: true }).waitFor();
   await page
+    .locator('main:visible')
     .getByText('Unavailable · processing configuration required', { exact: true })
     .waitFor();
   assert.equal(

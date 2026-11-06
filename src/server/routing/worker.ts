@@ -137,7 +137,7 @@ export async function runRoutingOnce(pool: Pool): Promise<boolean> {
         : e instanceof Error && e.message === 'ROUTING_TEAM_LIMIT'
           ? 'TEAM_LIMIT'
           : 'PROCESSING_ERROR';
-    await tx(pool, async (c) => {
+    const failureRecorded = await tx(pool, async (c) => {
       await c.query('SELECT id FROM workspace WHERE id=$1 FOR UPDATE', [job.workspace_id]);
       const fail = job.attempts >= 3 || code !== 'PROCESSING_ERROR';
       const changed = await c.query(
@@ -156,8 +156,14 @@ export async function runRoutingOnce(pool: Pool): Promise<boolean> {
           "UPDATE lead SET routing_state='FAILED' WHERE workspace_id=$1 AND id=$2 AND routing_revision=$3",
           [job.workspace_id, job.lead_id, job.revision],
         );
+      return Boolean(changed.rowCount);
     });
-    console.error(JSON.stringify({ event: 'routing.failed', code, attempt: job.attempts }));
+    if (failureRecorded)
+      console.error(JSON.stringify({ event: 'routing.failed', code, attempt: job.attempts }));
+    else
+      console.warn(
+        JSON.stringify({ event: 'routing.outcome_unconfirmed', code, attempt: job.attempts }),
+      );
   }
   return true;
 }

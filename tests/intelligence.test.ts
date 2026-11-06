@@ -137,6 +137,18 @@ test('provider timeout and retryable versus permanent HTTP failures', async () =
       (e: unknown) => e instanceof AnalysisError && e.retryable === (status !== 401),
     );
 });
+test('failed provider responses release their unread body', async () => {
+  let cancelled = false;
+  const body = new ReadableStream({
+    cancel() {
+      cancelled = true;
+    },
+  });
+  await assert.rejects(
+    openAIProvider(async () => new Response(body, { status: 503 }))(cases[0].input, config),
+  );
+  assert.equal(cancelled, true);
+});
 test('configuration fails closed without credentials, workspace authorization or policy', () => {
   assert.equal(configuration({}), null);
   assert.equal(

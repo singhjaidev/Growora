@@ -49,11 +49,14 @@ export function openAIProvider(transport: typeof fetch = fetch): Provider {
           },
         }),
       });
-      if (!response.ok)
+      if (!response.ok) {
+        // Release the connection without waiting for an error body we never use.
+        void response.body?.cancel().catch(() => {});
         throw new AnalysisError(
           'PROVIDER_' + response.status,
           response.status === 429 || response.status >= 500,
         );
+      }
       const reader = response.body?.getReader();
       if (!reader) throw new AnalysisError('INVALID_RESPONSE');
       const chunks: Uint8Array[] = [];

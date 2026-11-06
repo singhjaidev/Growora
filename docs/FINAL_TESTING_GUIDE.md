@@ -1,6 +1,6 @@
-# Growora final testing guide — Phases 1–6
+# Growora final testing guide — Phases 1–7
 
-Prepared for the later user-led review. No manual acceptance testing by the user is claimed or requested in Phase 6. This guide describes the implemented application, including limitations; passing local automation is not a production-readiness certification.
+Prepared for the later user-led review. No manual acceptance testing by the user is claimed or requested during the audit. Phase 7 local verification is complete; see [the audit report](PHASE_7_AUDIT_REPORT.md). This guide describes the implemented application, including limitations; passing local automation is not a production-readiness certification.
 
 ## 1. What is implemented
 
@@ -309,8 +309,8 @@ Each item includes route, setup, actions, expected result, persistence verificat
 - Live AI is disabled. Credentials, model, approved workspace policy and allowlist are missing. Synthetic tests validate boundaries, not model accuracy.
 - External SMTP acceptance/inbox delivery and real sender configuration remain unverified. Local capture and isolated SMTP tests pass.
 - Prior homepage screenshot differences were observed in earlier work. Phase 6 source-hash checks establish no changes to protected marketing/auth/CSS sources; they do not establish pixel identity across browsers, animation timing or fonts. Visual acceptance remains for the later review.
-- Six existing unused-declaration lint warnings remain in locked premium-homepage.tsx.
-- One HTTP test run passed its assertions but stalled on process shutdown; a fresh diagnostic run completed with 23 passes and exit 0. Intermittent test-harness cleanup remains a caveat documented in phase6-completion.md.
+- Six existing unused-declaration lint warnings remain in locked premium-homepage.tsx. Separate Product/Pricing edits add 11 unused-import warnings; final Phase 7 lint has 17 warnings and no errors.
+- Phase 7 did not reproduce the historical intermittent shutdown stall in three diagnostic runs. It corrected unread response bodies and teardown ordering; the final expanded HTTP suite passed 30 tests and exited naturally. The historical root cause remains unproved; use the diagnostic below if it recurs.
 - Retired marketing destinations remain 404 by earlier instruction.
 - Routing evaluates at most 500 current team members, fails safely beyond that, exposes member profiles in pages of 25 and form choices from the latest 100 forms. Up to 20 form-specialty rules and 20 specialties per member are supported.
 - Policy/profile edits affect subsequent decisions. No automatic backfill, availability-triggered replay, late-AI reassignment, working-hours scheduling or realtime presence.
@@ -353,3 +353,60 @@ Record actual date, environment, outcome and evidence for each item. Do not mark
 - Isolated tests provision temporary clusters and clean up on completion. If interrupted, identify the exact test process and its temporary directory before stopping it; never stop/delete a guessed database directory.
 - Clean only explicit disposable lead records through the authorized app. Disable test forms and leave labelled test workspaces/accounts. Never run blanket DELETE/TRUNCATE/drop commands or delete .growora-local.
 - Checkpoints are recovery evidence, not an instruction to reset the working tree. Preserve later user work and review individual changes before any restoration.
+
+## 9. Phase 7 results and practical retest notes
+
+Local audit completed on 6 November 2026: 90 Node tests passed, zero failed; all five application browser suites and the six-page marketing browser audit passed. Ten AI fixture evaluation cases matched; these are not live-model accuracy measurements. Typecheck and production build passed. Lint has zero errors and 17 documented warnings. See [PHASE_7_AUDIT_REPORT.md](PHASE_7_AUDIT_REPORT.md) for exact evidence, initial failures and limitations.
+
+What changed and what you should see:
+- Slow/incomplete JSON requests now receive a safe failure after about ten seconds instead of waiting indefinitely. Ordinary login/signup and enquiry submission still work normally.
+- Failed AI HTTP responses release their unread streams. This is a backend resource fix; live AI remains disabled.
+- Mobile marketing pages no longer scroll sideways because of the footer.
+- Worker logs use routing.outcome_unconfirmed when a failure cannot be durably recorded. Check job/history state before retrying; do not assume the operation failed from a lost database response.
+- HTTP tests close response bodies and stop their services in dependency order.
+- The vulnerable nested esbuild package is patched. Eight moderate lint-tool dependency nodes remain open; do not run npm audit fix --force against this Next version.
+
+Exact starting URLs:
+- http://localhost:3000/ — public home
+- http://localhost:3000/signup — create a synthetic test account and automatically sign in
+- http://localhost:3000/login — use that account after logout
+- http://localhost:3000/forgot-password — request recovery; obtain the generated link privately from local inbox
+- http://localhost:3000/dashboard — verify refresh preserves the session
+- http://localhost:3000/dashboard/settings/profile — edit and refresh the display name
+- http://localhost:3000/dashboard/settings/security — password/session controls
+- http://localhost:3000/dashboard/workspace/new — create a labelled test workspace
+- http://localhost:3000/dashboard/team — test invited roles using a second account
+- http://localhost:3000/dashboard/lead-forms — publish a test form and copy its real enquiry URL
+- http://localhost:3000/dashboard/leads — check submitted lead, filters and persisted assignment
+- http://localhost:3000/dashboard/settings/routing — configure eligibility/capacity, preview and reroute
+
+Use generated lead/form IDs and email links rather than guessing them. The 20 walkthroughs above provide expected UI/database results, persistence checks and negative cases for all six implemented feature phases. Test with two disposable accounts/workspaces; do not edit another person's records.
+
+After a production build, repeat backend verification:
+~~~powershell
+npm test
+npm run test:ai
+npm run test:routing
+npm run test:auth
+npm run ai:evaluate
+~~~
+
+If the HTTP suite stalls after its assertions, keep its output and run:
+~~~powershell
+node --import ./scripts/test-resources.mjs --test tests/auth.integration.mjs
+~~~
+The helper writes resource types/stacks under test-results/phase7 after 45 seconds if still running. It does not force an exit. A run that hangs is not a pass merely because assertions printed successfully. Never stop the persistent development database to clean up a disposable test.
+
+Repeat marketing checks with Chrome and Playwright installed:
+~~~powershell
+$env:PLAYWRIGHT_MODULE='file:///C:/Users/singh/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright-core/index.mjs'
+node tests/marketing-audit.mjs
+node scripts/phase7-audit.mjs
+~~~
+The module URL is this machine's runtime location; on another machine set it to that machine's installed Playwright module. Screenshots/reports are in test-results/phase7/marketing. Current repeated Home screenshots vary by three pixels; other pages are identical across repeated captures. Historical screenshots with different capture settings are not equivalent baselines.
+
+Separate Product/Pricing changes arrived during continuation and were preserved, not authored as Phase 7 work. Their final smoke checks pass, but approved visual acceptance remains pending. Retired /app and /demo links still intentionally return 404. The complete working tree is therefore not claimed identical to the original locked frontend.
+
+Remaining acceptance: personally complete the walkthroughs; check keyboard/screen-reader/mobile behavior and visual approval. Later configured-environment checks must cover real SMTP delivery, approved live AI evaluation, HTTPS cookie behavior, supervision, backups/restoration and realistic load. No production readiness is claimed.
+
+Roadmap: **7/12 phases completed; 5/12 remaining. Next: Phase 8 — Marketing Website & Backend Integration.** Phase 8 has not been started by this audit.

@@ -2,6 +2,7 @@ import { testWorkspaces } from './workspaces.integration.mjs';
 import { testIntelligenceAPI } from './intelligence-api.integration.mjs';
 import { testLeads } from './leads.integration.mjs';
 import { testRoutingAPI } from './routing-api.integration.mjs';
+import { testAuditAPI } from './audit-api.integration.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomBytes } from 'node:crypto';
@@ -42,17 +43,43 @@ test(
       onLog: () => {},
       onError: () => {},
     });
+    let client, smtp, app;
+    const originalFetch = globalThis.fetch;
+    const responses = new Set();
+    globalThis.fetch = async (...args) => {
+      const response = await originalFetch(...args);
+      responses.add(response);
+      return response;
+    };
+    // Close clients before their servers. Keep real assertions and natural process exit.
+    t.after(async () => {
+      globalThis.fetch = originalFetch;
+      let unread = 0;
+      for (const response of responses) {
+        if (response.body && !response.bodyUsed && !response.body.locked) {
+          unread++;
+          await response.body.cancel();
+        }
+      }
+      console.log('HTTP cleanup: cancelled', unread, 'unread response bodies');
+      if (app && app.exitCode === null && !app.killed) {
+        const stopped = once(app, 'exit');
+        app.kill();
+        await stopped;
+      }
+      if (smtp) await new Promise((resolve) => smtp.close(resolve));
+      if (client) await client.end();
+      await pg.stop();
+    });
     await pg.initialise();
     await pg.start();
-    t.after(() => pg.stop());
-    const client = pg.getPgClient();
+    client = pg.getPgClient();
     await client.connect();
-    t.after(() => client.end());
     await migrate(drizzle(client), { migrationsFolder: 'migrations' });
     await migrate(drizzle(client), { migrationsFolder: 'migrations' });
 
     const inbox = [];
-    const smtp = new SMTPServer({
+    smtp = new SMTPServer({
       authOptional: true,
       disabledCommands: ['AUTH', 'STARTTLS'],
       onData(stream, _session, callback) {
@@ -68,13 +95,12 @@ test(
     });
     const smtpPort = await unusedPort();
     await new Promise((resolve) => smtp.listen(smtpPort, '127.0.0.1', resolve));
-    t.after(() => new Promise((resolve) => smtp.close(resolve)));
     const httpPort = await unusedPort();
     const base = 'http://127.0.0.1:' + httpPort;
     const origin = 'https://account.example.test';
     const secret = randomBytes(48).toString('hex');
     let logs = '';
-    const app = spawn(
+    app = spawn(
       process.execPath,
       ['node_modules/next/dist/bin/next', 'start', '-H', '127.0.0.1', '-p', String(httpPort)],
       {
@@ -105,13 +131,6 @@ test(
     });
     app.stderr.on('data', (chunk) => {
       logs += chunk;
-    });
-    t.after(async () => {
-      if (app.exitCode === null && !app.killed) {
-        const stopped = once(app, 'exit');
-        app.kill();
-        await stopped;
-      }
     });
     const get = (path, cookie = '') =>
       fetch(base + path, { headers: { cookie }, redirect: 'manual' });
@@ -322,6 +341,7 @@ test(
     });
     await testIntelligenceAPI({ t, base, origin, client, get, ca, cb, ua, ub });
     await testRoutingAPI({ t, base, origin, client, get, ca, cb, ua, ub });
+    await testAuditAPI({ t, base, origin, client, get, ca, cb, ua, ub });
     const sb = (await client.query('SELECT id FROM auth_session WHERE user_id=$1', [ub.id])).rows[0]
       .id;
     assert.equal((await accountPost('profile', { name: 'No', id: ub.id }, ca)).status, 400);

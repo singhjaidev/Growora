@@ -35,30 +35,7 @@ export async function withinLimit(scope: string, value: string, max: number) {
   return row.hits <= max;
 }
 
-export class RequestSizeError extends Error {}
-export async function readFields(
-  request: Request,
-  maxBytes = 4096,
-): Promise<Record<string, unknown>> {
-  const reader = request.body?.getReader();
-  if (!reader) throw new Error('Empty body');
-  let size = 0;
-  const chunks: Uint8Array[] = [];
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    size += value.length;
-    if (size > maxBytes) {
-      await reader.cancel();
-      throw new RequestSizeError('Body too large');
-    }
-    chunks.push(value);
-  }
-  const fields = JSON.parse(Buffer.concat(chunks).toString());
-  if (!fields || typeof fields !== 'object' || Array.isArray(fields))
-    throw new Error('Invalid body');
-  return fields;
-}
+export { readFields, RequestSizeError } from './body';
 
 export function copyCookies(from: Headers, to: Response) {
   for (const cookie of from.getSetCookie()) to.headers.append('Set-Cookie', cookie);
